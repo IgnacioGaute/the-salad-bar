@@ -5,177 +5,272 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-stone-50">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/fresh-colorful-salad-bowl-with-vibrant-vegetables-.png"
-            alt="Fresh salad bowl with vibrant vegetables"
-            className="w-full h-full object-cover animate-in fade-in duration-1000 hover:scale-105 transition-transform duration-[3000ms]"
+            src="/mediterranean-terrace-dining.png"
+            alt="Mediterranean terrace dining"
+            className="w-full h-full object-cover animate-in fade-in duration-2000 hover:scale-105 transition-transform duration-[5000ms]"
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-transparent to-stone-900/40"></div>
         </div>
 
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 animate-in slide-in-from-bottom-8 duration-1000 delay-300">
-          <h1 className="text-6xl md:text-8xl font-serif font-light mb-8 text-balance animate-in fade-in duration-1500 delay-500">
+        <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
+          <div className="animate-in slide-in-from-top-12 duration-1500 delay-300">
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
+          </div>
+
+          <h1 className="text-7xl md:text-9xl font-serif font-extralight mb-6 text-balance animate-in fade-in duration-2000 delay-500 tracking-wider">
             The Salad Bar
           </h1>
-          <p className="text-xl md:text-2xl font-light mb-12 text-balance opacity-90 animate-in slide-in-from-bottom-4 duration-1000 delay-700">
-            Ingredientes frescos, sabores naturales
-          </p>
-          <Button
-            size="lg"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 text-lg font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl animate-in zoom-in duration-1000 delay-1000"
-          >
-            Descubre más
-          </Button>
-        </div>
-      </section>
 
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="group cursor-pointer animate-in slide-in-from-left-8 duration-1000 delay-200">
-              <div className="overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700">
-                <img
-                  src="/colorful-fresh-juice-bar-with-natural-smoothies-an.png"
-                  alt="Jugos naturales"
-                  className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                />
-              </div>
-              <h3 className="text-3xl font-serif font-light text-gray-900 mt-8 text-center transition-colors duration-300 group-hover:text-emerald-600">
-                Jugos Naturales
-              </h3>
-            </div>
-
-            <div className="group cursor-pointer animate-in slide-in-from-bottom-8 duration-1000 delay-400">
-              <div className="overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700">
-                <img
-                  src="/fresh-salad-ingredients-display.png"
-                  alt="Ingredientes frescos"
-                  className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-1"
-                />
-              </div>
-              <h3 className="text-3xl font-serif font-light text-gray-900 mt-8 text-center transition-colors duration-300 group-hover:text-emerald-600">
-                55+ Ingredientes
-              </h3>
-            </div>
-
-            <div className="group cursor-pointer animate-in slide-in-from-right-8 duration-1000 delay-600">
-              <div className="overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700">
-                <img
-                  src="/healthy-restaurant-atmosphere.png"
-                  alt="Ambiente acogedor"
-                  className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
-                />
-              </div>
-              <h3 className="text-3xl font-serif font-light text-gray-900 mt-8 text-center transition-colors duration-300 group-hover:text-emerald-600">
-                Ambiente Único
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
-            <div className="animate-in slide-in-from-left-8 duration-1000">
-              <div className="space-y-8">
-                <div className="w-16 h-1 bg-emerald-600 animate-in slide-in-from-left-4 duration-1000 delay-200"></div>
-                <h2 className="text-6xl md:text-7xl font-serif font-light text-gray-900 leading-tight hover:text-emerald-600 transition-colors duration-500">
-                  Saludable & Delicioso
-                </h2>
-                <p className="text-2xl text-gray-700 leading-relaxed animate-in fade-in duration-1000 delay-300">
-                  Comida nutritiva que cuida tu bienestar sin sacrificar el sabor.
-                </p>
-              </div>
-            </div>
-            <div className="animate-in slide-in-from-right-8 duration-1000 group">
-              <img
-                src="/gourmet-healthy-dishes.png"
-                alt="Platos gourmet saludables"
-                className="w-full h-[500px] object-cover rounded-3xl shadow-2xl transition-all duration-700 group-hover:scale-105 group-hover:shadow-3xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20 animate-in fade-in duration-1000">
-            <div className="w-16 h-1 bg-emerald-600 mx-auto mb-8 animate-in slide-in-from-bottom-4 duration-1000 delay-200"></div>
-            <h2 className="text-6xl md:text-7xl font-serif font-light text-gray-900 mb-8 hover:text-emerald-600 transition-colors duration-500">
-              Todo el Día
-            </h2>
-            <p className="text-2xl text-gray-600 animate-in slide-in-from-bottom-4 duration-1000 delay-300">
-              Desayunos • Brunch • Meriendas • Bar
+          <div className="animate-in slide-in-from-bottom-8 duration-1500 delay-700">
+            <p className="text-2xl md:text-3xl font-light mb-4 text-balance opacity-95 tracking-wide">
+              Cocina Mediterránea Contemporánea
+            </p>
+            <p className="text-lg md:text-xl font-light mb-16 text-balance opacity-80 italic">
+              Donde la tradición se encuentra con la innovación
             </p>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl group animate-in zoom-in duration-1000 delay-500">
-            <img
-              src="/all-day-dining-restaurant.png"
-              alt="Restaurante todo el día"
-              className="w-full h-[700px] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent group-hover:from-black/40 transition-all duration-500"></div>
+          <div className="animate-in zoom-in duration-1500 delay-1200">
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
+            <Button
+              size="lg"
+              className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-12 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 hover:shadow-2xl tracking-widest uppercase"
+            >
+              Explorar
+            </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-32 bg-gray-800">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-20 animate-in fade-in duration-1000">
-            <div className="w-16 h-1 bg-emerald-400 mx-auto mb-8 animate-in slide-in-from-bottom-4 duration-1000 delay-200"></div>
-            <h2 className="text-6xl md:text-7xl font-serif font-light text-white mb-8 hover:text-emerald-400 transition-colors duration-500">
-              Contáctanos
+      <section className="py-40 bg-gradient-to-b from-stone-50 to-stone-100">
+        <div className="max-w-8xl mx-auto px-6">
+          <div className="text-center mb-32 animate-in fade-in duration-1500">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
+            <h2 className="text-5xl md:text-6xl font-serif font-extralight text-stone-800 mb-8 tracking-wide">
+              Experiencia Culinaria
             </h2>
-            <p className="text-2xl text-gray-300">Estamos aquí para hacer tu experiencia perfecta</p>
           </div>
 
-          <Card className="border-0 shadow-2xl bg-gray-700/90 backdrop-blur-sm hover:shadow-3xl transition-all duration-700 animate-in slide-in-from-bottom-8 duration-1000 hover:scale-[1.02] rounded-3xl">
-            <CardContent className="p-16">
-              <form className="space-y-10">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="group">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            {/* Primera imagen - más grande */}
+            <div className="md:col-span-7 group animate-in slide-in-from-left-12 duration-1500 delay-200">
+              <div className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000">
+                <img
+                  src="/european-restaurant-facade.png"
+                  alt="Fachada europea elegante"
+                  className="w-full h-[600px] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
+                  <h3 className="text-3xl font-serif font-light mb-2">Tradición Europea</h3>
+                  <p className="text-lg opacity-90">Auténtica experiencia mediterránea</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dos imágenes más pequeñas */}
+            <div className="md:col-span-5 space-y-8">
+              <div className="group animate-in slide-in-from-right-8 duration-1500 delay-400">
+                <div className="relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700">
+                  <img
+                    src="/modern-beige-interior.png"
+                    alt="Interior moderno beige"
+                    className="w-full h-72 object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <h3 className="text-2xl font-serif font-light text-stone-800 mt-6 group-hover:text-amber-700 transition-colors duration-300">
+                  Diseño Contemporáneo
+                </h3>
+              </div>
+
+              <div className="group animate-in slide-in-from-right-8 duration-1500 delay-600">
+                <div className="relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700">
+                  <img
+                    src="/natural-wood-terrace.png"
+                    alt="Terraza de madera natural"
+                    className="w-full h-72 object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <h3 className="text-2xl font-serif font-light text-stone-800 mt-6 group-hover:text-amber-700 transition-colors duration-300">
+                  Terraza Mediterránea
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-40 bg-stone-200 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
+        </div>
+
+        <div className="max-w-8xl mx-auto px-6 relative">
+          <div className="grid md:grid-cols-2 gap-32 items-center">
+            <div className="animate-in slide-in-from-left-12 duration-1500">
+              <div className="space-y-12">
+                <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+
+                <h2 className="text-6xl md:text-8xl font-serif font-extralight text-stone-800 leading-none tracking-wide">
+                  Filosofía
+                  <span className="block text-amber-700 italic font-light">Mediterránea</span>
+                </h2>
+
+                <div className="space-y-8 text-stone-600">
+                  <p className="text-2xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400">
+                    Cada plato cuenta una historia de tradición,
+                    <span className="text-amber-700 italic"> frescura </span>y pasión culinaria.
+                  </p>
+
+                  <p className="text-xl leading-relaxed opacity-80 animate-in fade-in duration-1500 delay-600">
+                    Ingredientes seleccionados, técnicas ancestrales, presentación contemporánea.
+                  </p>
+                </div>
+
+                <div className="pt-8 animate-in slide-in-from-bottom-8 duration-1500 delay-800">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent"
+                  >
+                    Nuestra Historia
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="animate-in slide-in-from-right-12 duration-1500 group">
+              <div className="relative">
+                <img
+                  src="/intimate-garden-dining.png"
+                  alt="Comedor íntimo en jardín"
+                  className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+                />
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-amber-400 opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+                <div className="absolute -top-8 -left-8 w-24 h-24 border-2 border-stone-400 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-40 bg-gradient-to-b from-stone-100 to-stone-50">
+        <div className="max-w-8xl mx-auto px-6">
+          <div className="text-center mb-32 animate-in fade-in duration-1500">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
+            <h2 className="text-5xl md:text-6xl font-serif font-extralight text-stone-800 mb-8 tracking-wide">
+              Espacios Únicos
+            </h2>
+            <p className="text-2xl text-stone-600 font-light italic">Cada rincón diseñado para inspirar</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="md:col-span-2 animate-in slide-in-from-left-12 duration-1500 delay-200">
+              <div className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000">
+                <img
+                  src="/mediterranean-bakery-interior.png"
+                  alt="Interior de panadería mediterránea"
+                  className="w-full h-[500px] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-8 group-hover:translate-y-0">
+                  <h3 className="text-3xl font-serif font-light mb-2">Panadería Artesanal</h3>
+                  <p className="text-lg opacity-90">Tradición en cada bocado</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-8 animate-in slide-in-from-right-8 duration-1500 delay-400">
+              <div className="group relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700">
+                <img
+                  src="/minimalist-striped-terrace.png"
+                  alt="Terraza minimalista con rayas"
+                  className="w-full h-60 object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+
+              <div className="bg-stone-800 p-8 text-white">
+                <h3 className="text-2xl font-serif font-light mb-4">Diseño Minimalista</h3>
+                <p className="text-stone-300 leading-relaxed">Líneas limpias que realzan la experiencia gastronómica</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-40 bg-gradient-to-b from-stone-800 via-stone-900 to-stone-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="text-center mb-32 animate-in fade-in duration-1500">
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
+            <h2 className="text-6xl md:text-8xl font-serif font-extralight text-stone-100 mb-8 tracking-wider">
+              Conectemos
+            </h2>
+            <p className="text-2xl text-stone-300 font-light italic">
+              Cada conversación es el inicio de una experiencia única
+            </p>
+          </div>
+
+          <Card className="border-0 shadow-3xl bg-gradient-to-br from-stone-700/80 to-stone-800/80 backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.01] rounded-none relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+
+            <CardContent className="p-20">
+              <form className="space-y-12">
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div className="group relative">
                     <Input
                       placeholder="Nombre completo"
-                      className="h-20 border-2 border-gray-500 bg-gray-600/50 text-white placeholder:text-gray-300 focus:bg-gray-600 focus:border-emerald-400 transition-all duration-300 text-xl group-hover:border-emerald-300 rounded-2xl"
+                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
                     />
+                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
-                  <div className="group">
+                  <div className="group relative">
                     <Input
                       type="email"
                       placeholder="Correo electrónico"
-                      className="h-20 border-2 border-gray-500 bg-gray-600/50 text-white placeholder:text-gray-300 focus:bg-gray-600 focus:border-emerald-400 transition-all duration-300 text-xl group-hover:border-emerald-300 rounded-2xl"
+                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
                     />
+                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
                 </div>
 
-                <div className="group">
+                <div className="group relative">
                   <Input
                     type="tel"
                     placeholder="Número de teléfono"
-                    className="h-20 border-2 border-gray-500 bg-gray-600/50 text-white placeholder:text-gray-300 focus:bg-gray-600 focus:border-emerald-400 transition-all duration-300 text-xl group-hover:border-emerald-300 rounded-2xl"
+                    className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
                   />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
 
-                <div className="group">
+                <div className="group relative">
                   <Textarea
-                    placeholder="Cuéntanos cómo podemos ayudarte..."
-                    rows={8}
-                    className="border-2 border-gray-500 bg-gray-600/50 text-white placeholder:text-gray-300 focus:bg-gray-600 focus:border-emerald-400 transition-all duration-300 resize-none text-xl group-hover:border-emerald-300 rounded-2xl"
+                    placeholder="Comparte tu visión con nosotros..."
+                    rows={6}
+                    className="border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 resize-none text-xl group-hover:border-amber-300 rounded-none pb-4"
                   />
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
 
-                <div className="text-center pt-8">
+                <div className="text-center pt-16">
                   <Button
                     type="submit"
                     size="lg"
-                    className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-20 py-8 text-2xl font-medium rounded-full transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl"
+                    className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-16 py-6 text-xl font-light rounded-none transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl tracking-widest uppercase"
                   >
                     Enviar Mensaje
                   </Button>
@@ -186,12 +281,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-gray-900 text-white py-20 animate-in fade-in duration-1000">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h3 className="text-4xl font-serif font-light mb-6 hover:text-emerald-400 transition-colors duration-300">
-            The Salad Bar
-          </h3>
-          <p className="text-xl text-gray-400">Ingredientes frescos, sabores naturales</p>
+      <footer className="bg-stone-950 text-white py-32 animate-in fade-in duration-1500 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative">
+          <div className="space-y-8">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
+            <h3 className="text-5xl font-serif font-extralight mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
+              The Salad Bar
+            </h3>
+            <p className="text-xl text-stone-400 font-light italic">Cocina Mediterránea Contemporánea</p>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-stone-600 to-transparent mx-auto mt-8"></div>
+          </div>
         </div>
       </footer>
     </div>
