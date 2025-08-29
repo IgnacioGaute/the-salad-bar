@@ -1,26 +1,35 @@
-import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type React from "react"
+import type { Metadata } from "next"
+import { Eczar, Montserrat } from "next/font/google"
+import "./globals.css"
+
+const eczar = Eczar({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-eczar",
+  weight: ["400", "500", "600", "700", "800"],
+})
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600", "700"],
+})
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: "The Salad Bar® - Cocina Mediterránea Contemporánea",
+  description: "Experiencia culinaria mediterránea única con ingredientes frescos y ambiente sofisticado",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        {children}
-        <Analytics />
-      </body>
+    <html lang="es" className={`${eczar.variable} ${montserrat.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   )
 }

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
+import HeroButton from "@/components/hero-button"
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/mediterranean-terrace-dining.png"
+            src="fondo-principal.jpg"
             alt="Mediterranean terrace dining"
             className="w-full h-full object-cover animate-in fade-in duration-2000 hover:scale-105 transition-transform duration-[5000ms]"
           />
@@ -22,36 +23,38 @@ export default function HomePage() {
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
           </div>
 
-          <h1 className="text-7xl md:text-9xl font-serif font-extralight mb-6 text-balance animate-in fade-in duration-2000 delay-500 tracking-wider">
-            The Salad Bar
-          </h1>
+          <div className="animate-in fade-in duration-2000 delay-500 mb-8">
+            <img
+              src="/the-salad-bar-logo-transp.png"
+              alt="The Salad Bar"
+              className="w-80 md:w-96 mx-auto filter brightness-0 invert hover:scale-105 transition-transform duration-700"
+            />
+            <div className="mt-4">
+              <span className="text-lg font-light tracking-widest opacity-80">®</span>
+            </div>
+          </div>
 
           <div className="animate-in slide-in-from-bottom-8 duration-1500 delay-700">
-            <p className="text-2xl md:text-3xl font-light mb-4 text-balance opacity-95 tracking-wide">
+            <p className="text-2xl md:text-3xl font-light mb-4 text-balance opacity-95 tracking-wide font-sans">
               Cocina Mediterránea Contemporánea
             </p>
-            <p className="text-lg md:text-xl font-light mb-16 text-balance opacity-80 italic">
+            <p className="text-lg md:text-xl font-light mb-16 text-balance opacity-80 italic font-sans">
               Donde la tradición se encuentra con la innovación
             </p>
           </div>
 
           <div className="animate-in zoom-in duration-1500 delay-1200">
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-            <Button
-              size="lg"
-              className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-12 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 hover:shadow-2xl tracking-widest uppercase"
-            >
-              Explorar
-            </Button>
+            <HeroButton />
           </div>
         </div>
       </section>
 
-      <section className="py-40 bg-gradient-to-b from-stone-50 to-stone-100">
+      <section className="py-40 bg-gradient-to-b from-stone-50 to-stone-100" id="experiencia-culinaria">
         <div className="max-w-8xl mx-auto px-6">
           <div className="text-center mb-32 animate-in fade-in duration-1500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
-            <h2 className="text-5xl md:text-6xl font-serif font-extralight text-stone-800 mb-8 tracking-wide">
+            <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-8 tracking-wide">
               Experiencia Culinaria
             </h2>
           </div>
@@ -119,18 +122,18 @@ export default function HomePage() {
               <div className="space-y-12">
                 <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-                <h2 className="text-6xl md:text-8xl font-serif font-extralight text-stone-800 leading-none tracking-wide">
+                <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-800 leading-none tracking-wide">
                   Filosofía
                   <span className="block text-amber-700 italic font-light">Mediterránea</span>
                 </h2>
 
                 <div className="space-y-8 text-stone-600">
-                  <p className="text-2xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400">
+                  <p className="text-2xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
                     Cada plato cuenta una historia de tradición,
                     <span className="text-amber-700 italic"> frescura </span>y pasión culinaria.
                   </p>
 
-                  <p className="text-xl leading-relaxed opacity-80 animate-in fade-in duration-1500 delay-600">
+                  <p className="text-xl leading-relaxed opacity-80 animate-in fade-in duration-1500 delay-600 font-sans">
                     Ingredientes seleccionados, técnicas ancestrales, presentación contemporánea.
                   </p>
                 </div>
@@ -139,7 +142,7 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent"
+                    className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
                   >
                     Nuestra Historia
                   </Button>
@@ -166,10 +169,10 @@ export default function HomePage() {
         <div className="max-w-8xl mx-auto px-6">
           <div className="text-center mb-32 animate-in fade-in duration-1500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
-            <h2 className="text-5xl md:text-6xl font-serif font-extralight text-stone-800 mb-8 tracking-wide">
+            <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-8 tracking-wide">
               Espacios Únicos
             </h2>
-            <p className="text-2xl text-stone-600 font-light italic">Cada rincón diseñado para inspirar</p>
+            <p className="text-2xl text-stone-600 font-light italic font-sans">Cada rincón diseñado para inspirar</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -216,10 +219,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 relative">
           <div className="text-center mb-32 animate-in fade-in duration-1500">
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-            <h2 className="text-6xl md:text-8xl font-serif font-extralight text-stone-100 mb-8 tracking-wider">
+            <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
               Conectemos
             </h2>
-            <p className="text-2xl text-stone-300 font-light italic">
+            <p className="text-2xl text-stone-300 font-light italic font-sans">
               Cada conversación es el inicio de una experiencia única
             </p>
           </div>
@@ -234,7 +237,7 @@ export default function HomePage() {
                   <div className="group relative">
                     <Input
                       placeholder="Nombre completo"
-                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
+                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
@@ -242,7 +245,7 @@ export default function HomePage() {
                     <Input
                       type="email"
                       placeholder="Correo electrónico"
-                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
+                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
@@ -252,7 +255,7 @@ export default function HomePage() {
                   <Input
                     type="tel"
                     placeholder="Número de teléfono"
-                    className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4"
+                    className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                   />
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
@@ -261,7 +264,7 @@ export default function HomePage() {
                   <Textarea
                     placeholder="Comparte tu visión con nosotros..."
                     rows={6}
-                    className="border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 resize-none text-xl group-hover:border-amber-300 rounded-none pb-4"
+                    className="border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 resize-none text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                   />
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
@@ -270,7 +273,7 @@ export default function HomePage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-16 py-6 text-xl font-light rounded-none transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl tracking-widest uppercase"
+                    className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-16 py-6 text-xl font-light rounded-none transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl tracking-widest uppercase font-sans"
                   >
                     Enviar Mensaje
                   </Button>
@@ -289,10 +292,10 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative">
           <div className="space-y-8">
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
-            <h3 className="text-5xl font-serif font-extralight mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
-              The Salad Bar
+            <h3 className="text-5xl font-serif font-light mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
+              The Salad Bar<span className="text-2xl align-super ml-1">®</span>
             </h3>
-            <p className="text-xl text-stone-400 font-light italic">Cocina Mediterránea Contemporánea</p>
+            <p className="text-xl text-stone-400 font-light italic font-sans">Cocina Mediterránea Contemporánea</p>
             <div className="w-12 h-px bg-gradient-to-r from-transparent via-stone-600 to-transparent mx-auto mt-8"></div>
           </div>
         </div>
