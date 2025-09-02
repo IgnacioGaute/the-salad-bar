@@ -1,10 +1,13 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import HeroButton from "@/components/hero-button"
+import { useState } from "react"
 
 export default function HomePage() {
+  const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Hero Section */}
@@ -110,7 +113,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-40 bg-stone-200 relative overflow-hidden">
+      <section id="filosofia" className="py-40 bg-stone-200 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
           <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
@@ -124,17 +127,16 @@ export default function HomePage() {
 
                 <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-800 leading-none tracking-wide">
                   Filosofía
-                  <span className="block text-amber-700 italic font-light">Mediterránea</span>
+                  {/* <span className="block text-amber-700 italic font-light">Mediterránea</span> */}
                 </h2>
 
-                <div className="space-y-8 text-stone-600">
-                  <p className="text-2xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
-                    Cada plato cuenta una historia de tradición,
-                    <span className="text-amber-700 italic"> frescura </span>y pasión culinaria.
-                  </p>
-
-                  <p className="text-xl leading-relaxed opacity-80 animate-in fade-in duration-1500 delay-600 font-sans">
-                    Ingredientes seleccionados, técnicas ancestrales, presentación contemporánea.
+                <div className="space-y-8 text-stone-900">
+                  <p className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
+                  Nuestros valores destacan que <span className="block text-amber-700 italic font-light">COMER BIEN ES UNA FORMA DE AUTO RESPETO</span> 
+                  y  comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. 
+                  Somos muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno que te haga sentir bien. 
+                  Buscamos que cada visita se sienta para vos una experiencia, ligera, fresca y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años 
+                  creamos una propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con la marca.
                   </p>
                 </div>
 
@@ -142,6 +144,19 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="lg"
+                    onClick={() => {
+                      setIsHistoryExpanded(true)
+                      // Scroll suave hacia la sección de historia después de que se expanda
+                      setTimeout(() => {
+                        const historiaSection = document.getElementById('historia')
+                        if (historiaSection) {
+                          historiaSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                          })
+                        }
+                      }) // Delay para que la animación de expansión comience
+                    }}
                     className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
                   >
                     Nuestra Historia
@@ -164,6 +179,84 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Sección Historia Expandible */}
+      {isHistoryExpanded && (
+        <section id="historia" className="py-40 bg-stone-200 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
+            <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
+          </div>
+          <div className="max-w-8xl mx-auto px-6 relative">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Imagen a la izquierda */}
+              <div className="animate-in slide-in-from-left-12 duration-1000 delay-200 group">
+                <div className="relative">
+                  <img
+                    src="/mediterranean-terrace-dining.png"
+                    alt="Historia de The Salad Bar"
+                    className="w-full h-[800px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+                  />
+                  <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-amber-400 opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+                  <div className="absolute -top-8 -right-8 w-24 h-24 border-2 border-stone-400 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                </div>
+              </div>
+
+              {/* Texto a la derecha */}
+              <div className="animate-in slide-in-from-right-12 duration-1000 delay-400">
+                <div className="space-y-8">
+                  <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                  
+                  <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                    Nuestra Historia
+                  </h3>
+
+                  <div className="space-y-6 text-stone-700">
+                    <p className="text-xl leading-relaxed font-light font-sans">
+                    Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que en Salta esa propuesta no existía y deciden crear juntos <span className="text-amber-700 italic font-light">The Salad Bar</span>: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. 
+                    Jorge, se convierte en un pilar fundamental para <span className="text-amber-700 italic font-light">The Salad Bar</span>, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. 
+                    Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito. 
+                    </p>
+                    
+                    <p className="text-xl leading-relaxed font-light font-sans">
+                    Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación.
+                    </p>
+                  </div>
+
+                  <div className="pt-8">
+                    <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Botón para volver a filosofía */}
+            <div className="text-center mt-16 animate-in slide-in-from-bottom-8 duration-1000 delay-600">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => {
+                  // Primero hacer scroll hacia arriba a la sección de filosofía
+                  const filosofiaSection = document.getElementById('filosofia')
+                  if (filosofiaSection) {
+                    filosofiaSection.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start'
+                    })
+                  }
+                  // Luego cerrar la sección después de que termine el scroll
+                  setTimeout(() => {
+                    setIsHistoryExpanded(false)
+                  }, 1000) // Delay para que termine el scroll antes de cerrar
+                }}
+                className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
+              >
+                Cerrar Historia
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-40 bg-gradient-to-b from-stone-100 to-stone-50">
         <div className="max-w-8xl mx-auto px-6">
