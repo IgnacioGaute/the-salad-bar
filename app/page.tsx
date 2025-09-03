@@ -4,10 +4,30 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import HeroButton from "@/components/hero-button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
 
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
+  const [experienciaCarouselApi, setExperienciaCarouselApi] = useState<CarouselApi | undefined>(undefined)
+  const [experienciaSelectedIndex, setExperienciaSelectedIndex] = useState(0)
+
+  useEffect(() => {
+    if (!experienciaCarouselApi) return
+    const updateSelected = () => setExperienciaSelectedIndex(experienciaCarouselApi.selectedScrollSnap())
+    updateSelected()
+    experienciaCarouselApi.on("select", updateSelected)
+    experienciaCarouselApi.on("reInit", updateSelected)
+    return () => {
+      experienciaCarouselApi.off("select", updateSelected)
+      experienciaCarouselApi.off("reInit", updateSelected)
+    }
+  }, [experienciaCarouselApi])
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Hero Section */}
@@ -54,62 +74,53 @@ export default function HomePage() {
       </section>
 
       <section className="py-40 bg-gradient-to-b from-stone-50 to-stone-100" id="experiencia-culinaria">
-        <div className="max-w-8xl mx-auto px-6">
-          <div className="text-center mb-32 animate-in fade-in duration-1500">
+        <div className="w-full px-0">
+          <div className="text-center mb-16 md:mb-24 animate-in fade-in duration-1500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
-            <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-8 tracking-wide">
+            <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-4 md:mb-8 tracking-wide">
               Experiencia Culinaria
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Primera imagen - más grande */}
-            <div className="md:col-span-7 group animate-in slide-in-from-left-12 duration-1500 delay-200">
-              <div className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000">
-                <img
-                  src="/european-restaurant-facade.png"
-                  alt="Fachada europea elegante"
-                  className="w-full h-[600px] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <div className="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
-                  <h3 className="text-3xl font-serif font-light mb-2">Tradición Europea</h3>
-                  <p className="text-lg opacity-90">Auténtica experiencia mediterránea</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Dos imágenes más pequeñas */}
-            <div className="md:col-span-5 space-y-8">
-              <div className="group animate-in slide-in-from-right-8 duration-1500 delay-400">
-                <div className="relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700">
-                  <img
-                    src="/modern-beige-interior.png"
-                    alt="Interior moderno beige"
-                    className="w-full h-72 object-cover transition-transform duration-1000 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-                <h3 className="text-2xl font-serif font-light text-stone-800 mt-6 group-hover:text-amber-700 transition-colors duration-300">
-                  Diseño Contemporáneo
-                </h3>
-              </div>
-
-              <div className="group animate-in slide-in-from-right-8 duration-1500 delay-600">
-                <div className="relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700">
-                  <img
-                    src="/natural-wood-terrace.png"
-                    alt="Terraza de madera natural"
-                    className="w-full h-72 object-cover transition-transform duration-1000 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-                <h3 className="text-2xl font-serif font-light text-stone-800 mt-6 group-hover:text-amber-700 transition-colors duration-300">
-                  Terraza Mediterránea
-                </h3>
-              </div>
-            </div>
-          </div>
+          <Carousel
+            className="relative w-full"
+            opts={{ loop: true, align: "start", slidesToScroll: 1 }}
+            setApi={setExperienciaCarouselApi}
+          >
+            <CarouselContent>
+              {[
+                { src: "/european-restaurant-facade.png", title: "Tradición Europea", subtitle: "Auténtica experiencia mediterránea" },
+                { src: "/modern-beige-interior.png", title: "Diseño Contemporáneo", subtitle: "Espacios que inspiran" },
+                { src: "/natural-wood-terrace.png", title: "Terraza Mediterránea", subtitle: "Calidez al aire libre" },
+                { src: "/gourmet-healthy-dishes.png", title: "Gourmet Saludable", subtitle: "Sabor y equilibrio" },
+              ].map((item, idx) => (
+                <CarouselItem key={idx} className="basis-full md:basis-1/3">
+                  <div
+                    className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000 cursor-pointer"
+                    onClick={() => {
+                      if (!experienciaCarouselApi) return
+                      if (idx === experienciaSelectedIndex) {
+                        experienciaCarouselApi.scrollPrev()
+                      } else {
+                        experienciaCarouselApi.scrollNext()
+                      }
+                    }}
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-[40vh] md:h-[55vh] lg:h-[70vh] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div className="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-8 group-hover:translate-y-0">
+                      <h3 className="text-3xl md:text-4xl font-serif font-light mb-2">{item.title}</h3>
+                      <p className="text-lg md:text-xl opacity-90">{item.subtitle}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
