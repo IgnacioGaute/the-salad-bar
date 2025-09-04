@@ -89,10 +89,10 @@ export default function HomePage() {
           >
             <CarouselContent>
               {[
-                { src: "/european-restaurant-facade.png", title: "Tradición Europea", subtitle: "Auténtica experiencia mediterránea" },
-                { src: "/modern-beige-interior.png", title: "Diseño Contemporáneo", subtitle: "Espacios que inspiran" },
-                { src: "/natural-wood-terrace.png", title: "Terraza Mediterránea", subtitle: "Calidez al aire libre" },
-                { src: "/gourmet-healthy-dishes.png", title: "Gourmet Saludable", subtitle: "Sabor y equilibrio" },
+                { src: "/european-restaurant-facade.png", title: "THE SEASONS", subtitle: "Las estaciones no solo hablan del clima." },
+                { src: "/modern-beige-interior.png", title: "SE PARTE DE NUESTRO EQUIPO", subtitle: "Un ambiente distendido que no compromete la excelencia." },
+                { src: "/natural-wood-terrace.png", title: "Terraza", subtitle: "Mediterránea" },
+                { src: "/gourmet-healthy-dishes.png", title: "Gourmet", subtitle: "Saludable" },
               ].map((item, idx) => (
                 <CarouselItem key={idx} className="basis-full md:basis-1/3">
                   <div
@@ -111,10 +111,26 @@ export default function HomePage() {
                       alt={item.title}
                       className="w-full h-[40vh] md:h-[55vh] lg:h-[70vh] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div className="absolute bottom-8 left-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-8 group-hover:translate-y-0">
-                      <h3 className="text-3xl md:text-4xl font-serif font-light mb-2">{item.title}</h3>
-                      <p className="text-lg md:text-xl opacity-90">{item.subtitle}</p>
+                    <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/30 to-transparent"></div>
+                    <div className="absolute top-15 left-0 right-0 text-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0 px-6">
+                      <h3 className="uppercase font-extrabold leading-tight tracking-tight text-3xl md:text-5xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                        {(() => {
+                          const [firstWord, ...restWords] = item.title.split(" ")
+                          return (
+                            <>
+                              <span className="block">{firstWord}</span>
+                              {restWords.length > 0 && (
+                                <span className="block">{restWords.join(" ")}</span>
+                              )}
+                            </>
+                          )
+                        })()}
+                      </h3>
+                    </div>
+                    <div className="absolute bottom-6 left-0 right-0 text-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 px-4">
+                      <p className="font-light leading-snug tracking-normal text-base md:text-lg lg:text-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+                        {item.subtitle}
+                      </p>
                     </div>
                   </div>
                 </CarouselItem>
@@ -224,7 +240,7 @@ export default function HomePage() {
 
                   <div className="space-y-6 text-stone-700">
                     <p className="text-xl leading-relaxed font-light font-sans">
-                    Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que en Salta esa propuesta no existía y deciden crear juntos <span className="text-amber-700 italic font-light">The Salad Bar</span>: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. 
+                    Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos <span className="text-amber-700 italic font-light">The Salad Bar</span>: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. 
                     Jorge, se convierte en un pilar fundamental para <span className="text-amber-700 italic font-light">The Salad Bar</span>, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. 
                     Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito. 
                     </p>
