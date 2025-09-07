@@ -16,6 +16,71 @@ export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
   const [experienciaCarouselApi, setExperienciaCarouselApi] = useState<CarouselApi | undefined>(undefined)
   const [experienciaSelectedIndex, setExperienciaSelectedIndex] = useState(0)
+  const [selectedCarouselItem, setSelectedCarouselItem] = useState<number | null>(null)
+
+  // Datos del carrusel con descripciones detalladas
+  const carouselData = [
+    { 
+      src: "/european-restaurant-facade.png", 
+      title: "THE SEASONS", 
+      subtitle: "subtitle.",
+      description: "En The Salad Bar, la experiencia es tan importante como la comida. Acompañamos el ritmo de las estaciones y los diferentes momentos de nuestros clientes, creando un ambiente que conecta con su estado de ánimo a través de la música, el entorno y la decoración. Nuestro compromiso con la calidad, la frescura de los ingredientes y la lealtad de nuestros clientes nos impulsa a renovar la carta constantemente, con cada estación. De esta manera, no solo seguimos las tendencias, sino que también las creamos nosotros mismos, garantizando que siempre haya algo nuevo para disfrutar. Las estaciones no solo hablan del clima. Hablan de un mood, de un momento, de una energía. Y en The Salad Bar, respetamos cada uno de ellos."
+    },
+    { 
+      src: "/modern-beige-interior.png", 
+      title: "SE PARTE DE NUESTRO EQUIPO", 
+      subtitle: "subtitle.",
+      description: "n nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. "
+    },
+    { 
+      src: "/natural-wood-terrace.png", 
+      title: "Terraza", 
+      subtitle: "subtitle",
+      description: "Nuestra terraza es un oasis urbano donde la naturaleza se encuentra con la gastronomía. Diseñada con materiales naturales y elementos mediterráneos, ofrece un espacio único para disfrutar de nuestros platos al aire libre. Cada detalle está pensado para crear una experiencia sensorial completa, desde la brisa natural hasta los aromas de nuestros ingredientes frescos."
+    },
+    { 
+      src: "/gourmet-healthy-dishes.png", 
+      title: "Gourmet", 
+      subtitle: "subtitle",
+      description: "Revolucionamos el concepto de comida saludable, demostrando que lo nutritivo puede ser exquisito. Cada plato es una obra de arte culinaria que combina ingredientes premium con técnicas innovadoras. Nuestro enfoque gourmet no solo satisface el paladar, sino que nutre el cuerpo y el alma, creando una experiencia gastronómica completa y consciente."
+    },
+  ]
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [success, setSuccess] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSuccess(null)
+    setError(null)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        setSuccess("Tu mensaje fue enviado con éxito 🎉")
+        setFormData({ name: "", email: "", phone: "", message: "" })
+      } else {
+        setError("Hubo un error al enviar el mensaje. Intenta de nuevo.")
+      }
+    } catch (err) {
+      setError("No se pudo conectar con el servidor.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
 
   useEffect(() => {
     if (!experienciaCarouselApi) return
@@ -82,61 +147,108 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <Carousel
-            className="relative w-full"
-            opts={{ loop: true, align: "start", slidesToScroll: 1 }}
-            setApi={setExperienciaCarouselApi}
-          >
-            <CarouselContent>
-              {[
-                { src: "/european-restaurant-facade.png", title: "THE SEASONS", subtitle: "Las estaciones no solo hablan del clima." },
-                { src: "/modern-beige-interior.png", title: "SE PARTE DE NUESTRO EQUIPO", subtitle: "Un ambiente distendido que no compromete la excelencia." },
-                { src: "/natural-wood-terrace.png", title: "Terraza", subtitle: "Mediterránea" },
-                { src: "/gourmet-healthy-dishes.png", title: "Gourmet", subtitle: "Saludable" },
-              ].map((item, idx) => (
-                <CarouselItem key={idx} className="basis-full md:basis-1/3">
-                  <div
-                    className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000 cursor-pointer"
-                    onClick={() => {
-                      if (!experienciaCarouselApi) return
-                      if (idx === experienciaSelectedIndex) {
-                        experienciaCarouselApi.scrollPrev()
-                      } else {
-                        experienciaCarouselApi.scrollNext()
-                      }
-                    }}
-                  >
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-[40vh] md:h-[55vh] lg:h-[70vh] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/30 to-transparent"></div>
-                    <div className="absolute top-15 left-0 right-0 text-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0 px-6">
-                      <h3 className="uppercase font-extrabold leading-tight tracking-tight text-3xl md:text-5xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
-                        {(() => {
-                          const [firstWord, ...restWords] = item.title.split(" ")
-                          return (
-                            <>
-                              <span className="block">{firstWord}</span>
-                              {restWords.length > 0 && (
-                                <span className="block">{restWords.join(" ")}</span>
-                              )}
-                            </>
-                          )
-                        })()}
-                      </h3>
+          {/* Flechas de navegación arriba a la derecha */}
+          <div className="flex justify-end gap-2 mb-6">
+            <button
+              onClick={() => experienciaCarouselApi?.scrollPrev()}
+              disabled={!experienciaCarouselApi?.canScrollPrev()}
+              className="bg-white/90 hover:bg-white text-stone-800 hover:text-amber-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => experienciaCarouselApi?.scrollNext()}
+              disabled={!experienciaCarouselApi?.canScrollNext()}
+              className="bg-white/90 hover:bg-white text-stone-800 hover:text-amber-600 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <div className="relative">
+            <Carousel
+              className="relative w-full"
+              opts={{ loop: true, align: "start", slidesToScroll: 1 }}
+              setApi={setExperienciaCarouselApi}
+            >
+              <CarouselContent>
+                {carouselData.map((item, idx) => (
+                  <CarouselItem key={idx} className="basis-full md:basis-1/3">
+                    <div
+                      className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000 cursor-pointer"
+                      onClick={() => setSelectedCarouselItem(selectedCarouselItem === idx ? null : idx)}
+                    >
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-[40vh] md:h-[55vh] lg:h-[70vh] object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/30 to-transparent"></div>
+                      
+                      {/* Título abajo a la izquierda - solo visible en hover */}
+                      <div className="absolute bottom-20 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <h3 className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans">
+                          {item.title}
+                        </h3>
+                      </div>
+                      
+                      {/* Subtítulo abajo, debajo del título - solo visible en hover */}
+                      <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-90 transition-all duration-500">
+                        <p className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-sans italic">
+                          {item.subtitle}
+                        </p>
+                      </div>
+
+                      {/* Indicador de click */}
+                      <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
                     </div>
-                    <div className="absolute bottom-6 left-0 right-0 text-center text-white opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 px-4">
-                      <p className="font-light leading-snug tracking-normal text-base md:text-lg lg:text-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                        {item.subtitle}
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            {/* Panel lateral con descripción */}
+            {selectedCarouselItem !== null && (
+              <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300">
+                <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col">
+                  <div className="relative flex-shrink-0">
+                    <img
+                      src={carouselData[selectedCarouselItem].src}
+                      alt={carouselData[selectedCarouselItem].title}
+                      className="w-full h-64 object-cover"
+                    />
+                    <button
+                      onClick={() => setSelectedCarouselItem(null)}
+                      className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110"
+                    >
+                      <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="flex-1 overflow-y-auto">
+                    <div className="p-8">
+                      <h3 className="text-3xl font-bold text-stone-800 mb-4 font-sans">
+                        {carouselData[selectedCarouselItem].title}
+                      </h3>
+                      <p className="text-lg text-amber-600 italic mb-6 font-sans">
+                        {carouselData[selectedCarouselItem].subtitle}
+                      </p>
+                      <p className="text-stone-700 leading-relaxed text-base font-sans">
+                        {carouselData[selectedCarouselItem].description}
                       </p>
                     </div>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -331,78 +443,86 @@ export default function HomePage() {
       </section>
 
       <section className="py-40 bg-gradient-to-b from-stone-800 via-stone-900 to-stone-800 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
-          <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <div className="text-center mb-32 animate-in fade-in duration-1500">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
+          <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
+            Conectemos
+          </h2>
+          <p className="text-2xl text-stone-300 font-light italic font-sans">
+            Cada conversación es el inicio de una experiencia única
+          </p>
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 relative">
-          <div className="text-center mb-32 animate-in fade-in duration-1500">
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-            <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
-              Conectemos
-            </h2>
-            <p className="text-2xl text-stone-300 font-light italic font-sans">
-              Cada conversación es el inicio de una experiencia única
-            </p>
-          </div>
+        <Card className="border-0 shadow-3xl bg-gradient-to-br from-stone-700/80 to-stone-800/80 backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.01] rounded-none relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
 
-          <Card className="border-0 shadow-3xl bg-gradient-to-br from-stone-700/80 to-stone-800/80 backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.01] rounded-none relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-
-            <CardContent className="p-20">
-              <form className="space-y-12">
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div className="group relative">
-                    <Input
-                      placeholder="Nombre completo"
-                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
-                    />
-                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
-                  </div>
-                  <div className="group relative">
-                    <Input
-                      type="email"
-                      placeholder="Correo electrónico"
-                      className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
-                    />
-                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
-                  </div>
-                </div>
-
+          <CardContent className="p-20">
+            <form className="space-y-12" onSubmit={handleSubmit}>
+              <div className="grid md:grid-cols-2 gap-12">
                 <div className="group relative">
                   <Input
-                    type="tel"
-                    placeholder="Número de teléfono"
+                    placeholder="Nombre completo"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                   />
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
-
                 <div className="group relative">
-                  <Textarea
-                    placeholder="Comparte tu visión con nosotros..."
-                    rows={6}
-                    className="border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 resize-none text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
+                  <Input
+                    type="email"
+                    placeholder="Correo electrónico"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
                   />
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-500 group-focus-within:w-full"></div>
                 </div>
+              </div>
 
-                <div className="text-center pt-16">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-16 py-6 text-xl font-light rounded-none transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl tracking-widest uppercase font-sans"
-                  >
-                    Enviar Mensaje
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+              <div className="group relative">
+                <Input
+                  type="tel"
+                  placeholder="Número de teléfono"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="h-16 border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
+                />
+              </div>
+
+              <div className="group relative">
+                <Textarea
+                  placeholder="Comparte tu visión con nosotros..."
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="border-0 border-b-2 border-stone-500 bg-transparent text-stone-100 placeholder:text-stone-400 focus:bg-transparent focus:border-amber-400 transition-all duration-500 resize-none text-xl group-hover:border-amber-300 rounded-none pb-4 font-sans"
+                />
+              </div>
+
+              <div className="text-center pt-16">
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isSubmitting}
+                  className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 hover:border-amber-400 text-amber-400 hover:text-stone-900 px-16 py-6 text-xl font-light rounded-none transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl tracking-widest uppercase font-sans"
+                >
+                  {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                </Button>
+              </div>
+
+              {success && <p className="text-green-400 text-center">{success}</p>}
+              {error && <p className="text-red-400 text-center">{error}</p>}
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
 
       <footer className="bg-stone-950 text-white py-32 animate-in fade-in duration-1500 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
