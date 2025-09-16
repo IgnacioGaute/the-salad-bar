@@ -237,24 +237,50 @@ export default function HomePage() {
 
               {/* Texto a la derecha */}
               <div className="animate-in slide-in-from-right-12 duration-1000 delay-400">
-                <div className="space-y-8">
-                  <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
-                  
-                  <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
-                  Propuesta Gastronómica
-                  </h3>
+  <div className="space-y-8">
+    {/* Línea decorativa superior */}
+    <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
 
-                  <div className="space-y-6 text-stone-700">
-                    <p className="text-xl leading-relaxed font-light font-sans">
-                    Revolucionamos el concepto de comida saludable, demostrando que lo nutritivo puede ser exquisito. Cada plato es una obra de arte culinaria que combina ingredientes premium con técnicas innovadoras. Nuestro enfoque gourmet no solo satisface el paladar, sino que nutre el cuerpo y el alma, creando una experiencia gastronómica completa y consciente.
-                    </p>
-                  </div>
+    {/* Título principal */}
+    <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+      PROPUESTA GASTRONÓMICA
+    </h3>
 
-                  <div className="pt-8">
-                    <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
-                  </div>
-                </div>
-              </div>
+    {/* Lista de productos */}
+    <ul className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
+      <li>Desayunos, brunch y meriendas</li>
+      <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
+      <li>Pre Set Bowls</li>
+      <li>Sopas</li>
+      <li>Platos elaborados</li>
+      <li>Wraps y Sandwiches</li>
+      <li>Jugos naturales y smoothies</li>
+      <li>The Bar: aperitivos, vinos y cerveza</li>
+    </ul>
+
+    {/* Descripción */}
+    <div className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
+      <p>
+        En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
+      </p>
+      <p>
+        Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
+      </p>
+      <p>
+        Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos nuestra carta en constante renovación.
+      </p>
+      <p>
+        Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de forma periódica.
+      </p>
+    </div>
+
+    {/* Línea decorativa inferior */}
+    <div className="pt-8">
+      <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+    </div>
+  </div>
+</div>
+
             </div>
             
             {/* Botón para volver a filosofía */}
