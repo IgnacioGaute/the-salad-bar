@@ -60,13 +60,8 @@ export default function ContactForm() {
         <div className="text-center mb-32 animate-in fade-in duration-1500">
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
           <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
-            Franquicias Disponibles
+            Contactanos
           </h2>
-          <p className="text-1xl text-stone-300 font-light italic font-sans max-w-2xl mx-auto">
-            Agradecemos tu interés en unirte a la red de franquicias de{" "}
-            <b>The Salad Bar</b>. Como parte de nuestro proceso de selección, hemos diseñado este formulario con el objetivo de comprender mejor tu perfil, experiencia y expectativas, asegurando así una sinergia exitosa y duradera entre ambas partes.
-            Este cuestionario nos permitirá evaluar tu idoneidad como socio estratégico y, a su vez, te proporcionará una oportunidad para reflexionar sobre los requisitos y responsabilidades que conlleva la adquisición de una franquicia. Toda la información proporcionada será tratada con estricta confidencialidad.
-          </p>
         </div>
 
         {/* Formulario */}
@@ -76,9 +71,6 @@ export default function ContactForm() {
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
 
           <CardContent className="p-20">
-          <h2 className="text-4xl md:text-5xl text-center font-serif font-light text-stone-100 mb-8 tracking-wider">
-            Contactanos
-          </h2>
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>

@@ -12,6 +12,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import ContactForm from "@/components/contact-form"
+import FranquiciaCard from "@/components/franquicia-card"
 
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
@@ -40,6 +41,17 @@ export default function HomePage() {
       description: "Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos The Salad Bar: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. Jorge, se convierte en un pilar fundamental para The Salad Bar, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito.  Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación. "
     },
   ]
+
+  const extendedCarouselData = [
+    ...carouselData,
+    {
+      src: "/natural-wood-terrace.png",
+      title: "FRANQUICIAS DISPONIBLES",
+      subtitle: "Llevá The Salad Bar a tu ciudad",
+      description: "Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. ..."
+    }
+  ]
+  
 
   const [formData, setFormData] = useState({
     name: "",
@@ -393,12 +405,22 @@ export default function HomePage() {
 
                       {/* Indicador de click */}
                       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="px-2 py-1 rounded-md bg-white/70 text-stone-700 text-[11px] tracking-wide shadow-sm border border-white/60 flex items-center gap-1">
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
-                          </svg>
+                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
                           <span>Ver más</span>
-                        </div>
+                          <svg
+                          className="w-4 h-4 text-[#D4A373]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          >
+                          <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                          />
+                          </svg>
+                      </button>
                       </div>
                     </div>
                   </CarouselItem>
@@ -442,6 +464,8 @@ export default function HomePage() {
                 </div>
               </div>
             )}
+            <FranquiciaCard />
+
           </div>
         </div>
       </section>
