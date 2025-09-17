@@ -48,7 +48,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="py-40 bg-gradient-to-b from-stone-800 via-stone-900 to-stone-800 relative overflow-hidden">
+    <section className="relative overflow-hidden mt-5">
       {/* Líneas decorativas */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
@@ -56,16 +56,17 @@ export default function ContactForm() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative">
-        {/* Título */}
-        <div className="text-center mb-32 animate-in fade-in duration-1500">
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-          <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
-            Contactanos
-          </h2>
-        </div>
 
         {/* Formulario */}
-        <Card className="border-0 shadow-3xl bg-gradient-to-br from-stone-700/80 to-stone-800/80 backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.01] rounded-none relative overflow-hidden">
+        <Card className="border-2 border-[#D4A373] shadow-3xl 
+                 bg-gradient-to-br from-[#3E2F2F]/90 to-stone-900/80 
+                 backdrop-blur-xl 
+                 hover:shadow-4xl transition-all duration-1000 
+                 animate-in slide-in-from-bottom-12 duration-1500 
+                 hover:scale-[1.01] rounded-3xl relative overflow-hidden">
+
+
+
           {/* Líneas de borde */}
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
@@ -322,16 +323,25 @@ export default function ContactForm() {
         </Card>
 
         {/* Nota final */}
-        <div className="mt-20 bg-stone-900 text-stone-300 p-12 text-center shadow-2xl">
+{/* Nota final */}
+        <Card className="mt-20 border-2 border-[#D4A373] shadow-2xl
+                        bg-gradient-to-br from-[#3E2F2F]/90 to-stone-900/80
+                        backdrop-blur-xl rounded-3xl p-12 text-center
+                        transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12">
           <h4 className="text-2xl font-serif mb-4 text-amber-400">
             Una Nota para el Candidato
           </h4>
-          <p className="text-lg leading-relaxed max-w-3xl mx-auto">
-          Queremos ser totalmente transparentes: este formulario no tiene respuestas "correctas" o "incorrectas". El único objetivo es conocerte genuinamente y entender si tus valores y tu estilo de gestión se alinean con la cultura de nuestra marca. Si hay una desconexión, es mejor para ambas partes descubrirla ahora que más adelante, en medio del proceso. La sinceridad es la clave para construir una asociación exitosa y duradera.
-            Una vez completado y recibido su formulario, nuestro equipo de desarrollo de franquicias lo revisará minuciosamente. Si su perfil se alinea con nuestros criterios, nos pondremos en contacto para agendar una reunión inicial y profundizar en los detalles de la oportunidad.
+          <p className="text-lg leading-relaxed max-w-3xl mx-auto text-stone-300">
+            Queremos ser totalmente transparentes: este formulario no tiene respuestas "correctas" o "incorrectas". 
+            El único objetivo es conocerte genuinamente y entender si tus valores y tu estilo de gestión se alinean con la cultura de nuestra marca. 
+            Si hay una desconexión, es mejor para ambas partes descubrirla ahora que más adelante, en medio del proceso. 
+            La sinceridad es la clave para construir una asociación exitosa y duradera.
+            Una vez completado y recibido su formulario, nuestro equipo de desarrollo de franquicias lo revisará minuciosamente. 
+            Si su perfil se alinea con nuestros criterios, nos pondremos en contacto para agendar una reunión inicial y profundizar en los detalles de la oportunidad.
             Agradecemos su tiempo y la seriedad con la que aborda este proceso.
           </p>
-        </div>
+        </Card>
+
       </div>
 
       {/* Estilos utilitarios */}
@@ -339,7 +349,7 @@ export default function ContactForm() {
         .field label {
           display: block;
           margin-bottom: 0.75rem;
-          color: #d6d3d1; /* stone-300 */
+          color:rgb(124, 124, 124); /* stone-300 */
           font-size: 1.1rem;
           font-family: sans-serif;
           letter-spacing: 0.02em;

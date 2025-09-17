@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/carousel"
 import ContactForm from "@/components/contact-form"
 import FranquiciaCard from "@/components/franquicia-card"
+import MainContactForm from "@/components/main-contact"
 
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
@@ -237,49 +238,49 @@ export default function HomePage() {
 
               {/* Texto a la derecha */}
               <div className="animate-in slide-in-from-right-12 duration-1000 delay-400">
-  <div className="space-y-8">
-    {/* Línea decorativa superior */}
-    <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                <div className="space-y-8">
+                  {/* Línea decorativa superior */}
+                  <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
 
-    {/* Título principal */}
-    <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
-      PROPUESTA GASTRONÓMICA
-    </h3>
+                  {/* Título principal */}
+                  <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                    PROPUESTA GASTRONÓMICA
+                  </h3>
 
-    {/* Lista de productos */}
-    <ul className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
-      <li>Desayunos, brunch y meriendas</li>
-      <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
-      <li>Pre Set Bowls</li>
-      <li>Sopas</li>
-      <li>Platos elaborados</li>
-      <li>Wraps y Sandwiches</li>
-      <li>Jugos naturales y smoothies</li>
-      <li>The Bar: aperitivos, vinos y cerveza</li>
-    </ul>
+                  {/* Lista de productos */}
+                  <ul className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
+                    <li>Desayunos, brunch y meriendas</li>
+                    <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
+                    <li>Pre Set Bowls</li>
+                    <li>Sopas</li>
+                    <li>Platos elaborados</li>
+                    <li>Wraps y Sandwiches</li>
+                    <li>Jugos naturales y smoothies</li>
+                    <li>The Bar: aperitivos, vinos y cerveza</li>
+                  </ul>
 
-    {/* Descripción */}
-    <div className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
-      <p>
-        En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
-      </p>
-      <p>
-        Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
-      </p>
-      <p>
-        Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos nuestra carta en constante renovación.
-      </p>
-      <p>
-        Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de forma periódica.
-      </p>
-    </div>
+                  {/* Descripción */}
+                  <div className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
+                    <p>
+                      En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
+                    </p>
+                    <p>
+                      Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
+                    </p>
+                    <p>
+                      Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos nuestra carta en constante renovación.
+                    </p>
+                    <p>
+                      Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de forma periódica.
+                    </p>
+                  </div>
 
-    {/* Línea decorativa inferior */}
-    <div className="pt-8">
-      <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
-    </div>
-  </div>
-</div>
+                  {/* Línea decorativa inferior */}
+                  <div className="pt-8">
+                    <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                  </div>
+                </div>
+              </div>
 
             </div>
             
@@ -354,9 +355,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-40 pr-10 pl-10 bg-gradient-to-b from-stone-50 to-stone-100" id="experiencia-culinaria">
+      <section className="py-5 pr-10 pl-10 bg-gradient-to-b from-stone-50 to-stone-100" id="experiencia-culinaria">
         <div className="w-full px-0">
-          <div className="text-center mb-8 md:mb-12 animate-in fade-in duration-1500">
+          <div className="text-center md:mb-12 animate-in fade-in duration-1500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
             <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-4 md:mb-8 tracking-wide">
               Experiencia Culinaria
@@ -465,14 +466,19 @@ export default function HomePage() {
                       alt={carouselData[selectedCarouselItem].title}
                       className="w-full h-64 object-cover"
                     />
-                    <button
-                      onClick={() => setSelectedCarouselItem(null)}
-                      className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110"
+                  <button
+                    onClick={() => setSelectedCarouselItem(null)}
+                    className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+                  >
+                    <svg
+                      className="w-6 h-6 text-amber-600" // mismo color que el subtítulo
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                   </div>
                   <div className="flex-1 overflow-y-auto">
                     <div className="p-8">
@@ -490,14 +496,16 @@ export default function HomePage() {
                 </div>
               </div>
             )}
-            <FranquiciaCard />
 
           </div>
         </div>
       </section>
+      <section className="mb-20">
+      <FranquiciaCard />
+      </section>
 
       <section className="py-40 bg-gradient-to-b from-stone-800 via-stone-900 to-stone-800 relative overflow-hidden">
-        <ContactForm />
+        <MainContactForm />
       </section>
 
 

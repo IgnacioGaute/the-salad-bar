@@ -1,12 +1,45 @@
-import { useState } from "react"
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import ContactForm from "./contact-form"
 
 export default function FranquiciaCard() {
   const [selectedCarouselItem, setSelectedCarouselItem] = useState<string | null>(null)
+  const [progress, setProgress] = useState(0) // 0 a 1
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cardRef.current) return
+
+      const rect = cardRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Calculamos qué tanto del card está visible
+      const visibleTop = Math.max(0, rect.top)
+      const visibleBottom = Math.min(windowHeight, rect.bottom)
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop)
+      const totalHeight = rect.height
+
+      const newProgress = Math.min(Math.max(visibleHeight / totalHeight, 0), 1)
+      setProgress(newProgress)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll() // para el primer render
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  // Calculamos translateX y opacity basados en progress
+  const translateX = (1 - progress) * -100 // -100px cuando 0% visible, 0px cuando 100%
+  const opacity = progress
 
   return (
-    <div className="mt-10 px-4 md:px-8">
+    <div className="mt-10 px-0 flex">
       <div
-        className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 cursor-pointer rounded-2xl"
+        ref={cardRef}
+        className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-700 cursor-pointer rounded-r-2xl w-full max-w-[650px] h-[20vh] md:h-[36vh] lg:h-[30vh]"
         onClick={() => setSelectedCarouselItem("extra")}
         role="button"
         tabIndex={0}
@@ -16,70 +49,64 @@ export default function FranquiciaCard() {
             setSelectedCarouselItem("extra")
           }
         }}
+        style={{
+          transform: `translateX(${translateX}px)`,
+          opacity: opacity,
+          transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+        }}
       >
         {/* Imagen con blur en hover */}
         <img
           src="/natural-wood-terrace.png"
           alt="FRANQUICIAS DISPONIBLES"
-          className="w-full h-[32vh] md:h-[44vh] lg:h-[56vh] object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110 rounded-2xl"
+          className="w-full h-full object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110 rounded-r-2xl"
         />
 
-        {/* Gradiente para contraste */}
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/40 to-transparent rounded-2xl"></div>
+        {/* Gradiente */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/40 to-transparent rounded-r-2xl"></div>
 
         {/* Título */}
-        <div className="absolute bottom-20 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="absolute bottom-16 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
           <h3 className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans">
             FRANQUICIAS DISPONIBLES
           </h3>
         </div>
 
         {/* Subtítulo */}
-        <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="absolute bottom-4 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
           <p className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic">
             Llevá The Salad Bar a tu ciudad
           </p>
         </div>
 
-        {/* "Ver más" arriba a la derecha */}
-        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
+        {/* "Ver más" */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
             <span>Ver más</span>
             <svg
-            className="w-4 h-4 text-[#D4A373]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+              className="w-4 h-4 text-[#D4A373]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-            />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-        </button>
+          </button>
         </div>
-
-
       </div>
 
       {/* Dialog extra */}
       {selectedCarouselItem === "extra" && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col">
-            <div className="relative flex-shrink-0">
-              <img
-                src="/natural-wood-terrace.png"
-                alt="FRANQUICIAS DISPONIBLES"
-                className="w-full h-64 object-cover"
-              />
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+            {/* Botón de cerrar */}
+            <div className="top-0 right-0 z-50">
               <button
                 onClick={() => setSelectedCarouselItem(null)}
-                className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110"
+                className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
               >
                 <svg
-                  className="w-6 h-6 text-stone-600"
+                  className="w-6 h-6 text-amber-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -88,8 +115,9 @@ export default function FranquiciaCard() {
                 </svg>
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto">
-              <div className="p-8">
+
+            <div className="flex-1 overflow-y-auto space-y-6">
+              <div className="md:p-8">
                 <h3 className="text-3xl font-bold text-stone-800 mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
                 <p className="text-lg text-amber-600 italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
                 <p className="text-stone-700 leading-relaxed text-base font-sans">
@@ -101,6 +129,7 @@ export default function FranquiciaCard() {
                   de una franquicia. Toda la información proporcionada será tratada con estricta confidencialidad.
                 </p>
               </div>
+              <ContactForm />
             </div>
           </div>
         </div>
