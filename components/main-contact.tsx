@@ -57,8 +57,8 @@ export default function MainContactForm() {
 
       <div className="text-center mb-32 animate-in fade-in duration-1500">
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-          <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
-            Contactanos
+          <h2 style={{ fontFamily: "var(--font-muli)" }}className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
+            Contactemos
           </h2>
         </div>
       <div className="max-w-4xl mx-auto px-6 relative">
@@ -75,7 +75,7 @@ export default function MainContactForm() {
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
-                <h3 className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
                   Información Personal
                 </h3>
                 <div className="grid md:grid-cols-2 gap-16">
@@ -123,6 +123,7 @@ export default function MainContactForm() {
               {/* Botón */}
               <div className="text-center pt-5">
                 <Button
+                style={{ fontFamily: "var(--font-muli)" }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}

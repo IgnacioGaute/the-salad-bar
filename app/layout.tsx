@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Eczar, Montserrat } from "next/font/google"
+import { Eczar, Mulish } from "next/font/google"
 import "./globals.css"
 
 const eczar = Eczar({
@@ -10,16 +10,17 @@ const eczar = Eczar({
   weight: ["400", "500", "600", "700", "800"],
 })
 
-const montserrat = Montserrat({
+const mulish = Mulish({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat",
+  variable: "--font-mulish",
   weight: ["300", "400", "500", "600", "700"],
 })
 
 export const metadata: Metadata = {
   title: "The Salad Bar® - Cocina Mediterránea Contemporánea",
-  description: "Experiencia culinaria mediterránea única con ingredientes frescos y ambiente sofisticado",
+  description:
+    "Experiencia culinaria mediterránea única con ingredientes frescos y ambiente sofisticado",
 }
 
 export default function RootLayout({
@@ -28,7 +29,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${eczar.variable} ${montserrat.variable} antialiased`}>
+    <html
+      lang="es"
+      className={`${eczar.variable} ${mulish.variable} antialiased`}
+    >
       <body>{children}</body>
     </html>
   )

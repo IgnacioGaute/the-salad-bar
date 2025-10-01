@@ -106,46 +106,34 @@ export default function HomePage() {
     <div className="min-h-screen bg-stone-50">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="fondo-principal.jpg"
-            alt="Mediterranean terrace dining"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-[5000ms]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-transparent to-stone-900/40"></div>
-        </div>
+  <div className="absolute inset-0 z-0">
+    <img
+      src="fondo-principal.jpg"
+      alt="Mediterranean terrace dining"
+      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[5000ms]"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-transparent to-stone-900/40"></div>
+  </div>
 
-        <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
-          <div className="animate-in slide-in-from-top-12 duration-1500 delay-300">
-            <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-          </div>
+  <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
+    <div className="animate-in fade-in duration-2000 delay-500">
+      <img
+        src="/fondo-transparente.png"
+        alt="The Salad Bar"
+        className="w-200 md:w-180 mx-auto filter brightness-0 invert hover:scale-105 transition-transform duration-700"
+      />
 
-          <div className="animate-in fade-in duration-2000 delay-500 mb-8">
-            <img
-              src="/the-salad-bar-logo-transp.png"
-              alt="The Salad Bar"
-              className="w-80 md:w-96 mx-auto filter brightness-0 invert hover:scale-105 transition-transform duration-700"
-            />
-            <div className="mt-4">
-              <span className="text-lg font-light tracking-widest opacity-80">®</span>
-            </div>
-          </div>
+      {/* Logo + ® alineados */}
+      <div className="flex items-start justify-center gap-1 mt-1">
+        <span className="text-lg font-light tracking-widest opacity-80">®</span>
+      </div>
 
-          <div className="animate-in slide-in-from-bottom-8 duration-1500 delay-700">
-            <p className="text-2xl md:text-3xl font-light mb-4 text-balance opacity-95 tracking-wide font-sans">
-              Cocina Mediterránea Contemporánea
-            </p>
-            <p className="text-lg md:text-xl font-light mb-16 text-balance opacity-80 italic font-sans">
-              Donde la tradición se encuentra con la innovación
-            </p>
-          </div>
+      {/* Línea justo debajo */}
+      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+    </div>
+  </div>
+</section>
 
-          <div className="animate-in zoom-in duration-1500 delay-1200">
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-            <HeroButton />
-          </div>
-        </div>
-      </section>
 
       <section id="filosofia" className="py-40 bg-stone-200 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
@@ -159,13 +147,13 @@ export default function HomePage() {
               <div className="space-y-12">
                 <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-                <h2 className="text-6xl md:text-8xl font-serif font-light text-stone-800 leading-none tracking-wide">
-                  Filosofía
+                <h2 style={{ fontFamily: "var(--font-muli)" }} className="text-6xl md:text-8xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                  FILOSOFIA
                   {/* <span className="block text-amber-700 italic font-light">Mediterránea</span> */}
                 </h2>
 
                 <div className="space-y-8 text-stone-900">
-                  <p className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
+                  <p style={{ fontFamily: "var(--font-glacial)" }} className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
                   Nuestros valores destacan que <span className="block text-amber-700 italic font-light">COMER BIEN ES UNA FORMA DE AUTO RESPETO</span> 
                   y  comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. 
                   Somos muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno que te haga sentir bien. 
@@ -191,7 +179,7 @@ export default function HomePage() {
                         }
                       }) // Delay para que la animación de expansión comience
                     }}
-                    className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
+                    style={{ fontFamily: "var(--font-muli)" }} className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
                   >
                     Propuesta Gastronómica
                   </Button>
@@ -243,12 +231,12 @@ export default function HomePage() {
                   <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
 
                   {/* Título principal */}
-                  <h3 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                  <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
                     PROPUESTA GASTRONÓMICA
                   </h3>
 
                   {/* Lista de productos */}
-                  <ul className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
+                  <ul style={{ fontFamily: "var(--font-glacial)" }} className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
                     <li>Desayunos, brunch y meriendas</li>
                     <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
                     <li>Pre Set Bowls</li>
@@ -260,7 +248,7 @@ export default function HomePage() {
                   </ul>
 
                   {/* Descripción */}
-                  <div className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
+                  <div style={{ fontFamily: "var(--font-glacial)" }} className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
                     <p>
                       En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
                     </p>
@@ -287,6 +275,7 @@ export default function HomePage() {
             {/* Botón para volver a filosofía */}
             <div className="text-center mt-16 animate-in slide-in-from-bottom-8 duration-1000 delay-600">
               <Button
+              style={{ fontFamily: "var(--font-muli)" }}
                 variant="outline"
                 size="lg"
                 onClick={() => {
@@ -335,12 +324,12 @@ export default function HomePage() {
               <div className="space-y-12">
                 <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-                <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                <h2 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
                 CAFETERIA - EASY NIGHTS 
                   {/* <span className="block text-amber-700 italic font-light">Mediterránea</span> */}
                 </h2>
                 <div className="space-y-8 text-stone-900">
-                  <p className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
+                  <p style={{ fontFamily: "var(--font-glacial)" }} className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
                   Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch, merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies, panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. 
                   Sentite libre, sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
                   Y parte de llevar una vida saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un aperitivo , una picadita  y buena musica.
@@ -360,7 +349,6 @@ export default function HomePage() {
           <div className="text-center md:mb-12 animate-in fade-in duration-1500">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
             <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-4 md:mb-8 tracking-wide">
-              Experiencia Culinaria
             </h2>
           </div>
 
@@ -418,21 +406,21 @@ export default function HomePage() {
                       
                       {/* Título abajo a la izquierda - solo visible en hover */}
                       <div className="absolute bottom-20 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <h3 className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans">
+                        <h3 style={{ fontFamily: "var(--font-times)" }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans">
                           {item.title}
                         </h3>
                       </div>
                       
                       {/* Subtítulo abajo, debajo del título - solo visible en hover */}
                       <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-90 transition-all duration-500">
-                        <p className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-sans italic">
+                        <p style={{ fontFamily: "var(--font-muli)" }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-sans italic">
                           {item.subtitle}
                         </p>
                       </div>
 
                       {/* Indicador de click */}
                       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
+                      <button style={{ fontFamily: "var(--font-muli)" }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
                           <span>Ver más</span>
                           <svg
                           className="w-4 h-4 text-[#D4A373]"
@@ -482,13 +470,13 @@ export default function HomePage() {
                   </div>
                   <div className="flex-1 overflow-y-auto">
                     <div className="p-8">
-                      <h3 className="text-3xl font-bold text-stone-800 mb-4 font-sans">
+                      <h3 style={{ fontFamily: "var(--font-times)" }}className="text-3xl font-bold text-stone-800 mb-4 font-sans">
                         {carouselData[selectedCarouselItem].title}
                       </h3>
-                      <p className="text-lg text-amber-600 italic mb-6 font-sans">
+                      <p style={{ fontFamily: "var(--font-glacial)" }} className="text-lg text-amber-600 italic mb-6 font-sans">
                         {carouselData[selectedCarouselItem].subtitle}
                       </p>
-                      <p className="text-stone-700 leading-relaxed text-base font-sans">
+                      <p style={{ fontFamily: "var(--font-glacial)" }} className="text-stone-700 leading-relaxed text-base font-sans">
                         {carouselData[selectedCarouselItem].description}
                       </p>
                     </div>
@@ -517,10 +505,9 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative">
           <div className="space-y-8">
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
-            <h3 className="text-5xl font-serif font-light mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
+            <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl font-serif font-light mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
               The Salad Bar<span className="text-2xl align-super ml-1">®</span>
             </h3>
-            <p className="text-xl text-stone-400 font-light italic font-sans">Cocina Mediterránea Contemporánea</p>
             <div className="w-12 h-px bg-gradient-to-r from-transparent via-stone-600 to-transparent mx-auto mt-8"></div>
           </div>
         </div>

@@ -87,3 +87,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ====================== */
+/* Glacial Indifference   */
+/* ====================== */
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-italic.otf") format("otf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Bold.otf") format("otf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ====================== */
+/* Muli (Mulish)          */
+/* ====================== */
+@font-face {
+  font-family: "Muli";
+  src: url("/fonts/Mulish-Italic-VariableFont_wght.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url("/fonts/Mulish-VariableFont_wght.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables CSS */
+:root {
+  --font-glacial: "Glacial Indifference", sans-serif;
+  --font-muli: "Muli", sans-serif;
+  --font-times: "Times New Roman", Times, serif;
+}

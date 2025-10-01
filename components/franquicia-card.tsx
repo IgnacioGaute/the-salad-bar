@@ -67,14 +67,14 @@ export default function FranquiciaCard() {
 
         {/* Título */}
         <div className="absolute bottom-16 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <h3 className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans">
+          <h3 style={{ fontFamily: "var(--font-times)" }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans">
             FRANQUICIAS DISPONIBLES
           </h3>
         </div>
 
         {/* Subtítulo */}
         <div className="absolute bottom-4 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <p className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic">
+          <p style={{ fontFamily: "var(--font-muli)" }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic">
             Llevá The Salad Bar a tu ciudad
           </p>
         </div>
@@ -118,9 +118,9 @@ export default function FranquiciaCard() {
 
             <div className="flex-1 overflow-y-auto space-y-6">
               <div className="md:p-8">
-                <h3 className="text-3xl font-bold text-stone-800 mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
-                <p className="text-lg text-amber-600 italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
-                <p className="text-stone-700 leading-relaxed text-base font-sans">
+                <h3 style={{ fontFamily: "var(--font-times)" }} className="text-3xl font-bold text-stone-800 mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
+                <p style={{ fontFamily: "var(--font-muli)" }}  className="text-lg text-amber-600 italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
+                <p style={{ fontFamily: "var(--font-glacial)" }} className="text-stone-700 leading-relaxed text-base font-sans">
                   Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. Como parte de nuestro
                   proceso de selección, hemos diseñado este formulario con el objetivo de comprender mejor tu perfil,
                   experiencia y expectativas, asegurando así una sinergia exitosa y duradera entre ambas partes. Este

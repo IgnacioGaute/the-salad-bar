@@ -75,7 +75,7 @@ export default function ContactForm() {
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
-                <h3 className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
                   Información Personal
                 </h3>
                 <div className="grid md:grid-cols-2 gap-16">
@@ -131,7 +131,7 @@ export default function ContactForm() {
 
               {/* Sección 2 */}
               <div>
-                <h3 className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
                   Interés y Expectativas
                 </h3>
                 <div className="space-y-12">
@@ -211,7 +211,7 @@ export default function ContactForm() {
 
               {/* Sección 3 */}
               <div>
-                <h3 className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
                   Capacidad Financiera
                 </h3>
                 <div className="space-y-12">
@@ -248,7 +248,7 @@ export default function ContactForm() {
 
               {/* Sección 4 */}
               <div>
-                <h3 className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
                   Conectando con la Marca
                 </h3>
                 <div className="space-y-12">
@@ -301,6 +301,7 @@ export default function ContactForm() {
               {/* Botón */}
               <div className="text-center pt-20">
                 <Button
+                style={{ fontFamily: "var(--font-muli)" }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
@@ -328,10 +329,10 @@ export default function ContactForm() {
                         bg-gradient-to-br from-[#3E2F2F]/90 to-stone-900/80
                         backdrop-blur-xl rounded-3xl p-12 text-center
                         transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12">
-          <h4 className="text-2xl font-serif mb-4 text-amber-400">
+          <h4 style={{ fontFamily: "var(--font-muli)" }} className="text-2xl font-serif mb-4 text-amber-400">
             Una Nota para el Candidato
           </h4>
-          <p className="text-lg leading-relaxed max-w-3xl mx-auto text-stone-300">
+          <p style={{ fontFamily: "var(--font-glacial)" }} className="text-lg leading-relaxed max-w-3xl mx-auto text-stone-300">
             Queremos ser totalmente transparentes: este formulario no tiene respuestas "correctas" o "incorrectas". 
             El único objetivo es conocerte genuinamente y entender si tus valores y tu estilo de gestión se alinean con la cultura de nuestra marca. 
             Si hay una desconexión, es mejor para ambas partes descubrirla ahora que más adelante, en medio del proceso. 
