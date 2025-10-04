@@ -51,13 +51,13 @@ export default function MainContactForm() {
     <section className="relative overflow-hidden">
       {/* Líneas decorativas */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
+        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
       </div>
 
       <div className="text-center mb-32 animate-in fade-in duration-1500">
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-12"></div>
-          <h2 style={{ fontFamily: "var(--font-muli)" }}className="text-6xl md:text-8xl font-serif font-light text-stone-100 mb-8 tracking-wider">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mx-auto mb-12"></div>
+          <h2 style={{ fontFamily: "var(--font-muli)" }}className="text-6xl md:text-8xl font-serif font-light text-white mb-8 tracking-wider">
             Contactemos
           </h2>
         </div>
@@ -65,17 +65,17 @@ export default function MainContactForm() {
 
 
         {/* Formulario */}
-        <Card className="border-0 shadow-3xl bg-stone-500/10 backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.01] rounded-none relative overflow-hidden">
+        <Card className="border-0 shadow-3xl backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.02] hover:-translate-y-2 rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#183a5d' }}>
 
           {/* Líneas de borde */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent"></div>
 
           <CardContent className="p-20">
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
                   Información Personal
                 </h3>
                 <div className="grid md:grid-cols-2 gap-16">
@@ -123,15 +123,14 @@ export default function MainContactForm() {
               {/* Botón */}
               <div className="text-center pt-5">
                 <Button
-                style={{ fontFamily: "var(--font-muli)" }}
+                style={{ fontFamily: "var(--font-muli)", borderColor: '#4A90E2', color: '#4A90E2' }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 
-                             hover:border-amber-400 text-amber-400 hover:text-stone-900 
-                             px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
+                  className="bg-transparent border-2 hover:bg-[#4A90E2] 
+                             hover:border-[#4A90E2] px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
                              hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
-                             tracking-widest uppercase font-sans"
+                             tracking-widest uppercase font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#a5b0ac'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#4A90E2'; }}
                 >
                   {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
                 </Button>
@@ -157,10 +156,13 @@ export default function MainContactForm() {
           letter-spacing: 0.02em;
         }
         .customInput {
-        @apply w-full h-16 border-0 border-b-2 border-stone-500 
-                bg-transparent text-white placeholder:text-stone-500
-                focus:border-amber-400 transition-all duration-500 
+        @apply w-full h-16 border-0 border-b-2 
+                bg-transparent text-white placeholder:text-gray-400
+                transition-all duration-500 
                 text-xl rounded-none font-sans;
+        }
+        .customInput:focus {
+          border-color: #4A90E2;
         }
 
       `}</style>

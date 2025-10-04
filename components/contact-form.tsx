@@ -51,31 +51,30 @@ export default function ContactForm() {
     <section className="relative overflow-hidden mt-5">
       {/* Líneas decorativas */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-amber-400 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
+        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative">
 
         {/* Formulario */}
-        <Card className="border-2 border-[#D4A373] shadow-3xl 
-                 bg-gradient-to-br from-[#3E2F2F]/90 to-stone-900/80 
+        <Card className="border-2 shadow-3xl 
                  backdrop-blur-xl 
                  hover:shadow-4xl transition-all duration-1000 
                  animate-in slide-in-from-bottom-12 duration-1500 
-                 hover:scale-[1.01] rounded-3xl relative overflow-hidden">
+                 hover:scale-[1.01] rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#E3E5E8', borderColor: '#4A90E2' }}>
 
 
 
-          {/* Líneas de borde */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+          {/* Líneas de borde - fijas para evitar que se oculten */}
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
 
           <CardContent className="p-20">
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
                   Información Personal
                 </h3>
                 <div className="grid md:grid-cols-2 gap-16">
@@ -131,7 +130,7 @@ export default function ContactForm() {
 
               {/* Sección 2 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
                   Interés y Expectativas
                 </h3>
                 <div className="space-y-12">
@@ -211,7 +210,7 @@ export default function ContactForm() {
 
               {/* Sección 3 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
                   Capacidad Financiera
                 </h3>
                 <div className="space-y-12">
@@ -248,7 +247,7 @@ export default function ContactForm() {
 
               {/* Sección 4 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-3xl font-serif font-light text-amber-400 mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
                   Conectando con la Marca
                 </h3>
                 <div className="space-y-12">
@@ -301,15 +300,14 @@ export default function ContactForm() {
               {/* Botón */}
               <div className="text-center pt-20">
                 <Button
-                style={{ fontFamily: "var(--font-muli)" }}
+                style={{ fontFamily: "var(--font-muli)", borderColor: '#4A90E2', color: '#4A90E2' }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="bg-transparent border-2 border-amber-400 hover:bg-amber-400 
-                             hover:border-amber-400 text-amber-400 hover:text-stone-900 
-                             px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
+                  className="bg-transparent border-2 hover:bg-[#4A90E2] 
+                             hover:border-[#4A90E2] px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
                              hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
-                             tracking-widest uppercase font-sans"
+                             tracking-widest uppercase font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#E3E5E8'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#4A90E2'; }}
                 >
                   {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
                 </Button>
@@ -325,14 +323,13 @@ export default function ContactForm() {
 
         {/* Nota final */}
 {/* Nota final */}
-        <Card className="mt-20 border-2 border-[#D4A373] shadow-2xl
-                        bg-gradient-to-br from-[#3E2F2F]/90 to-stone-900/80
+        <Card className="mt-20 border-2 shadow-2xl
                         backdrop-blur-xl rounded-3xl p-12 text-center
-                        transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12">
-          <h4 style={{ fontFamily: "var(--font-muli)" }} className="text-2xl font-serif mb-4 text-amber-400">
+                        transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12" style={{ backgroundColor: '#E3E5E8', borderColor: '#4A90E2' }}>
+          <h4 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-2xl font-serif mb-4">
             Una Nota para el Candidato
           </h4>
-          <p style={{ fontFamily: "var(--font-glacial)" }} className="text-lg leading-relaxed max-w-3xl mx-auto text-stone-300">
+          <p style={{ fontFamily: "var(--font-glacial)", color: '#183a5d' }} className="text-lg leading-relaxed max-w-3xl mx-auto">
             Queremos ser totalmente transparentes: este formulario no tiene respuestas "correctas" o "incorrectas". 
             El único objetivo es conocerte genuinamente y entender si tus valores y tu estilo de gestión se alinean con la cultura de nuestra marca. 
             Si hay una desconexión, es mejor para ambas partes descubrirla ahora que más adelante, en medio del proceso. 
@@ -350,16 +347,19 @@ export default function ContactForm() {
         .field label {
           display: block;
           margin-bottom: 0.75rem;
-          color:rgb(124, 124, 124); /* stone-300 */
+          color: #183a5d;
           font-size: 1.1rem;
           font-family: sans-serif;
           letter-spacing: 0.02em;
         }
         .customInput {
-          @apply w-full h-16 border-0 border-b-2 border-stone-500 
-                 bg-transparent text-stone-100 placeholder:text-stone-500
-                 focus:border-amber-400 transition-all duration-500 
+          @apply w-full h-16 border-0 border-b-2 
+                 bg-transparent text-[#183a5d] placeholder:text-gray-400
+                 transition-all duration-500 
                  text-xl rounded-none font-sans;
+        }
+        .customInput:focus {
+          border-color: #4A90E2;
         }
       `}</style>
     </section>

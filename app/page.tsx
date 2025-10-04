@@ -103,58 +103,75 @@ export default function HomePage() {
     }
   }, [experienciaCarouselApi])
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen" style={{ backgroundColor: '#dbdce0' }}>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
   <div className="absolute inset-0 z-0">
     <img
       src="fondo-principal.jpg"
       alt="Mediterranean terrace dining"
-      className="w-full h-full object-cover hover:scale-105 transition-transform duration-[5000ms]"
+      className="w-full h-full object-cover hover:scale-110 transition-transform duration-[8000ms] ease-out"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/10 via-transparent to-stone-900/40"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-transparent to-stone-900/60"></div>
+    {/* Elementos decorativos flotantes */}
+    <div className="absolute top-20 left-20 w-32 h-32 border border-white/20 rounded-full animate-pulse"></div>
+    <div className="absolute bottom-32 right-32 w-24 h-24 border border-white/20 rounded-full animate-pulse delay-1000"></div>
+    <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/20 rounded-full animate-pulse delay-2000"></div>
   </div>
 
   <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
-    <div className="animate-in fade-in duration-2000 delay-500">
-      <img
-        src="/fondo-transparente.png"
-        alt="The Salad Bar"
-        className="w-200 md:w-180 mx-auto filter brightness-0 invert hover:scale-105 transition-transform duration-700"
-      />
-
-      {/* Logo + ® alineados */}
-      <div className="flex items-start justify-center gap-1 mt-1">
-        <span className="text-lg font-light tracking-widest opacity-80">®</span>
+    <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
+      {/* Logo con animación mejorada */}
+      <div className="relative group">
+        <img
+          src="/fondo-transparente.png"
+          alt="The Salad Bar"
+          className="w-200 md:w-250 mx-auto filter brightness-0 invert hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
+        />
+        {/* Efecto de brillo en hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 transform -skew-x-12"></div>
       </div>
 
-      {/* Línea justo debajo */}
-      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-2"></div>
+      {/* ® pegado arriba a la derecha del logo */}
+      <span className="absolute top-118 right-35 translate-x-4 -translate-y-2 text-2xl font-light opacity-80 animate-pulse">
+        ®
+      </span>
+
+      {/* Línea con animación */}
+      <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mx-auto mt-4 animate-pulse"></div>
+      
+      {/* Texto adicional con animación */}
+      <div className="mt-8 animate-in slide-in-from-bottom-8 duration-2000 delay-1000">
+        <p className="text-lg md:text-xl font-light tracking-widest opacity-90">
+          Fresh • Healthy • Delicious
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
 
-      <section id="filosofia" className="py-40 bg-stone-200 relative overflow-hidden">
+
+      <section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: '#d1cec9' }}>
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
+          <div className="absolute top-20 left-20 w-96 h-96 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
         </div>
 
         <div className="max-w-8xl mx-auto px-6 relative">
           <div className="grid md:grid-cols-2 gap-32 items-center">
             <div className="animate-in slide-in-from-left-12 duration-1500">
               <div className="space-y-12">
-                <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+                <div className="w-24 h-px bg-gradient-to-r from-[#4A90E2] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-                <h2 style={{ fontFamily: "var(--font-muli)" }} className="text-6xl md:text-8xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                <h2 style={{ fontFamily: "var(--font-muli)", color: '#000000' }} className="text-6xl md:text-8xl font-serif font-light leading-none tracking-wide">
                   FILOSOFIA
                   {/* <span className="block text-amber-700 italic font-light">Mediterránea</span> */}
                 </h2>
 
-                <div className="space-y-8 text-stone-900">
+                <div className="space-y-8" style={{ color: '#000000' }}>
                   <p style={{ fontFamily: "var(--font-glacial)" }} className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
-                  Nuestros valores destacan que <span className="block text-amber-700 italic font-light">COMER BIEN ES UNA FORMA DE AUTO RESPETO</span> 
+                  Nuestros valores destacan que <span className="block italic font-light" style={{ color: '#000000' }}>COMER BIEN ES UNA FORMA DE AUTO RESPETO</span> 
                   y  comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. 
                   Somos muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno que te haga sentir bien. 
                   Buscamos que cada visita se sienta para vos una experiencia, ligera, fresca y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años 
@@ -179,7 +196,7 @@ export default function HomePage() {
                         }
                       }) // Delay para que la animación de expansión comience
                     }}
-                    style={{ fontFamily: "var(--font-muli)" }} className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
+                    style={{ fontFamily: "var(--font-muli)", borderColor: '#4A90E2', color: '#4A90E2' }} className="border-2 px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#4A90E2'; (e.target as HTMLElement).style.color = '#d1cec9'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'transparent'; (e.target as HTMLElement).style.color = '#4A90E2'; }}
                   >
                     Propuesta Gastronómica
                   </Button>
@@ -194,8 +211,8 @@ export default function HomePage() {
                   alt="Comedor íntimo en jardín"
                   className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
                 />
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-amber-400 opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-                <div className="absolute -top-8 -left-8 w-24 h-24 border-2 border-stone-400 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundColor: '#bdc7c8' }}></div>
+                <div className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700" style={{ borderColor: '#bdc7c8' }}></div>
               </div>
             </div>
           </div>
@@ -204,10 +221,10 @@ export default function HomePage() {
 
       {/* Sección Historia Expandible */}
       {isHistoryExpanded && (
-        <section id="historia" className="py-40 bg-stone-200 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]">
+        <section id="historia" className="py-40 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]" style={{ backgroundColor: '#bdc7c8' }}>
           <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
-            <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
+            <div className="absolute top-20 left-20 w-96 h-96 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
+            <div className="absolute bottom-20 right-20 w-64 h-64 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
           </div>
           <div className="max-w-8xl mx-auto px-6 relative">
             <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -219,8 +236,8 @@ export default function HomePage() {
                     alt="Historia de The Salad Bar"
                     className="w-full h-[800px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
                   />
-                  <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-amber-400 opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-                  <div className="absolute -top-8 -right-8 w-24 h-24 border-2 border-stone-400 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                  <div className="absolute -bottom-8 -left-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundColor: '#bdc7c8' }}></div>
+                  <div className="absolute -top-8 -right-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700" style={{ borderColor: '#bdc7c8' }}></div>
                 </div>
               </div>
 
@@ -228,15 +245,15 @@ export default function HomePage() {
               <div className="animate-in slide-in-from-right-12 duration-1000 delay-400">
                 <div className="space-y-8">
                   {/* Línea decorativa superior */}
-                  <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                  <div className="w-24 h-px bg-gradient-to-r from-[#4A90E2] to-transparent"></div>
 
                   {/* Título principal */}
-                  <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                  <h3 style={{ fontFamily: "var(--font-muli)", color: '#000000' }} className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide">
                     PROPUESTA GASTRONÓMICA
                   </h3>
 
                   {/* Lista de productos */}
-                  <ul style={{ fontFamily: "var(--font-glacial)" }} className="list-disc list-inside space-y-2 text-stone-700 text-lg font-sans">
+                  <ul style={{ fontFamily: "var(--font-glacial)", color: '#000000' }} className="list-disc list-inside space-y-2 text-lg font-sans">
                     <li>Desayunos, brunch y meriendas</li>
                     <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
                     <li>Pre Set Bowls</li>
@@ -248,7 +265,7 @@ export default function HomePage() {
                   </ul>
 
                   {/* Descripción */}
-                  <div style={{ fontFamily: "var(--font-glacial)" }} className="space-y-4 text-stone-700 text-lg leading-relaxed font-sans">
+                  <div style={{ fontFamily: "var(--font-glacial)", color: '#000000' }} className="space-y-4 text-lg leading-relaxed font-sans">
                     <p>
                       En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
                     </p>
@@ -265,7 +282,7 @@ export default function HomePage() {
 
                   {/* Línea decorativa inferior */}
                   <div className="pt-8">
-                    <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-transparent"></div>
+                    <div className="w-16 h-px bg-gradient-to-r from-[#4A90E2] to-transparent"></div>
                   </div>
                 </div>
               </div>
@@ -275,7 +292,7 @@ export default function HomePage() {
             {/* Botón para volver a filosofía */}
             <div className="text-center mt-16 animate-in slide-in-from-bottom-8 duration-1000 delay-600">
               <Button
-              style={{ fontFamily: "var(--font-muli)" }}
+              style={{ fontFamily: "var(--font-muli)", borderColor: '#183a5d', color: '#183a5d' }}
                 variant="outline"
                 size="lg"
                 onClick={() => {
@@ -292,7 +309,7 @@ export default function HomePage() {
                     setIsHistoryExpanded(false)
                   }, 1000) // Delay para que termine el scroll antes de cerrar
                 }}
-                className="border-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
+                className="border-2 px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#4A90E2'; (e.target as HTMLElement).style.color = '#d1cec9'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'transparent'; (e.target as HTMLElement).style.color = '#4A90E2'; }}
               >
                 Cerrar
               </Button>
@@ -301,10 +318,10 @@ export default function HomePage() {
         </section>
       )}
 
-   <section id="cafeteria" className="py-40 bg-stone-200 relative overflow-hidden">
+   <section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: '#dbdce0' }}>
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-96 h-96 border border-stone-400 rounded-full"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 border border-stone-400 rounded-full"></div>
+          <div className="absolute top-20 left-20 w-96 h-96 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
+          <div className="absolute bottom-20 right-20 w-64 h-64 border rounded-full" style={{ borderColor: '#bdc7c8' }}></div>
         </div>
 
         <div className="max-w-8xl mx-auto px-6 relative">
@@ -316,19 +333,19 @@ export default function HomePage() {
                   alt="Comedor íntimo en jardín"
                   className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
                 />
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-amber-400 opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-                <div className="absolute -top-8 -left-8 w-24 h-24 border-2 border-stone-400 opacity-30 group-hover:opacity-50 transition-opacity duration-700"></div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700" style={{ backgroundColor: '#bdc7c8' }}></div>
+                <div className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700" style={{ borderColor: '#bdc7c8' }}></div>
               </div>
             </div>
             <div className="animate-in slide-in-from-left-12 duration-1500">
               <div className="space-y-12">
-                <div className="w-24 h-px bg-gradient-to-r from-amber-600 to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+                <div className="w-24 h-px bg-gradient-to-r from-[#4A90E2] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-                <h2 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl md:text-6xl font-serif font-light text-stone-800 leading-none tracking-wide">
+                <h2 style={{ fontFamily: "var(--font-muli)", color: '#000000' }} className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide">
                 CAFETERIA - EASY NIGHTS 
                   {/* <span className="block text-amber-700 italic font-light">Mediterránea</span> */}
                 </h2>
-                <div className="space-y-8 text-stone-900">
+                <div className="space-y-8" style={{ color: '#000000' }}>
                   <p style={{ fontFamily: "var(--font-glacial)" }} className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans">
                   Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch, merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies, panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. 
                   Sentite libre, sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
@@ -344,11 +361,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-5 pr-10 pl-10 bg-gradient-to-b from-stone-50 to-stone-100" id="experiencia-culinaria">
+      <section className="py-5 pr-10 pl-10" style={{ background: 'linear-gradient(to bottom, #dbdce0, #d1cec9)' }} id="experiencia-culinaria">
         <div className="w-full px-0">
           <div className="text-center md:mb-12 animate-in fade-in duration-1500">
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
-            <h2 className="text-5xl md:text-6xl font-serif font-light text-stone-800 mb-4 md:mb-8 tracking-wide">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mx-auto mb-8"></div>
+            <h2 className="text-5xl md:text-6xl font-serif font-light mb-4 md:mb-8 tracking-wide" style={{ color: '#000000' }}>
             </h2>
           </div>
 
@@ -356,7 +373,7 @@ export default function HomePage() {
           <div className="flex justify-end gap-4 mb-6 mr-5">
             <button
               onClick={() => experienciaCarouselApi?.scrollPrev()}
-              className="bg-white/90 hover:bg-white text-stone-800 hover:text-amber-600 rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+              className="bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110" style={{ color: '#183a5d' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#bdc7c8'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#183a5d'; }}
               aria-label="Anterior"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -365,7 +382,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => experienciaCarouselApi?.scrollNext()}
-              className="bg-white/90 hover:bg-white text-stone-800 hover:text-amber-600 rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+              className="bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110" style={{ color: '#183a5d' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#bdc7c8'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#183a5d'; }}
               aria-label="Siguiente"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -402,28 +419,29 @@ export default function HomePage() {
                         alt={item.title}
                         className="w-full h-[32vh] md:h-[44vh] lg:h-[56vh] object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/30 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#183a5d]/60 via-[#183a5d]/30 to-transparent"></div>
                       
-                      {/* Título abajo a la izquierda - solo visible en hover */}
-                      <div className="absolute bottom-20 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <h3 style={{ fontFamily: "var(--font-times)" }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans">
+                      {/* Título abajo a la izquierda - siempre visible con altura fija */}
+                      <div className="absolute bottom-20 left-6 text-white opacity-100 transition-all duration-500">
+                        <h3 style={{ fontFamily: "var(--font-times)" }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans h-16 flex items-end">
                           {item.title}
                         </h3>
                       </div>
                       
-                      {/* Subtítulo abajo, debajo del título - solo visible en hover */}
-                      <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-90 transition-all duration-500">
+                      {/* Subtítulo abajo, debajo del título - siempre visible */}
+                      <div className="absolute bottom-6 left-6 text-white opacity-90 transition-all duration-500">
                         <p style={{ fontFamily: "var(--font-muli)" }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-sans italic">
                           {item.subtitle}
                         </p>
                       </div>
 
-                      {/* Indicador de click */}
+                      {/* Indicador de click - solo visible en hover */}
                       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button style={{ fontFamily: "var(--font-muli)" }} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
+                      <button style={{ fontFamily: "var(--font-muli)", borderColor: '#4A90E2', color: '#4A90E2', backgroundColor: 'white' }} className="flex items-center gap-2 px-4 py-2 rounded-lg shadow-md hover:shadow-lg text-sm font-medium transition-all duration-300" onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#4A90E2'; (e.target as HTMLElement).style.color = '#ffffff'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'white'; (e.target as HTMLElement).style.color = '#4A90E2'; }}>
                           <span>Ver más</span>
                           <svg
-                          className="w-4 h-4 text-[#D4A373]"
+                          className="w-4 h-4"
+                          style={{ color: 'inherit' }}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -459,7 +477,7 @@ export default function HomePage() {
                     className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
                   >
                     <svg
-                      className="w-6 h-6 text-amber-600" // mismo color que el subtítulo
+                      className="w-6 h-6" style={{ color: '#bdc7c8' }} // mismo color que el subtítulo
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -470,13 +488,13 @@ export default function HomePage() {
                   </div>
                   <div className="flex-1 overflow-y-auto">
                     <div className="p-8">
-                      <h3 style={{ fontFamily: "var(--font-times)" }}className="text-3xl font-bold text-stone-800 mb-4 font-sans">
+                      <h3 style={{ fontFamily: "var(--font-times)", color: '#4A90E2' }}className="text-3xl font-bold mb-4 font-sans">
                         {carouselData[selectedCarouselItem].title}
                       </h3>
-                      <p style={{ fontFamily: "var(--font-glacial)" }} className="text-lg text-amber-600 italic mb-6 font-sans">
+                      <p style={{ fontFamily: "var(--font-glacial)", color: '#4A90E2' }} className="text-lg italic mb-6 font-sans">
                         {carouselData[selectedCarouselItem].subtitle}
                       </p>
-                      <p style={{ fontFamily: "var(--font-glacial)" }} className="text-stone-700 leading-relaxed text-base font-sans">
+                      <p style={{ fontFamily: "var(--font-glacial)", color: '#000000' }} className="leading-relaxed text-base font-sans">
                         {carouselData[selectedCarouselItem].description}
                       </p>
                     </div>
@@ -488,27 +506,61 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="mb-20">
+      <section className="p-10">
       <FranquiciaCard />
       </section>
 
-      <section className="py-40 bg-gradient-to-b from-stone-800 via-stone-900 to-stone-800 relative overflow-hidden">
+      <section className="py-40 relative overflow-hidden" style={{ backgroundColor: '#bdc7c8' }}>
         <MainContactForm />
       </section>
 
 
-      <footer className="bg-stone-950 text-white py-32 animate-in fade-in duration-1500 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+      <footer className="py-32 animate-in fade-in duration-1500 relative overflow-hidden" style={{ backgroundColor: '#a5b0ac', color: '#183a5d' }}>
+        {/* Elementos decorativos de fondo */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent"></div>
+          <div className="absolute top-20 left-20 w-64 h-64 border border-[#4A90E2]/20 rounded-full"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 border border-[#4A90E2]/20 rounded-full"></div>
+          <div className="absolute top-1/3 right-1/4 w-32 h-32 border border-[#4A90E2]/20 rounded-full"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 text-center relative">
-          <div className="space-y-8">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
-            <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-5xl font-serif font-light mb-4 hover:text-amber-400 transition-colors duration-500 tracking-wider">
-              The Salad Bar<span className="text-2xl align-super ml-1">®</span>
+        <div className="max-w-6xl mx-auto px-6 relative">
+          {/* Sección principal del footer */}
+          <div className="text-center mb-16">
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mx-auto mb-8"></div>
+            <h3 style={{ fontFamily: "var(--font-muli)" }} className="text-6xl font-serif font-light mb-6 transition-colors duration-500 tracking-wider" onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#4A90E2'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#183a5d'; }}>
+              <span style={{ color: '#4A90E2' }}>The Salad Bar</span><span className="text-3xl align-super ml-2">®</span>
             </h3>
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-stone-600 to-transparent mx-auto mt-8"></div>
+            <p className="text-lg font-light tracking-widest mb-8 opacity-80">
+              Fresh • Healthy • Delicious
+            </p>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mx-auto"></div>
+          </div>
+
+          {/* Información de contacto y redes */}
+          <div className="grid md:grid-cols-3 gap-12 mb-16">
+            <div className="text-center">
+              <h4 className="text-xl font-semibold mb-4" style={{ color: '#4A90E2' }}>Ubicación</h4>
+              <p className="text-sm opacity-80">Buenos Aires, Argentina</p>
+            </div>
+            <div className="text-center">
+              <h4 className="text-xl font-semibold mb-4" style={{ color: '#4A90E2' }}>Horarios</h4>
+              <p className="text-sm opacity-80">Lun - Dom: 8:00 - 22:00</p>
+            </div>
+            <div className="text-center">
+              <h4 className="text-xl font-semibold mb-4" style={{ color: '#4A90E2' }}>Contacto</h4>
+              <p className="text-sm opacity-80">info@thesaladbar.com</p>
+            </div>
+          </div>
+
+          {/* Línea decorativa final */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent mb-8"></div>
+          
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-sm opacity-60">
+              © 2024 The Salad Bar. Todos los derechos reservados.
+            </p>
           </div>
         </div>
       </footer>

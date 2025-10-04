@@ -31,9 +31,9 @@ export default function FranquiciaCard() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Calculamos translateX y opacity basados en progress
-  const translateX = (1 - progress) * -100 // -100px cuando 0% visible, 0px cuando 100%
-  const opacity = progress
+  // Calculamos translateX y opacity basados en progress - animación más lenta y visible
+  const translateX = (1 - progress) * -200 // -200px cuando 0% visible, 0px cuando 100%
+  const opacity = Math.min(progress * 1.5, 1) // Opacity más gradual
 
   return (
     <div className="mt-10 px-0 flex">
@@ -52,39 +52,36 @@ export default function FranquiciaCard() {
         style={{
           transform: `translateX(${translateX}px)`,
           opacity: opacity,
-          transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
+          transition: "transform 0.8s ease-out, opacity 0.8s ease-out",
         }}
       >
-        {/* Imagen con blur en hover */}
-        <img
-          src="/natural-wood-terrace.png"
-          alt="FRANQUICIAS DISPONIBLES"
-          className="w-full h-full object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110 rounded-r-2xl"
-        />
+        {/* Fondo con colores de la paleta */}
+        <div className="w-full h-full rounded-r-2xl" style={{ background: 'linear-gradient(135deg, #d1cec9 0%, #bdc7c8 50%, #dbdce0 100%)' }}></div>
 
-        {/* Gradiente */}
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-900/60 via-stone-900/40 to-transparent rounded-r-2xl"></div>
+        {/* Gradiente sutil */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#183a5d]/20 via-transparent to-transparent rounded-r-2xl"></div>
 
-        {/* Título */}
-        <div className="absolute bottom-16 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <h3 style={{ fontFamily: "var(--font-times)" }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans">
+        {/* Título - siempre visible */}
+        <div className="absolute bottom-16 left-6 opacity-100 transition-all duration-500">
+          <h3 style={{ fontFamily: "var(--font-times)", color: '#183a5d' }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans group-hover:scale-105 transition-transform duration-300">
             FRANQUICIAS DISPONIBLES
           </h3>
         </div>
 
-        {/* Subtítulo */}
-        <div className="absolute bottom-4 left-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <p style={{ fontFamily: "var(--font-muli)" }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic">
+        {/* Subtítulo - siempre visible */}
+        <div className="absolute bottom-4 left-6 opacity-100 transition-all duration-500">
+          <p style={{ fontFamily: "var(--font-muli)", color: '#183a5d' }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic group-hover:scale-105 transition-transform duration-300">
             Llevá The Salad Bar a tu ciudad
           </p>
         </div>
 
         {/* "Ver más" */}
         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 hover:bg-[#F5E6D3] border border-[#D4A373] shadow-md hover:shadow-lg text-[#D4A373] text-sm font-medium transition-all duration-300">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 shadow-md hover:shadow-lg text-sm font-medium transition-all duration-300" style={{ borderColor: '#4A90E2', color: '#4A90E2' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#d1cec9'; (e.target as HTMLElement).style.color = '#4A90E2'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.9)'; (e.target as HTMLElement).style.color = '#4A90E2'; }}>
             <span>Ver más</span>
             <svg
-              className="w-4 h-4 text-[#D4A373]"
+              className="w-4 h-4"
+              style={{ color: 'inherit' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -98,7 +95,7 @@ export default function FranquiciaCard() {
       {/* Dialog extra */}
       {selectedCarouselItem === "extra" && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+          <div className="rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col" style={{ backgroundColor: '#E3E5E8' }}>
             {/* Botón de cerrar */}
             <div className="top-0 right-0 z-50">
               <button
@@ -106,7 +103,8 @@ export default function FranquiciaCard() {
                 className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
               >
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6"
+                  style={{ color: '#4A90E2' }}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -118,9 +116,9 @@ export default function FranquiciaCard() {
 
             <div className="flex-1 overflow-y-auto space-y-6">
               <div className="md:p-8">
-                <h3 style={{ fontFamily: "var(--font-times)" }} className="text-3xl font-bold text-stone-800 mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
-                <p style={{ fontFamily: "var(--font-muli)" }}  className="text-lg text-amber-600 italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
-                <p style={{ fontFamily: "var(--font-glacial)" }} className="text-stone-700 leading-relaxed text-base font-sans">
+                <h3 style={{ fontFamily: "var(--font-times)", color: '#4A90E2' }} className="text-3xl font-bold mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
+                <p style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }}  className="text-lg italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
+                <p style={{ fontFamily: "var(--font-glacial)", color: '#000000' }} className="leading-relaxed text-base font-sans">
                   Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. Como parte de nuestro
                   proceso de selección, hemos diseñado este formulario con el objetivo de comprender mejor tu perfil,
                   experiencia y expectativas, asegurando así una sinergia exitosa y duradera entre ambas partes. Este
