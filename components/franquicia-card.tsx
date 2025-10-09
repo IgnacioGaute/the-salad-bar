@@ -77,18 +77,32 @@ export default function FranquiciaCard() {
 
         {/* "Ver más" */}
         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/90 shadow-md hover:shadow-lg text-sm font-medium transition-all duration-300" style={{ borderColor: '#4A90E2', color: '#4A90E2' }} onMouseEnter={(e) => { (e.target as HTMLElement).style.backgroundColor = '#d1cec9'; (e.target as HTMLElement).style.color = '#4A90E2'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.9)'; (e.target as HTMLElement).style.color = '#4A90E2'; }}>
-            <span>Ver más</span>
-            <svg
-              className="w-4 h-4"
-              style={{ color: 'inherit' }}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+        <button
+          className="flex cursor-pointer items-center gap-2 px-4 py-2 rounded-lg shadow-md text-sm font-medium border transition-all duration-300"
+          style={{
+            backgroundColor: "white",
+            color: "#7FCDCD",
+            borderColor: "#7FCDCD",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "#7FCDCD";
+            e.currentTarget.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "white";
+            e.currentTarget.style.color = "#7FCDCD";
+          }}
+        >
+          <span>Ver más</span>
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
         </div>
       </div>
 

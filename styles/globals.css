@@ -1,42 +1,52 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Paleta Mediterránea - Tonos Arena y Azul Navy */
+  --salad-sand-lightest: #f5f3ef; /* Arena muy claro - casi blanco cálido */
+  --salad-sand-light: #e8e4dd; /* Arena claro */
+  --salad-sand-medium: #ddd5ca; /* Arena medio cálido */
+  --salad-sand-warm: #d4c5a9; /* Arena oscuro con tono cálido */
+  --salad-navy: #1a3a52; /* Azul navy profundo */
+  --salad-navy-light: #2c4f6b; /* Navy más claro */
+  --salad-aqua: #7fcdcd; /* Aqua sutil para acentos */
+  --salad-olive: #8b9b8e; /* Verde oliva muy sutil */
+
+  --background: #f5f3ef;
+  --foreground: #1a3a52;
+  --card: #e8e4dd;
+  --card-foreground: #1a3a52;
+  --popover: #e8e4dd;
+  --popover-foreground: #1a3a52;
+  --primary: #1a3a52;
+  --primary-foreground: #f5f3ef;
+  --secondary: #ddd5ca;
+  --secondary-foreground: #1a3a52;
+  --muted: #e8e4dd;
+  --muted-foreground: #2c4f6b;
+  --accent: #d4c5a9;
+  --accent-foreground: #1a3a52;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --border: #ddd5ca;
+  --input: #ddd5ca;
+  --ring: #1a3a52;
+  --chart-1: #1a3a52;
+  --chart-2: #ddd5ca;
+  --chart-3: #e8e4dd;
+  --chart-4: #f5f3ef;
+  --chart-5: #2c4f6b;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #e8e4dd;
+  --sidebar-foreground: #1a3a52;
+  --sidebar-primary: #1a3a52;
+  --sidebar-primary-foreground: #f5f3ef;
+  --sidebar-accent: #ddd5ca;
+  --sidebar-accent-foreground: #1a3a52;
+  --sidebar-border: #ddd5ca;
+  --sidebar-ring: #1a3a52;
 }
 
 .dark {
@@ -74,7 +84,54 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* ====================== */
+/* Glacial Indifference   */
+/* ====================== */
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ====================== */
+/* Muli (Mulish)          */
+/* ====================== */
+@font-face {
+  font-family: "Muli";
+  src: url("/fonts/Mulish-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Muli";
+  src: url("/fonts/Mulish-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables CSS para fuentes */
+:root {
+  --font-glacial: "Glacial Indifference", sans-serif;
+  --font-muli: "Muli", sans-serif;
+  --font-times: "Times New Roman", Times, serif;
+}
+
 @theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -122,7 +179,6 @@
   }
 }
 
-
 /* ====================== */
 /* Glacial Indifference   */
 /* ====================== */
@@ -167,4 +223,3 @@
   --font-muli: "Muli", sans-serif;
   --font-times: "Times New Roman", Times, serif;
 }
-
