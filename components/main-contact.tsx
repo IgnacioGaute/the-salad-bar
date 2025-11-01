@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -48,46 +47,56 @@ export default function MainContactForm() {
   }
 
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
+    <section
+      className="relative overflow-hidden px-5 sm:px-10 md:px-20 pb-16 sm:pb-24"
+      style={{ backgroundColor: "#E8E4DD" }} // tono hueso cálido
+    >
+      {/* Líneas decorativas */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
         <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
       </div>
 
-      <div className="text-center mb-32 animate-in fade-in duration-1500">
-        <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent mx-auto mb-12"></div>
+      {/* Encabezado */}
+      <div className="text-center mb-20 sm:mb-32 animate-in fade-in duration-1500">
+        <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent mx-auto mb-8 sm:mb-12"></div>
         <h2
-          style={{ fontFamily: "var(--font-muli)" }}
-          className="text-6xl md:text-8xl font-serif font-light mb-8 tracking-wider"
-          color="#1A3A52"
+          style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
+          className="text-4xl sm:text-6xl md:text-8xl font-serif font-light mb-6 sm:mb-8 tracking-wider"
         >
           Contactemos
         </h2>
       </div>
-      <div className="max-w-4xl mx-auto px-6 relative">
+
+      {/* Contenedor del formulario */}
+      <div className="max-w-4xl mx-auto relative">
         <Card
           className="border-0 shadow-3xl backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.02] hover:-translate-y-2 rounded-3xl relative overflow-hidden"
           style={{ backgroundColor: "#F0E9DE" }}
         >
+          {/* Líneas decorativas */}
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
 
-          <CardContent className="p-20 rounded-3xl bg-[#F0E9DE]">
-            <form className="space-y-24" onSubmit={handleSubmit}>
+          <CardContent className="p-6 sm:p-12 md:p-20">
+            <form className="space-y-12 sm:space-y-20" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
                 <h3
                   style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-                  className="text-3xl font-serif font-light mb-14"
+                  className="text-2xl sm:text-3xl font-serif font-light mb-10 sm:mb-14 text-center md:text-left"
                 >
                   Información Personal
                 </h3>
-                <div className="grid md:grid-cols-2 gap-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16">
                   <div className="field">
                     <label>Nombre completo</label>
-                    <Input name="name" value={formData.name || ""} onChange={handleChange} 
-                      className="w-full h-10 bg-transparent placeholder:text-gray-400 text-xl font-sans text-[#1A3A52] border border-black focus:border-[#1A3A52] transition-all duration-500"
-                      />
+                    <Input
+                      name="name"
+                      value={formData.name || ""}
+                      onChange={handleChange}
+                      className="customInput"
+                    />
                   </div>
                   <div className="field">
                     <label>Correo electrónico</label>
@@ -96,8 +105,7 @@ export default function MainContactForm() {
                       name="email"
                       value={formData.email || ""}
                       onChange={handleChange}
-                      className="w-full h-10 bg-transparent placeholder:text-gray-400 text-xl font-sans text-[#1A3A52] border border-black focus:border-[#1A3A52] transition-all duration-500"
-
+                      className="customInput"
                     />
                   </div>
                   <div className="field md:col-span-2">
@@ -107,7 +115,7 @@ export default function MainContactForm() {
                       name="phone"
                       value={formData.phone || ""}
                       onChange={handleChange}
-                      className="w-full h-10 bg-transparent placeholder:text-gray-400 text-xl font-sans text-[#1A3A52] border border-black focus:border-[#1A3A52] transition-all duration-500"
+                      className="customInput"
                     />
                   </div>
                   <div className="field md:col-span-2">
@@ -116,21 +124,25 @@ export default function MainContactForm() {
                       name="message"
                       value={formData.message || ""}
                       onChange={handleChange}
-                      className="w-full h-10 bg-transparent placeholder:text-gray-400 text-xl font-sans text-[#1A3A52] border border-black focus:border-[#1A3A52] transition-all duration-500"
+                      className="customInput"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Botón */}
-              <div className="text-center pt-5">
+              <div className="text-center pt-8 sm:pt-10">
                 <Button
-                  style={{ fontFamily: "var(--font-muli)", borderColor: "#1A3A52", color: "#1A3A52" }}
+                  style={{
+                    fontFamily: "var(--font-muli)",
+                    borderColor: "#1A3A52",
+                    color: "#1A3A52",
+                  }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="bg-transparent border-2 hover:bg-[#1A3A52] 
-                             hover:border-[#1A3A52] px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
+                  className="bg-transparent border-2 hover:bg-[#1A3A52]
+                             hover:border-[#1A3A52] px-10 sm:px-16 py-4 sm:py-6 text-lg sm:text-xl font-light rounded-none transition-all duration-700 
                              hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
                              tracking-widest uppercase font-sans"
                   onMouseEnter={(e) => {
@@ -159,23 +171,24 @@ export default function MainContactForm() {
         </Card>
       </div>
 
+      {/* Estilos adicionales */}
       <style jsx>{`
         .field label {
           display: block;
           margin-bottom: 0.75rem;
           color: #1A3A52;
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-family: var(--font-muli);
           letter-spacing: 0.02em;
         }
+
         .customInput {
-          @apply w-full h-16
-                    bg-transparent placeholder:text-gray-400
-                    transition-all duration-500 
-                    text-xl font-sans;
-          color: #1A3A52;
-          border-color:rgb(0, 0, 0);
+          @apply w-full h-12 sm:h-14 md:h-16 bg-transparent 
+                 placeholder:text-gray-400 transition-all duration-500 
+                 text-base sm:text-lg md:text-xl font-sans text-[#1A3A52] 
+                 border border-black focus:border-[#1A3A52] rounded-none;
         }
+
         .customInput:focus {
           border-color: #1A3A52;
         }

@@ -89,22 +89,27 @@ export default function HomePage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#F5F3EF" }}>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/mediterranean-terrace-with-turquoise-pool-white-wa.jpg"
-            alt="Mediterranean terrace dining"
-            className="w-full h-full object-cover hover:scale-110 transition-transform duration-[8000ms] ease-out"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-transparent to-stone-900/60"></div>
-          {/* Elementos decorativos flotantes */}
-          <div className="absolute top-20 left-20 w-32 h-32 border border-white/20 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-32 right-32 w-24 h-24 border border-white/20 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/20 rounded-full animate-pulse delay-2000"></div>
-        </div>
+      <section className="relative min-h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden px-4 sm:px-10 pb-10 sm:pb-0">
+  {/* Fondo con imagen */}
+  <div className="absolute inset-0 z-0">
+    <img
+      src="/mediterranean-terrace-with-turquoise-pool-white-wa.jpg"
+      alt="Mediterranean terrace dining"
+      className="w-full h-full object-cover hover:scale-110 transition-transform duration-[8000ms] ease-out"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-transparent to-stone-900/60"></div>
 
-        <div className="relative bottom-35 z-10 text-center text-white max-w-6xl mx-auto px-6">
-          <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
+    {/* Elementos decorativos flotantes */}
+    <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-20 sm:w-32 h-20 sm:h-32 border border-white/20 rounded-full animate-pulse"></div>
+    <div className="absolute bottom-20 sm:bottom-32 right-10 sm:right-32 w-16 sm:w-24 h-16 sm:h-24 border border-white/20 rounded-full animate-pulse delay-1000"></div>
+    <div className="absolute top-1/2 left-5 sm:left-10 w-12 sm:w-16 h-12 sm:h-16 border border-white/20 rounded-full animate-pulse delay-2000"></div>
+  </div>
+
+  {/* Contenido */}
+  <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-4 sm:px-8">
+    <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
+      {/* Logo con animación mejorada */}
+      <div className="animate-in bottom-10 fade-in duration-3000 delay-500 relative inline-block">
             {/* Logo con animación mejorada */}
             <div className="relative group">
               <img
@@ -116,8 +121,11 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 transform -skew-x-12"></div>
             </div>
           </div>
-        </div>
-      </section>
+
+    </div>
+  </div>
+</section>
+
 
       <section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
         <div className="absolute inset-0 opacity-5">
