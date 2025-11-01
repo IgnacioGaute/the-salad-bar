@@ -48,7 +48,7 @@ export default function MainContactForm() {
   }
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
         <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
@@ -67,12 +67,12 @@ export default function MainContactForm() {
       <div className="max-w-4xl mx-auto px-6 relative">
         <Card
           className="border-0 shadow-3xl backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.02] hover:-translate-y-2 rounded-3xl relative overflow-hidden"
-          style={{ backgroundColor: "#DDD5CA" }}
+          style={{ backgroundColor: "#F0E9DE" }}
         >
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
 
-          <CardContent className="p-20">
+          <CardContent className="p-20 rounded-3xl bg-[#F0E9DE]">
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>

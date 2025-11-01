@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Eczar, Mulish } from "next/font/google"
 import "./globals.css"
+import { MessageCircle } from "lucide-react"
 
 const eczar = Eczar({
   subsets: ["latin"],
@@ -33,7 +34,15 @@ export default function RootLayout({
       lang="es"
       className={`${eczar.variable} ${mulish.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body>{children}
+      <a
+          href="https://wa.me/5493872521137" 
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300"
+        >
+          <MessageCircle className="h-6 w-6" />
+        </a>
+      </body>
     </html>
   )
 }

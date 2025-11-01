@@ -63,14 +63,14 @@ export default function FranquiciaCard() {
 
         {/* Título - siempre visible */}
         <div className="absolute bottom-16 left-6 opacity-100 transition-all duration-500">
-          <h3 style={{ fontFamily: "var(--font-times)", color: '#183a5d' }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans group-hover:scale-105 transition-transform duration-300">
+          <h3 style={{ fontFamily: "var(--font-times)", color: '#1A3A52' }} className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans group-hover:scale-105 transition-transform duration-300">
             FRANQUICIAS DISPONIBLES
           </h3>
         </div>
 
         {/* Subtítulo - siempre visible */}
         <div className="absolute bottom-4 left-6 opacity-100 transition-all duration-500">
-          <p style={{ fontFamily: "var(--font-muli)", color: '#183a5d' }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic group-hover:scale-105 transition-transform duration-300">
+          <p style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-sm font-sans italic group-hover:scale-105 transition-transform duration-300">
             Llevá The Salad Bar a tu ciudad
           </p>
         </div>
@@ -118,7 +118,7 @@ export default function FranquiciaCard() {
               >
                 <svg
                   className="w-6 h-6"
-                  style={{ color: '#4A90E2' }}
+                  style={{ color: '#1A3A52' }}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -130,8 +130,8 @@ export default function FranquiciaCard() {
 
             <div className="flex-1 overflow-y-auto space-y-6">
               <div className="md:p-8">
-                <h3 style={{ fontFamily: "var(--font-times)", color: '#4A90E2' }} className="text-3xl font-bold mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
-                <p style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }}  className="text-lg italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
+                <h3 style={{ fontFamily: "var(--font-times)", color: '#1A3A52' }} className="text-3xl font-bold mb-4 font-sans">FRANQUICIAS DISPONIBLES</h3>
+                <p style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }}  className="text-lg italic mb-6 font-sans">Llevá The Salad Bar a tu ciudad</p>
                 <p style={{ fontFamily: "var(--font-glacial)", color: '#000000' }} className="leading-relaxed text-base font-sans">
                   Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. Como parte de nuestro
                   proceso de selección, hemos diseñado este formulario con el objetivo de comprender mejor tu perfil,

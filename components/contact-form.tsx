@@ -62,7 +62,7 @@ export default function ContactForm() {
                  backdrop-blur-xl 
                  hover:shadow-4xl transition-all duration-1000 
                  animate-in slide-in-from-bottom-12 duration-1500 
-                 hover:scale-[1.01] rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#E3E5E8', borderColor: '#4A90E2' }}>
+                 hover:scale-[1.01] rounded-3xl relative overflow-hidden" style={{ backgroundColor: '#E3E5E8', borderColor: '#1A3A52' }}>
 
 
 
@@ -74,7 +74,7 @@ export default function ContactForm() {
             <form className="space-y-24" onSubmit={handleSubmit}>
               {/* Sección 1 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="text-3xl font-serif font-light mb-14">
                   Información Personal
                 </h3>
                 <div className="grid md:grid-cols-2 gap-16">
@@ -130,7 +130,7 @@ export default function ContactForm() {
 
               {/* Sección 2 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="text-3xl font-serif font-light mb-14">
                   Interés y Expectativas
                 </h3>
                 <div className="space-y-12">
@@ -210,7 +210,7 @@ export default function ContactForm() {
 
               {/* Sección 3 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="text-3xl font-serif font-light mb-14">
                   Capacidad Financiera
                 </h3>
                 <div className="space-y-12">
@@ -247,7 +247,7 @@ export default function ContactForm() {
 
               {/* Sección 4 */}
               <div>
-                <h3 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-3xl font-serif font-light mb-14">
+                <h3 style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="text-3xl font-serif font-light mb-14">
                   Conectando con la Marca
                 </h3>
                 <div className="space-y-12">
@@ -300,14 +300,14 @@ export default function ContactForm() {
               {/* Botón */}
               <div className="text-center pt-20">
                 <Button
-                style={{ fontFamily: "var(--font-muli)", borderColor: '#4A90E2', color: '#4A90E2' }}
+                style={{ fontFamily: "var(--font-muli)", borderColor: '#1A3A52', color: '#1A3A52' }}
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="bg-transparent border-2 hover:bg-[#4A90E2] 
-                             hover:border-[#4A90E2] px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
+                  className="bg-transparent border-2 hover:bg-[#1A3A52] 
+                             hover:border-[#1A3A52] px-16 py-6 text-xl font-light rounded-none transition-all duration-700 
                              hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
-                             tracking-widest uppercase font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#E3E5E8'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#4A90E2'; }}
+                             tracking-widest uppercase font-sans" onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#E3E5E8'; }} onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#1A3A52'; }}
                 >
                   {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
                 </Button>
@@ -325,8 +325,8 @@ export default function ContactForm() {
 {/* Nota final */}
         <Card className="mt-20 border-2 shadow-2xl
                         backdrop-blur-xl rounded-3xl p-12 text-center
-                        transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12" style={{ backgroundColor: '#E3E5E8', borderColor: '#4A90E2' }}>
-          <h4 style={{ fontFamily: "var(--font-muli)", color: '#4A90E2' }} className="text-2xl font-serif mb-4">
+                        transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12" style={{ backgroundColor: '#E3E5E8', borderColor: '#1A3A52' }}>
+          <h4 style={{ fontFamily: "var(--font-muli)", color: '#1A3A52' }} className="text-2xl font-serif mb-4">
             Una Nota para el Candidato
           </h4>
           <p style={{ fontFamily: "var(--font-glacial)", color: '#183a5d' }} className="text-lg leading-relaxed max-w-3xl mx-auto">
@@ -347,19 +347,19 @@ export default function ContactForm() {
         .field label {
           display: block;
           margin-bottom: 0.75rem;
-          color: #183a5d;
+          color:#1A3A52 !important;
           font-size: 1.1rem;
           font-family: sans-serif;
           letter-spacing: 0.02em;
         }
         .customInput {
           @apply w-full h-16 border-0 border-b-2 
-                 bg-transparent text-[#183a5d] placeholder:text-gray-400
+                 bg-transparent text-[#1A3A52] placeholder:text-gray-400
                  transition-all duration-500 
                  text-xl rounded-none font-sans;
         }
         .customInput:focus {
-          border-color: #4A90E2;
+          border-color: #1A3A52 !important;
         }
       `}</style>
     </section>

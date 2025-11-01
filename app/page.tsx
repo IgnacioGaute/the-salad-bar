@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import FranquiciaCard from "@/components/franquicia-card"
 import MainContactForm from "@/components/main-contact"
+import { Instagram, Mail, Phone } from "lucide-react"
 
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
@@ -36,15 +37,7 @@ export default function HomePage() {
     },
   ]
 
-  const extendedCarouselData = [
-    ...carouselData,
-    {
-      src: "/natural-wood-terrace.png",
-      title: "FRANQUICIAS DISPONIBLES",
-      subtitle: "Llevá The Salad Bar a tu ciudad",
-      description: "Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. ...",
-    },
-  ]
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -110,23 +103,18 @@ export default function HomePage() {
           <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/20 rounded-full animate-pulse delay-2000"></div>
         </div>
 
-        <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
+        <div className="relative bottom-35 z-10 text-center text-white max-w-6xl mx-auto px-6">
           <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
             {/* Logo con animación mejorada */}
             <div className="relative group">
               <img
-                src="/fondo-transparente.png"
+                src="/THE-SALAD-BAR-web.png"
                 alt="The Salad Bar"
                 className="w-350 md:w-450 mx-auto filter brightness-0 invert hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
               />
               {/* Efecto de brillo en hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 transform -skew-x-12"></div>
             </div>
-
-            {/* ® pegado arriba a la derecha del logo */}
-            <span className="absolute top-128 right-40 translate-x-4 -translate-y-2 text-3xl font-light animate-pulse">
-              ®
-            </span>
           </div>
         </div>
       </section>
@@ -167,7 +155,7 @@ export default function HomePage() {
                     </span>
                     y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos
                     muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno
-                    que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia, ligera, fresca
+                    que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia ligera, fresca
                     y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años creamos una
                     propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con
                     la marca.
@@ -412,7 +400,9 @@ export default function HomePage() {
                     merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies,
                     panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para
                     levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre,
-                    sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. Y parte de llevar una vida
+                    sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
+                    <br />
+                    Y parte de llevar una vida
                     saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un
                     aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para
                     que te relajes, desconectes, las charlas fluyan y te pongas al dia.
@@ -654,32 +644,47 @@ export default function HomePage() {
           </div>
 
           {/* Información de contacto y redes */}
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
-            <div className="text-center">
-              <h4 className="text-xl font-semibold mb-4" style={{ color: "#1A3A52" }}>
-                Ubicación
-              </h4>
-              <p className="text-sm opacity-80">Buenos Aires, Argentina</p>
+          <div className="grid md:grid-cols-3 gap-12 mb-16 text-center text-[#1A3A52]">
+  {/* UBICACIÓN */}
+  <div className="flex flex-col items-center justify-center space-y-2">
+    <h4 className="text-xl font-semibold mb-2">Ubicación</h4>
+    <p className="text-sm opacity-80 leading-relaxed">
+      Leguizamón 416<br />Salta, Argentina
+    </p>
+  </div>
+
+  {/* HORARIOS */}
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <h4 className="text-xl font-semibold mb-2">Horarios</h4>
+              <p className="text-sm opacity-80 leading-relaxed">Lun - Dom: 8:00 - 22:00</p>
             </div>
-            <div className="text-center">
-              <h4 className="text-xl font-semibold mb-4" style={{ color: "#1A3A52" }}>
-                Horarios
-              </h4>
-              <p className="text-sm opacity-80">Lun - Dom: 8:00 - 22:00</p>
-            </div>
-            <div className="text-center">
-              <h4 className="text-xl font-semibold mb-4" style={{ color: "#1A3A52" }}>
-                Contacto
-              </h4>
-              <p className="text-sm opacity-80">info@thesaladbar.com</p>
+
+            {/* CONTACTO */}
+            <div className="flex flex-col items-center justify-center space-y-3">
+              <h4 className="text-xl font-semibold mb-2">Contacto</h4>
+              <div className="flex flex-col items-center space-y-2 text-sm opacity-80">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <p>thesaladbar.salta@gmail.com</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  <p>387-2521137</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Instagram className="w-4 h-4" />
+                  <p>@thesaladbarsalta</p>
+                </div>
+              </div>
             </div>
           </div>
+
 
           <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4C5A9] to-transparent mb-8"></div>
 
           {/* Copyright */}
           <div className="text-center">
-            <p className="text-sm opacity-60">© 2025 The Salad Bar. Todos los derechos reservados.</p>
+            <p className="text-sm opacity-60">® 2022 The Salad Bar. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
