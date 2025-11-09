@@ -35,6 +35,13 @@ export default function HomePage() {
       description:
         "Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos The Salad Bar: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. Jorge, se convierte en un pilar fundamental para The Salad Bar, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito.  Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación. ",
     },
+    {
+      src: "/mediterranean-bedroom-with-beige-walls-white-linen.jpg",
+      title: "MOMENTOS",
+      subtitle: "Be Real",
+      description:
+        "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir.Si andás cerca súmate y vivámoslo juntos.",
+    },
   ]
 
 
@@ -93,20 +100,17 @@ export default function HomePage() {
   {/* Fondo con imagen */}
   <div className="absolute inset-0 z-0">
     <img
-      src="/mediterranean-terrace-with-turquoise-pool-white-wa.jpg"
+      src="/fondo-med.png"
       alt="Mediterranean terrace dining"
       className="w-full h-full object-cover hover:scale-110 transition-transform duration-[8000ms] ease-out"
     />
     <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-transparent to-stone-900/60"></div>
 
-    {/* Elementos decorativos flotantes */}
-    <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-20 sm:w-32 h-20 sm:h-32 border border-white/20 rounded-full animate-pulse"></div>
-    <div className="absolute bottom-20 sm:bottom-32 right-10 sm:right-32 w-16 sm:w-24 h-16 sm:h-24 border border-white/20 rounded-full animate-pulse delay-1000"></div>
-    <div className="absolute top-1/2 left-5 sm:left-10 w-12 sm:w-16 h-12 sm:h-16 border border-white/20 rounded-full animate-pulse delay-2000"></div>
+
   </div>
 
   {/* Contenido */}
-  <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-4 sm:px-8">
+  <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-8 mb-55">
     <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
       {/* Logo con animación mejorada */}
       <div className="animate-in bottom-10 fade-in duration-3000 delay-500 relative inline-block">
@@ -115,10 +119,9 @@ export default function HomePage() {
               <img
                 src="/THE-SALAD-BAR-web.png"
                 alt="The Salad Bar"
-                className="w-350 md:w-450 mx-auto filter brightness-0 invert hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
+                className="filter hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
               />
-              {/* Efecto de brillo en hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 transform -skew-x-12"></div>
+
             </div>
           </div>
 
@@ -169,37 +172,6 @@ export default function HomePage() {
                     la marca.
                   </p>
                 </div>
-
-                <div className="pt-8 animate-in slide-in-from-bottom-8 duration-1500 delay-800">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    onClick={() => {
-                      setIsHistoryExpanded(true)
-                      setTimeout(() => {
-                        const historiaSection = document.getElementById("historia")
-                        if (historiaSection) {
-                          historiaSection.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          })
-                        }
-                      })
-                    }}
-                    style={{ fontFamily: "var(--font-muli)", borderColor: "#1A3A52", color: "#1A3A52" }}
-                    className="border-2 px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
-                    onMouseEnter={(e) => {
-                      ;(e.target as HTMLElement).style.backgroundColor = "#1A3A52"
-                      ;(e.target as HTMLElement).style.color = "#F5F3EF"
-                    }}
-                    onMouseLeave={(e) => {
-                      ;(e.target as HTMLElement).style.backgroundColor = "transparent"
-                      ;(e.target as HTMLElement).style.color = "#1A3A52"
-                    }}
-                  >
-                    Propuesta Gastronómica
-                  </Button>
-                </div>
               </div>
             </div>
 
@@ -224,12 +196,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Sección Historia Expandible */}
-      {isHistoryExpanded && (
         <section
           id="historia"
           className="py-40 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]"
-          style={{ backgroundColor: "#E8E4DD" }}
+          style={{ backgroundColor: "#F5F3EF" }}
         >
           <div className="absolute inset-0 opacity-5">
             <div
@@ -322,43 +292,10 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
-            {/* Botón para volver a filosofía */}
-            <div className="text-center mt-16 animate-in slide-in-from-bottom-8 duration-1000 delay-600">
-              <Button
-                style={{ fontFamily: "var(--font-muli)", borderColor: "#1A3A52", color: "#1A3A52" }}
-                variant="outline"
-                size="lg"
-                onClick={() => {
-                  const filosofiaSection = document.getElementById("filosofia")
-                  if (filosofiaSection) {
-                    filosofiaSection.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    })
-                  }
-                  setTimeout(() => {
-                    setIsHistoryExpanded(false)
-                  }, 1000)
-                }}
-                className="border-2 px-8 py-4 text-lg font-light rounded-none transition-all duration-500 hover:scale-105 tracking-wide bg-transparent font-sans"
-                onMouseEnter={(e) => {
-                  ;(e.target as HTMLElement).style.backgroundColor = "#1A3A52"
-                  ;(e.target as HTMLElement).style.color = "#F5F3EF"
-                }}
-                onMouseLeave={(e) => {
-                  ;(e.target as HTMLElement).style.backgroundColor = "transparent"
-                  ;(e.target as HTMLElement).style.color = "#1A3A52"
-                }}
-              >
-                Cerrar
-              </Button>
-            </div>
           </div>
         </section>
-      )}
 
-      <section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#F5F3EF" }}>
+      <section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
         <div className="absolute inset-0 opacity-5">
           <div
             className="absolute top-20 left-20 w-96 h-96 border rounded-full"
@@ -372,23 +309,6 @@ export default function HomePage() {
 
         <div className="max-w-8xl mx-auto px-6 relative">
           <div className="grid md:grid-cols-2 gap-32 items-center">
-            <div className="animate-in slide-in-from-right-12 duration-1500 group">
-              <div className="relative">
-                <img
-                  src="/mediterranean-cafe-breakfast-with-fresh-pastries-a.jpg"
-                  alt="Comedor íntimo en jardín"
-                  className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-                />
-                <div
-                  className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-                  style={{ backgroundColor: "#DDD5CA" }}
-                ></div>
-                <div
-                  className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-                  style={{ borderColor: "#DDD5CA" }}
-                ></div>
-              </div>
-            </div>
             <div className="animate-in slide-in-from-left-12 duration-1500">
               <div className="space-y-12">
                 <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
@@ -416,6 +336,23 @@ export default function HomePage() {
                     que te relajes, desconectes, las charlas fluyan y te pongas al dia.
                   </p>
                 </div>
+              </div>
+            </div>
+            <div className="animate-in slide-in-from-right-12 duration-1500 group">
+              <div className="relative">
+                <img
+                  src="/mediterranean-cafe-breakfast-with-fresh-pastries-a.jpg"
+                  alt="Comedor íntimo en jardín"
+                  className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+                />
+                <div
+                  className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
+                  style={{ backgroundColor: "#DDD5CA" }}
+                ></div>
+                <div
+                  className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                  style={{ borderColor: "#DDD5CA" }}
+                ></div>
               </div>
             </div>
           </div>
@@ -664,7 +601,9 @@ export default function HomePage() {
   {/* HORARIOS */}
             <div className="flex flex-col items-center justify-center space-y-2">
               <h4 className="text-xl font-semibold mb-2">Horarios</h4>
-              <p className="text-sm opacity-80 leading-relaxed">Lun - Dom: 8:00 - 22:00</p>
+              <p className="text-sm opacity-80 leading-relaxed">Lun - Vie: 11:00 - 22:30</p>
+              <p className="text-sm opacity-80 leading-relaxed">Sab: 11:00 - 17:00</p>
+
             </div>
 
             {/* CONTACTO */}
