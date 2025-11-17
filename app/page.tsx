@@ -40,7 +40,7 @@ export default function HomePage() {
       title: "MOMENTOS",
       subtitle: "Be Real",
       description:
-        "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir.Si andás cerca súmate y vivámoslo juntos.",
+        "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir. Si andás cerca súmate y vivámoslo juntos.",
     },
   ]
 
@@ -110,14 +110,14 @@ export default function HomePage() {
   </div>
 
   {/* Contenido */}
-  <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-8 mb-55">
+  <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-8">
     <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
       {/* Logo con animación mejorada */}
       <div className="animate-in bottom-10 fade-in duration-3000 delay-500 relative inline-block">
             {/* Logo con animación mejorada */}
             <div className="relative group">
               <img
-                src="/THE-SALAD-BAR-web.png"
+                src="/THE-SALAD-BARpagina.png"
                 alt="The Salad Bar"
                 className="filter hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
               />
@@ -412,7 +412,7 @@ export default function HomePage() {
           <div className="relative">
             <Carousel
               className="relative w-full"
-              opts={{ loop: true, align: "start", slidesToScroll: 1 }}
+              opts={{ loop: true, align: "start", slidesToScroll: 1, watchDrag: true, dragFree: false }}
               setApi={setExperienciaCarouselApi}
             >
               <CarouselContent>
