@@ -6,6 +6,7 @@ import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from "@/com
 import FranquiciaCard from "@/components/franquicia-card"
 import MainContactForm from "@/components/main-contact"
 import { Instagram, Mail, Phone } from "lucide-react"
+import JoinTeamForm from "@/components/join-team-form"
 
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
@@ -26,7 +27,7 @@ export default function HomePage() {
       title: "SE PARTE DE NUESTRO EQUIPO",
       subtitle: "",
       description:
-        "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. ",
+        "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
     },
     {
       src: "/mediterranean-bedroom-with-beige-walls-white-linen.jpg",
@@ -129,235 +130,237 @@ export default function HomePage() {
   </div>
 </section>
 
+<section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
+  <div className="absolute inset-0 opacity-5">
+    <div
+      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+    <div
+      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+  </div>
 
-      <section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-            style={{ borderColor: "#DDD5CA" }}
-          ></div>
-          <div
-            className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
-            style={{ borderColor: "#DDD5CA" }}
-          ></div>
-        </div>
+  <div className="max-w-8xl mx-auto px-6 relative">
+    {/* 👇 unificado: gap + min height + centrado vertical */}
+    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
+      <div className="animate-in slide-in-from-left-12 duration-1500 h-full flex flex-col justify-center">
+        <div className="space-y-12">
+          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
 
-        <div className="max-w-8xl mx-auto px-6 relative">
-          <div className="grid md:grid-cols-2 gap-32 items-center">
-            <div className="animate-in slide-in-from-left-12 duration-1500">
-              <div className="space-y-12">
-                <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+          <h2
+            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
+            className="text-6xl md:text-8xl font-serif font-light leading-none tracking-wide"
+          >
+            FILOSOFIA
+          </h2>
 
-                <h2
-                  style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-                  className="text-6xl md:text-8xl font-serif font-light leading-none tracking-wide"
-                >
-                  FILOSOFIA
-                </h2>
-
-                <div className="space-y-8" style={{ color: "#1A3A52" }}>
-                  <p
-                    style={{ fontFamily: "var(--font-glacial)" }}
-                    className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
-                  >
-                    Nuestros valores destacan que{" "}
-                    <span className="block italic font-light" style={{ color: "#2C4F6B" }}>
-                      COMER BIEN ES UNA FORMA DE AUTO RESPETO
-                    </span>
-                    y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos
-                    muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno
-                    que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia ligera, fresca
-                    y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años creamos una
-                    propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con
-                    la marca.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="animate-in slide-in-from-right-12 duration-1500 group">
-              <div className="relative">
-                <img
-                  src="/fresh-healthy-salad-bowls-with-mediterranean-ingre.jpg"
-                  alt="Comedor íntimo en jardín"
-                  className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-                />
-                <div
-                  className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-                  style={{ backgroundColor: "#DDD5CA" }}
-                ></div>
-                <div
-                  className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-                  style={{ borderColor: "#DDD5CA" }}
-                ></div>
-              </div>
-            </div>
+          <div className="space-y-8" style={{ color: "#1A3A52" }}>
+            <p
+              style={{ fontFamily: "var(--font-glacial)" }}
+              className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
+            >
+              Nuestros valores destacan que{" "}
+              <span className="block italic font-light" style={{ color: "#2C4F6B" }}>
+                COMER BIEN ES UNA FORMA DE AUTO RESPETO
+              </span>
+              y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos
+              muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno
+              que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia ligera, fresca
+              y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años creamos una
+              propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con
+              la marca.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
-        <section
-          id="historia"
-          className="py-40 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]"
-          style={{ backgroundColor: "#F5F3EF" }}
-        >
-          <div className="absolute inset-0 opacity-5">
-            <div
-              className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-              style={{ borderColor: "#DDD5CA" }}
-            ></div>
-            <div
-              className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
-              style={{ borderColor: "#DDD5CA" }}
-            ></div>
-          </div>
-          <div className="max-w-8xl mx-auto px-6 relative">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              {/* Imagen a la izquierda */}
-              <div className="animate-in slide-in-from-left-12 duration-1000 delay-200 group">
-                <div className="relative">
-                  <img
-                    src="/mediterranean-outdoor-dining-terrace-with-white-wa.jpg"
-                    alt="Historia de The Salad Bar"
-                    className="w-full h-[800px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-                  />
-                  <div
-                    className="absolute -bottom-8 -left-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-                    style={{ backgroundColor: "#DDD5CA" }}
-                  ></div>
-                  <div
-                    className="absolute -top-8 -right-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-                    style={{ borderColor: "#DDD5CA" }}
-                  ></div>
-                </div>
-              </div>
-
-              {/* Texto a la derecha */}
-              <div className="animate-in slide-in-from-right-12 duration-1000 delay-400">
-                <div className="space-y-8">
-                  <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-
-                  {/* Título principal */}
-                  <h3
-                    style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-                    className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
-                  >
-                    PROPUESTA GASTRONÓMICA
-                  </h3>
-
-                  <ul
-                    style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
-                    className="list-disc list-inside space-y-2 text-lg font-sans"
-                  >
-                    <li>Desayunos, brunch y meriendas</li>
-                    <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
-                    <li>Pre Set Bowls</li>
-                    <li>Sopas</li>
-                    <li>Platos elaborados</li>
-                    <li>Wraps y Sandwiches</li>
-                    <li>Jugos naturales y smoothies</li>
-                    <li>The Bar: aperitivos, vinos y cerveza</li>
-                  </ul>
-
-                  {/* Descripción */}
-                  <div
-                    style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
-                    className="space-y-4 text-lg leading-relaxed font-sans"
-                  >
-                    <p>
-                      En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y
-                      atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para
-                      destacar sus sabores naturales.
-                    </p>
-                    <p>
-                      Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea.
-                      Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
-                    </p>
-                    <p>
-                      Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad,
-                      logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se
-                      fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos
-                      nuestra carta en constante renovación.
-                    </p>
-                    <p>
-                      Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de
-                      forma periódica.
-                    </p>
-                  </div>
-
-                  {/* Línea decorativa inferior */}
-                  <div className="pt-8">
-                    <div className="w-16 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      <section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
-        <div className="absolute inset-0 opacity-5">
+      <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
+        <div className="relative w-full h-[700px]">
+          <img
+            src="/fresh-healthy-salad-bowls-with-mediterranean-ingre.jpg"
+            alt="Comedor íntimo en jardín"
+            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+          />
           <div
-            className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-            style={{ borderColor: "#DDD5CA" }}
+            className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
+            style={{ backgroundColor: "#DDD5CA" }}
           ></div>
           <div
-            className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
+            className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
             style={{ borderColor: "#DDD5CA" }}
           ></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div className="max-w-8xl mx-auto px-6 relative">
-          <div className="grid md:grid-cols-2 gap-32 items-center">
-            <div className="animate-in slide-in-from-left-12 duration-1500">
-              <div className="space-y-12">
-                <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+<section
+  id="historia"
+  className="py-40 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]"
+  style={{ backgroundColor: "#F5F3EF" }}
+>
+  <div className="absolute inset-0 opacity-5">
+    <div
+      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+    <div
+      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+  </div>
+  <div className="max-w-8xl mx-auto px-6 relative">
+    {/* 👇 mismo layout que la anterior */}
+    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
+      {/* Imagen a la izquierda */}
+      <div className="animate-in slide-in-from-left-12 duration-1000 delay-200 group h-full flex items-center">
+        <div className="relative w-full h-[700px]">
+          <img
+            src="/mediterranean-outdoor-dining-terrace-with-white-wa.jpg"
+            alt="Historia de The Salad Bar"
+            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+          />
+          <div
+            className="absolute -bottom-8 -left-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
+            style={{ backgroundColor: "#DDD5CA" }}
+          ></div>
+          <div
+            className="absolute -top-8 -right-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+            style={{ borderColor: "#DDD5CA" }}
+          ></div>
+        </div>
+      </div>
 
-                <h2
-                  style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-                  className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
-                >
-                  CAFETERIA - EASY NIGHTS
-                </h2>
-                <div className="space-y-8" style={{ color: "#1A3A52" }}>
-                  <p
-                    style={{ fontFamily: "var(--font-glacial)" }}
-                    className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
-                  >
-                    Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch,
-                    merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies,
-                    panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para
-                    levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre,
-                    sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
-                    <br />
-                    Y parte de llevar una vida
-                    saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un
-                    aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para
-                    que te relajes, desconectes, las charlas fluyan y te pongas al dia.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="animate-in slide-in-from-right-12 duration-1500 group">
-              <div className="relative">
-                <img
-                  src="/mediterranean-cafe-breakfast-with-fresh-pastries-a.jpg"
-                  alt="Comedor íntimo en jardín"
-                  className="w-full h-[700px] object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-                />
-                <div
-                  className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-                  style={{ backgroundColor: "#DDD5CA" }}
-                ></div>
-                <div
-                  className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-                  style={{ borderColor: "#DDD5CA" }}
-                ></div>
-              </div>
-            </div>
+      {/* Texto a la derecha */}
+      <div className="animate-in slide-in-from-right-12 duration-1000 delay-400 h-full flex flex-col justify-center">
+        <div className="space-y-8">
+          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
+
+          {/* Título principal */}
+          <h3
+            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
+            className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
+          >
+            PROPUESTA GASTRONÓMICA
+          </h3>
+
+          <ul
+            style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
+            className="list-disc list-inside space-y-2 text-lg font-sans"
+          >
+            <li>Desayunos, brunch y meriendas</li>
+            <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
+            <li>Pre Set Bowls</li>
+            <li>Sopas</li>
+            <li>Platos elaborados</li>
+            <li>Wraps y Sandwiches</li>
+            <li>Jugos naturales y smoothies</li>
+            <li>The Bar: aperitivos, vinos y cerveza</li>
+          </ul>
+
+          {/* Descripción */}
+          <div
+            style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
+            className="space-y-4 text-lg leading-relaxed font-sans"
+          >
+            <p>
+              En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y
+              atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para
+              destacar sus sabores naturales.
+            </p>
+            <p>
+              Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea.
+              Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
+            </p>
+            <p>
+              Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad,
+              logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se
+              fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos
+              nuestra carta en constante renovación.
+            </p>
+            <p>
+              Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de
+              forma periódica.
+            </p>
+          </div>
+
+          {/* Línea decorativa inferior */}
+          <div className="pt-8">
+            <div className="w-16 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
+  <div className="absolute inset-0 opacity-5">
+    <div
+      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+    <div
+      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
+      style={{ borderColor: "#DDD5CA" }}
+    ></div>
+  </div>
+
+  <div className="max-w-8xl mx-auto px-6 relative">
+    {/* 👇 mismo layout que las otras dos */}
+    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
+      <div className="animate-in slide-in-from-left-12 duration-1500 h-full flex flex-col justify-center">
+        <div className="space-y-12">
+          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+
+          <h2
+            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
+            className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
+          >
+            CAFETERIA - EASY NIGHTS
+          </h2>
+          <div className="space-y-8" style={{ color: "#1A3A52" }}>
+            <p
+              style={{ fontFamily: "var(--font-glacial)" }}
+              className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
+            >
+              Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch,
+              merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies,
+              panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para
+              levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre,
+              sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
+              <br />
+              Y parte de llevar una vida
+              saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un
+              aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para
+              que te relajes, desconectes, las charlas fluyan y te pongas al dia.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
+        <div className="relative w-full h-[700px]">
+          <img
+            src="/mediterranean-cafe-breakfast-with-fresh-pastries-a.jpg"
+            alt="Comedor íntimo en jardín"
+            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
+          />
+          <div
+            className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
+            style={{ backgroundColor: "#DDD5CA" }}
+          ></div>
+          <div
+            className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+            style={{ borderColor: "#DDD5CA" }}
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section
         className="py-5 pr-10 pl-10"
@@ -496,8 +499,14 @@ export default function HomePage() {
 
             {/* Panel lateral con descripción */}
             {selectedCarouselItem !== null && (
-              <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300">
-                <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col">
+              <div
+                className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300"
+                onClick={() => setSelectedCarouselItem(null)}   // 👈 click afuera cierra
+              >
+                <div
+                  className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col"
+                  onClick={(e) => e.stopPropagation()}          // 👈 evita que el click dentro cierre
+                >
                   <div className="relative flex-shrink-0">
                     <img
                       src={carouselData[selectedCarouselItem].src || "/placeholder.svg"}
@@ -506,7 +515,7 @@ export default function HomePage() {
                     />
                     <button
                       onClick={() => setSelectedCarouselItem(null)}
-                      className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+                      className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
                     >
                       <svg
                         className="w-6 h-6"
@@ -519,6 +528,7 @@ export default function HomePage() {
                       </svg>
                     </button>
                   </div>
+
                   <div className="flex-1 overflow-y-auto">
                     <div className="p-8">
                       <h3
@@ -539,11 +549,17 @@ export default function HomePage() {
                       >
                         {carouselData[selectedCarouselItem].description}
                       </p>
-                    </div>
+                      {carouselData[selectedCarouselItem].title === "SE PARTE DE NUESTRO EQUIPO" && (
+                          <div className="mt-8 pt-6 border-t border-[#E5E7EB]">
+                            <JoinTeamForm />
+                          </div>
+                        )}
+                  </div>
                   </div>
                 </div>
               </div>
             )}
+
           </div>
         </div>
       </section>

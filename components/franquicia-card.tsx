@@ -121,14 +121,19 @@ export default function FranquiciaCard() {
 
       {/* Modal */}
       {selectedCarouselItem === "extra" && (
-        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedCarouselItem(null)}   // 👈 click afuera cierra
+        >
           <div
-            className="rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col"
+            className="rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col relative"
             style={{ backgroundColor: "#E3E5E8" }}
+            onClick={(e) => e.stopPropagation()}          // 👈 evita que el click dentro cierre
           >
+            {/* Botón X ahora dentro del dialog */}
             <button
               onClick={() => setSelectedCarouselItem(null)}
-              className="fixed top-6 right-6 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
             >
               <svg
                 className="w-6 h-6"
