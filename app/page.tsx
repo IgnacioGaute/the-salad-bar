@@ -111,16 +111,18 @@ export default function HomePage() {
   </div>
 
   {/* Contenido */}
-  <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-8">
+  <div className="relative text-center text-white item-center">
     <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
       {/* Logo con animación mejorada */}
-      <div className="animate-in bottom-10 fade-in duration-3000 delay-500 relative inline-block">
+      <div className="animate-in top-10 fade-in duration-3000 delay-500 relative inline-block">
             {/* Logo con animación mejorada */}
-            <div className="relative group">
+            <div className="relative group item-center">
               <img
                 src="/THE-SALAD-BARpagina.png"
                 alt="The Salad Bar"
                 className="filter hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
+                width={1000}
+                height={800}
               />
 
             </div>
