@@ -14,6 +14,7 @@ export default function HomePage() {
   const [experienciaSelectedIndex, setExperienciaSelectedIndex] = useState(0)
   const [selectedCarouselItem, setSelectedCarouselItem] = useState<number | null>(null)
 
+  
   const carouselData = [
     {
       src: "/mediterranean-white-villa-exterior-with-natural-wo.jpg",
