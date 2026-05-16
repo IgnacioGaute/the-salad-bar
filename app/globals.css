@@ -178,3 +178,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes propuestaScrollUp {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.propuesta-scroll-slow {
+  animation: propuestaScrollUp 35s linear infinite;
+}
+
+.propuesta-scroll-fast {
+  animation: propuestaScrollUp 25s linear infinite;
+}
+
+.propuesta-scroll-slow:hover,
+.propuesta-scroll-fast:hover {
+  animation-play-state: paused;
+}

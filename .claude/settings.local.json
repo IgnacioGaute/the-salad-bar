@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nachi\\\\projects\\\\salad-bar-website\\\\\" | Where-Object { $_.Name -ne \"node_modules\" })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nachi\\\\projects\\\\salad-bar-website\\\\app\" -Recurse | Where-Object { -not $_.PSIsContainer })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nachi\\\\projects\\\\salad-bar-website\\\\components\" -Recurse | Where-Object { -not $_.PSIsContainer })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\nachi\\\\projects\\\\salad-bar-website\\\\public\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object Name)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_click"
+    ]
+  }
+}

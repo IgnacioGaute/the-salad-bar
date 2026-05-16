@@ -1,0 +1,206 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - img "Mediterranean terrace dining" [ref=e5]
+      - img "The Salad Bar" [ref=e11]
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - heading "FILOSOFIA" [level=2] [ref=e21]
+        - paragraph [ref=e23]:
+          - text: Nuestros valores destacan que
+          - generic [ref=e24]: COMER BIEN ES UNA FORMA DE AUTO RESPETO
+          - text: y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia ligera, fresca y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años creamos una propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con la marca.
+      - img "Barra de ensaladas con ingredientes frescos" [ref=e27]
+    - generic [ref=e35]:
+      - generic [ref=e38]:
+        - img "Plato The Salad Bar" [ref=e39]
+        - img "Plato The Salad Bar" [ref=e40]
+        - img "Plato The Salad Bar" [ref=e41]
+        - img "Plato The Salad Bar" [ref=e42]
+        - img "Plato The Salad Bar" [ref=e43]
+        - img "Plato The Salad Bar" [ref=e44]
+        - img "Plato The Salad Bar" [ref=e45]
+        - img "Plato The Salad Bar" [ref=e46]
+        - img "Plato The Salad Bar" [ref=e47]
+        - img "Plato The Salad Bar" [ref=e48]
+        - img "Plato The Salad Bar" [ref=e49]
+        - img "Plato The Salad Bar" [ref=e50]
+        - img "Plato The Salad Bar" [ref=e51]
+        - img "Plato The Salad Bar" [ref=e52]
+        - img "Plato The Salad Bar" [ref=e53]
+        - img "Plato The Salad Bar" [ref=e54]
+        - img "Plato The Salad Bar" [ref=e55]
+        - img "Plato The Salad Bar" [ref=e56]
+        - img "Plato The Salad Bar" [ref=e57]
+        - img "Plato The Salad Bar" [ref=e58]
+        - img "Plato The Salad Bar" [ref=e59]
+        - img "Plato The Salad Bar" [ref=e60]
+        - img "Plato The Salad Bar" [ref=e61]
+        - img "Plato The Salad Bar" [ref=e62]
+        - img "Plato The Salad Bar" [ref=e63]
+        - img "Plato The Salad Bar" [ref=e64]
+        - img "Plato The Salad Bar" [ref=e65]
+        - img "Plato The Salad Bar" [ref=e66]
+        - img "Plato The Salad Bar" [ref=e67]
+        - img "Plato The Salad Bar" [ref=e68]
+        - img "Plato The Salad Bar" [ref=e69]
+        - img "Plato The Salad Bar" [ref=e70]
+      - generic [ref=e72]:
+        - heading "PROPUESTA GASTRONÓMICA" [level=3] [ref=e74]
+        - list [ref=e75]:
+          - listitem [ref=e76]: Desayunos, brunch y meriendas
+          - listitem [ref=e77]: Armá tu propia ensalada / The Salad Bar + de 55 ingredientes
+          - listitem [ref=e78]: Pre Set Bowls
+          - listitem [ref=e79]: Sopas
+          - listitem [ref=e80]: Platos elaborados
+          - listitem [ref=e81]: Wraps y Sandwiches
+          - listitem [ref=e82]: Jugos naturales y smoothies
+          - listitem [ref=e83]: "The Bar: aperitivos, vinos y cerveza"
+        - generic [ref=e84]:
+          - paragraph [ref=e85]: En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
+          - paragraph [ref=e86]: "Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo."
+          - paragraph [ref=e87]: Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos nuestra carta en constante renovación.
+          - paragraph [ref=e88]: Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de forma periódica.
+    - generic [ref=e96]:
+      - generic [ref=e98]:
+        - heading "CAFETERIA - EASY NIGHTS" [level=2] [ref=e100]
+        - paragraph [ref=e102]:
+          - text: Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch, merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies, panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre, sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte.
+          - text: Y parte de llevar una vida saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para que te relajes, desconectes, las charlas fluyan y te pongas al dia.
+      - img "Pancakes con miel - Brunch The Salad Bar" [ref=e105]
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - heading [level=2]
+      - generic [ref=e112]:
+        - button "Anterior" [ref=e113]:
+          - img [ref=e114]
+        - button "Siguiente" [ref=e116]:
+          - img [ref=e117]
+      - region [ref=e120]:
+        - generic [ref=e122]:
+          - group [ref=e123]:
+            - button "THE SEASONS THE SEASONS Las estaciones no solo hablan del clima. Ver más" [ref=e124] [cursor=pointer]:
+              - img "THE SEASONS" [ref=e125]
+              - heading "THE SEASONS" [level=3] [ref=e128]
+              - paragraph [ref=e130]: Las estaciones no solo hablan del clima.
+              - button "Ver más" [ref=e132]:
+                - generic [ref=e133]: Ver más
+                - img [ref=e134]
+          - group [ref=e136]:
+            - button "SE PARTE DE NUESTRO EQUIPO SE PARTE DE NUESTRO EQUIPO Ver más" [ref=e137] [cursor=pointer]:
+              - img "SE PARTE DE NUESTRO EQUIPO" [ref=e138]
+              - heading "SE PARTE DE NUESTRO EQUIPO" [level=3] [ref=e141]
+              - generic:
+                - paragraph
+              - button "Ver más" [ref=e143]:
+                - generic [ref=e144]: Ver más
+                - img [ref=e145]
+          - group [ref=e147]:
+            - button "NUESTRA HISTORIA NUESTRA HISTORIA Ver más" [ref=e148] [cursor=pointer]:
+              - img "NUESTRA HISTORIA" [ref=e149]
+              - heading "NUESTRA HISTORIA" [level=3] [ref=e152]
+              - generic:
+                - paragraph
+              - button "Ver más" [ref=e154]:
+                - generic [ref=e155]: Ver más
+                - img [ref=e156]
+          - group [ref=e158]:
+            - button "MOMENTOS MOMENTOS Be Real Ver más" [ref=e159] [cursor=pointer]:
+              - img "MOMENTOS" [ref=e160]
+              - heading "MOMENTOS" [level=3] [ref=e163]
+              - paragraph [ref=e165]: Be Real
+              - button "Ver más" [ref=e167]:
+                - generic [ref=e168]: Ver más
+                - img [ref=e169]
+          - group [ref=e171]:
+            - button "THE SEASONS THE SEASONS Las estaciones no solo hablan del clima. Ver más" [ref=e172] [cursor=pointer]:
+              - img "THE SEASONS" [ref=e173]
+              - heading "THE SEASONS" [level=3] [ref=e176]
+              - paragraph [ref=e178]: Las estaciones no solo hablan del clima.
+              - button "Ver más" [ref=e180]:
+                - generic [ref=e181]: Ver más
+                - img [ref=e182]
+          - group [ref=e184]:
+            - button "SE PARTE DE NUESTRO EQUIPO SE PARTE DE NUESTRO EQUIPO Ver más" [ref=e185] [cursor=pointer]:
+              - img "SE PARTE DE NUESTRO EQUIPO" [ref=e186]
+              - heading "SE PARTE DE NUESTRO EQUIPO" [level=3] [ref=e189]
+              - generic:
+                - paragraph
+              - button "Ver más" [ref=e191]:
+                - generic [ref=e192]: Ver más
+                - img [ref=e193]
+          - group [ref=e195]:
+            - button "NUESTRA HISTORIA NUESTRA HISTORIA Ver más" [ref=e196] [cursor=pointer]:
+              - img "NUESTRA HISTORIA" [ref=e197]
+              - heading "NUESTRA HISTORIA" [level=3] [ref=e200]
+              - generic:
+                - paragraph
+              - button "Ver más" [ref=e202]:
+                - generic [ref=e203]: Ver más
+                - img [ref=e204]
+          - group [ref=e206]:
+            - button "MOMENTOS MOMENTOS Be Real Ver más" [ref=e207] [cursor=pointer]:
+              - img "MOMENTOS" [ref=e208]
+              - heading "MOMENTOS" [level=3] [ref=e211]
+              - paragraph [ref=e213]: Be Real
+              - button "Ver más" [ref=e215]:
+                - generic [ref=e216]: Ver más
+                - img [ref=e217]
+    - generic [ref=e221] [cursor=pointer]:
+      - heading "FRANQUICIAS DISPONIBLES" [level=3] [ref=e225]
+      - paragraph [ref=e227]: Llevá The Salad Bar a tu ciudad
+      - button "Ver más" [ref=e229]:
+        - generic [ref=e230]: Ver más
+        - img [ref=e231]
+    - generic [ref=e234]:
+      - heading "Contactemos" [level=2] [ref=e240]
+      - generic [ref=e246]:
+        - generic [ref=e247]:
+          - heading "Información Personal" [level=3] [ref=e248]
+          - generic [ref=e249]:
+            - generic [ref=e250]:
+              - text: Nombre completo
+              - textbox [ref=e251]
+            - generic [ref=e252]:
+              - text: Correo electrónico
+              - textbox [ref=e253]
+            - generic [ref=e254]:
+              - text: Número de teléfono
+              - textbox [ref=e255]
+            - generic [ref=e256]:
+              - text: Comentario
+              - textbox [ref=e257]
+        - button "Enviar Solicitud" [ref=e259]
+    - contentinfo [ref=e260]:
+      - generic [ref=e266]:
+        - generic [ref=e267]:
+          - heading "The Salad Bar®" [level=3] [ref=e269]
+          - paragraph [ref=e270]: Fresh • Healthy • Delicious
+        - generic [ref=e272]:
+          - generic [ref=e273]:
+            - heading "Ubicación" [level=4] [ref=e274]
+            - paragraph [ref=e275]:
+              - text: Leguizamón 416
+              - text: Salta, Argentina
+          - generic [ref=e276]:
+            - heading "Horarios" [level=4] [ref=e277]
+            - paragraph [ref=e278]: "Lun - Vie: 11:00 - 22:30"
+            - paragraph [ref=e279]: "Sab: 11:00 - 17:00"
+          - generic [ref=e280]:
+            - heading "Contacto" [level=4] [ref=e281]
+            - generic [ref=e282]:
+              - generic [ref=e283]:
+                - img [ref=e284]
+                - paragraph [ref=e287]: thesaladbar.salta@gmail.com
+              - generic [ref=e288]:
+                - img [ref=e289]
+                - paragraph [ref=e291]: 387-2521137
+              - generic [ref=e292]:
+                - img [ref=e293]
+                - paragraph [ref=e296]: "@thesaladbarsalta"
+        - paragraph [ref=e299]: ® 2022 The Salad Bar. Todos los derechos reservados.
+  - link [ref=e300] [cursor=pointer]:
+    - /url: https://wa.me/5493872521137
+    - img [ref=e301]
+  - button "Open Next.js Dev Tools" [ref=e308] [cursor=pointer]:
+    - img [ref=e309]

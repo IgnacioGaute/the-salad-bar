@@ -8,6 +8,42 @@ import MainContactForm from "@/components/main-contact"
 import { Instagram, Mail, Phone } from "lucide-react"
 import JoinTeamForm from "@/components/join-team-form"
 
+function CarouselCell({
+  images,
+  initialDelay = 0,
+  objectFit = "cover",
+  height = "220px",
+  containerStyle = {},
+}: {
+  images: string[]
+  initialDelay?: number
+  objectFit?: "cover" | "contain"
+  height?: string
+  containerStyle?: React.CSSProperties
+}) {
+  const [current, setCurrent] = useState(0)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => setCurrent(p => (p + 1) % images.length), 2800)
+      return () => clearInterval(interval)
+    }, initialDelay)
+    return () => clearTimeout(timeout)
+  }, [images.length, initialDelay])
+  return (
+    <div className="relative overflow-hidden rounded-sm" style={{ height, ...containerStyle }}>
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt="Plato The Salad Bar"
+          className="absolute inset-0 w-full h-full transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0, objectFit }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export default function HomePage() {
   const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
   const [experienciaCarouselApi, setExperienciaCarouselApi] = useState<CarouselApi | undefined>(undefined)
@@ -17,28 +53,28 @@ export default function HomePage() {
   
   const carouselData = [
     {
-      src: "/mediterranean-white-villa-exterior-with-natural-wo.jpg",
+      src: "/new-seasons.jpeg",
       title: "THE\nSEASONS",
       subtitle: "Las estaciones no solo hablan del clima.",
       description:
         "En The Salad Bar, la experiencia es tan importante como la comida. Acompañamos el ritmo de las estaciones y los diferentes momentos de nuestros clientes, creando un ambiente que conecta con su estado de ánimo a través de la música, el entorno y la decoración. Nuestro compromiso con la calidad, la frescura de los ingredientes y la lealtad de nuestros clientes nos impulsa a renovar la carta constantemente, con cada estación. De esta manera, no solo seguimos las tendencias, sino que también las creamos nosotros mismos, garantizando que siempre haya algo nuevo para disfrutar. Las estaciones no solo hablan del clima. Hablan de un mood, de un momento, de una energía. Y en The Salad Bar, respetamos cada uno de ellos.",
     },
     {
-      src: "/mediterranean-kitchen-interior-with-white-walls-na.jpg",
+      src: "/new-equipo.jpeg",
       title: "SE PARTE DE NUESTRO EQUIPO",
       subtitle: "",
       description:
         "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
     },
     {
-      src: "/mediterranean-bedroom-with-beige-walls-white-linen.jpg",
+      src: "/new-historia.jpeg",
       title: "NUESTRA HISTORIA",
       subtitle: "",
       description:
         "Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos The Salad Bar: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. Jorge, se convierte en un pilar fundamental para The Salad Bar, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito.  Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación. ",
     },
     {
-      src: "/mediterranean-bedroom-with-beige-walls-white-linen.jpg",
+      src: "/new-momentos.jpeg",
       title: "MOMENTOS",
       subtitle: "Be Real",
       description:
@@ -99,16 +135,20 @@ export default function HomePage() {
     <div className="min-h-screen" style={{ backgroundColor: "#F5F3EF" }}>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden px-4 sm:px-10 pb-10 sm:pb-0">
-  {/* Fondo con imagen */}
-  <div className="absolute inset-0 z-0">
-    <img
-      src="/fondo-med.png"
-      alt="Mediterranean terrace dining"
-      className="w-full h-full object-cover hover:scale-110 transition-transform duration-[8000ms] ease-out"
-    />
-    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/20 via-transparent to-stone-900/60"></div>
-
-
+  {/* Fondo con video */}
+  <div className="absolute inset-0 z-0 overflow-hidden bg-stone-900">
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+      poster="/fondo-med.png"
+    >
+      <source src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4" type="video/mp4" />
+      <img src="/fondo-med.png" alt="The Salad Bar" className="w-full h-full object-cover" />
+    </video>
+    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/30 via-transparent to-stone-900/70"></div>
   </div>
 
   {/* Contenido */}
@@ -182,8 +222,8 @@ export default function HomePage() {
       <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
         <div className="relative w-full h-[700px]">
           <img
-            src="/fresh-healthy-salad-bowls-with-mediterranean-ingre.jpg"
-            alt="Comedor íntimo en jardín"
+            src="/new-filosofia.jpeg"
+            alt="Barra de ensaladas con ingredientes frescos"
             className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
           />
           <div
@@ -206,50 +246,34 @@ export default function HomePage() {
   style={{ backgroundColor: "#F5F3EF" }}
 >
   <div className="absolute inset-0 opacity-5">
-    <div
-      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
-    <div
-      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
+    <div className="absolute top-20 left-20 w-96 h-96 border rounded-full" style={{ borderColor: "#DDD5CA" }}></div>
+    <div className="absolute bottom-20 right-20 w-64 h-64 border rounded-full" style={{ borderColor: "#DDD5CA" }}></div>
   </div>
   <div className="max-w-8xl mx-auto px-6 relative">
-    {/* 👇 mismo layout que la anterior */}
     <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
-      {/* Imagen a la izquierda */}
-      <div className="animate-in slide-in-from-left-12 duration-1000 delay-200 group h-full flex items-center">
-        <div className="relative w-full h-[700px]">
-          <img
-            src="/mediterranean-outdoor-dining-terrace-with-white-wa.jpg"
-            alt="Historia de The Salad Bar"
-            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-          />
-          <div
-            className="absolute -bottom-8 -left-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-            style={{ backgroundColor: "#DDD5CA" }}
-          ></div>
-          <div
-            className="absolute -top-8 -right-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-            style={{ borderColor: "#DDD5CA" }}
-          ></div>
+
+      {/* 2×3 carruseles automáticos — izquierda */}
+      <div className="animate-in slide-in-from-left-12 duration-1000 delay-200">
+        <div className="grid grid-cols-2 gap-3">
+          <CarouselCell initialDelay={0}    images={["/pg-04.jpeg", "/pg-10.jpeg", "/pg-16.jpeg"]} />
+          <CarouselCell initialDelay={500}  images={["/pg-02.jpeg", "/pg-08.jpeg", "/pg-14.jpeg"]} />
+          <CarouselCell initialDelay={1000} images={["/pg-01.jpeg", "/pg-07.jpeg", "/pg-13.jpeg"]} />
+          <CarouselCell initialDelay={1500} images={["/pg-03.jpeg", "/pg-09.jpeg", "/pg-15.jpeg"]} />
+          <CarouselCell initialDelay={2000} images={["/pg-05.jpeg", "/pg-11.jpeg", "/pg-06.jpeg"]} />
+          <CarouselCell initialDelay={2500} images={["/pg-12.jpeg", "/pg-16.jpeg", "/pg-02.jpeg"]} />
         </div>
       </div>
 
-      {/* Texto a la derecha */}
+      {/* Texto — derecha */}
       <div className="animate-in slide-in-from-right-12 duration-1000 delay-400 h-full flex flex-col justify-center">
         <div className="space-y-8">
           <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-
-          {/* Título principal */}
           <h3
             style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
             className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
           >
             PROPUESTA GASTRONÓMICA
           </h3>
-
           <ul
             style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
             className="list-disc list-inside space-y-2 text-lg font-sans"
@@ -263,8 +287,6 @@ export default function HomePage() {
             <li>Jugos naturales y smoothies</li>
             <li>The Bar: aperitivos, vinos y cerveza</li>
           </ul>
-
-          {/* Descripción */}
           <div
             style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
             className="space-y-4 text-lg leading-relaxed font-sans"
@@ -280,22 +302,13 @@ export default function HomePage() {
             </p>
             <p>
               Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad,
-              logramos un producto que hace que la gente nos recomiende y quiera volver. Nuestro público se
-              fideliza, y siguiendo las principales tendencias —y marcándolas nosotros mismos— mantenemos
-              nuestra carta en constante renovación.
-            </p>
-            <p>
-              Acompañamos cada cambio de estación asegurando productos frescos y ofreciendo nuevos sabores de
-              forma periódica.
+              logramos un producto que hace que la gente nos recomiende y quiera volver.
             </p>
           </div>
-
-          {/* Línea decorativa inferior */}
-          <div className="pt-8">
-            <div className="w-16 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-          </div>
+          <div className="w-16 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -344,21 +357,15 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
-        <div className="relative w-full h-[700px]">
-          <img
-            src="/mediterranean-cafe-breakfast-with-fresh-pastries-a.jpg"
-            alt="Comedor íntimo en jardín"
-            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-          />
-          <div
-            className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-            style={{ backgroundColor: "#DDD5CA" }}
-          ></div>
-          <div
-            className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-            style={{ borderColor: "#DDD5CA" }}
-          ></div>
+      {/* 2×3 carruseles automáticos — cafetería */}
+      <div className="animate-in slide-in-from-right-12 duration-1500 h-full flex items-center">
+        <div className="grid grid-cols-2 gap-3 w-full">
+          <CarouselCell initialDelay={0}    images={["/cf-01.jpeg", "/cf-07.jpeg", "/cf-13.jpeg"]} />
+          <CarouselCell initialDelay={500}  images={["/cf-02.jpeg", "/cf-08.jpeg", "/cf-14.jpeg"]} />
+          <CarouselCell initialDelay={1000} images={["/cf-03.jpeg", "/cf-09.jpeg", "/cf-15.jpeg"]} />
+          <CarouselCell initialDelay={1500} images={["/cf-04.jpeg", "/cf-10.jpeg"]} />
+          <CarouselCell initialDelay={2000} images={["/cf-05.jpeg", "/cf-11.jpeg"]} />
+          <CarouselCell initialDelay={2500} images={["/cf-06.jpeg", "/cf-12.jpeg"]} />
         </div>
       </div>
     </div>
@@ -507,58 +514,89 @@ export default function HomePage() {
                 onClick={() => setSelectedCarouselItem(null)}   // 👈 click afuera cierra
               >
                 <div
-                  className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col"
+                  className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col"
                   onClick={(e) => e.stopPropagation()}          // 👈 evita que el click dentro cierre
                 >
-                  <div className="relative flex-shrink-0">
-                    <img
-                      src={carouselData[selectedCarouselItem].src || "/placeholder.svg"}
-                      alt={carouselData[selectedCarouselItem].title}
-                      className="w-full h-64 object-cover"
-                    />
-                    <button
-                      onClick={() => setSelectedCarouselItem(null)}
-                      className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
-                    >
-                      <svg
-                        className="w-6 h-6"
-                        style={{ color: "#1A3A52" }}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto">
-                    <div className="p-8">
-                      <h3
-                        style={{ fontFamily: "var(--font-times)", color: "#1A3A52" }}
-                        className="text-3xl font-bold mb-4 font-sans"
-                      >
-                        {carouselData[selectedCarouselItem].title}
-                      </h3>
-                      <p
-                        style={{ fontFamily: "var(--font-glacial)", color: "#2C4F6B" }}
-                        className="text-lg italic mb-6 font-sans"
-                      >
-                        {carouselData[selectedCarouselItem].subtitle}
-                      </p>
-                      <p
-                        style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
-                        className="leading-relaxed text-base font-sans"
-                      >
-                        {carouselData[selectedCarouselItem].description}
-                      </p>
-                      {carouselData[selectedCarouselItem].title === "SE PARTE DE NUESTRO EQUIPO" && (
+                  {selectedCarouselItem === 0 || selectedCarouselItem === 2 ? (
+                    <>
+                      <div className="relative flex-shrink-0">
+                        {selectedCarouselItem === 0 ? (
+                          <div className="flex gap-0.5 overflow-hidden" style={{ height: "220px", borderRadius: "1rem 1rem 0 0" }}>
+                            {["/ts-01.jpeg","/ts-02.jpeg","/ts-03.jpeg","/ts-04.jpeg","/ts-05.jpeg","/ts-06.jpeg","/ts-07.jpeg","/ts-08.jpeg"].map(src => (
+                              <div key={src} className="flex-1 overflow-hidden">
+                                <img src={src} alt="The Seasons" className="w-full h-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex gap-0.5 overflow-hidden" style={{ height: "280px", borderRadius: "1rem 1rem 0 0" }}>
+                            {["/nh-01.jpeg","/nh-02.jpeg","/nh-03.jpeg"].map(src => (
+                              <div key={src} className="flex-1 overflow-hidden">
+                                <img src={src} alt="Nuestra Historia" className="w-full h-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        <button
+                          onClick={() => setSelectedCarouselItem(null)}
+                          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+                        >
+                          <svg className="w-6 h-6" style={{ color: "#1A3A52" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                      <div className="flex-1 overflow-y-auto">
+                        <div className="p-8">
+                          <h3 style={{ fontFamily: "var(--font-times)", color: "#1A3A52" }} className="text-3xl font-bold mb-4 font-sans">
+                            {carouselData[selectedCarouselItem].title}
+                          </h3>
+                          <p style={{ fontFamily: "var(--font-glacial)", color: "#2C4F6B" }} className="text-lg italic mb-6 font-sans">
+                            {carouselData[selectedCarouselItem].subtitle}
+                          </p>
+                          <p style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }} className="leading-relaxed text-base font-sans">
+                            {carouselData[selectedCarouselItem].description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    /* Equipo & Momentos: texto izquierda, foto derecha */
+                    <div className="flex flex-row flex-1 overflow-hidden">
+                      <div className="flex-1 overflow-y-auto p-8 flex flex-col justify-center">
+                        <h3 style={{ fontFamily: "var(--font-times)", color: "#1A3A52" }} className="text-3xl font-bold mb-4 font-sans">
+                          {carouselData[selectedCarouselItem].title}
+                        </h3>
+                        <p style={{ fontFamily: "var(--font-glacial)", color: "#2C4F6B" }} className="text-lg italic mb-6 font-sans">
+                          {carouselData[selectedCarouselItem].subtitle}
+                        </p>
+                        <p style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }} className="leading-relaxed text-base font-sans">
+                          {carouselData[selectedCarouselItem].description}
+                        </p>
+                        {carouselData[selectedCarouselItem].title === "SE PARTE DE NUESTRO EQUIPO" && (
                           <div className="mt-8 pt-6 border-t border-[#E5E7EB]">
                             <JoinTeamForm />
                           </div>
                         )}
-                  </div>
-                  </div>
+                      </div>
+                      <div className="w-2/5 flex-shrink-0 relative">
+                        <img
+                          src={carouselData[selectedCarouselItem].src || "/placeholder.svg"}
+                          alt={carouselData[selectedCarouselItem].title}
+                          className="w-full h-full object-cover"
+                          style={{ borderRadius: "0 1rem 1rem 0" }}
+                        />
+                        <button
+                          onClick={() => setSelectedCarouselItem(null)}
+                          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+                        >
+                          <svg className="w-6 h-6" style={{ color: "#1A3A52" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -566,7 +604,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="p-10">
+      <section className="py-16">
         <FranquiciaCard />
       </section>
 
@@ -657,3 +695,4 @@ export default function HomePage() {
     </div>
   )
 }
+

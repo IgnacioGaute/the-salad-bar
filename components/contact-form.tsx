@@ -48,7 +48,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="relative overflow-hidden mt-5 px-5 sm:px-10 md:px-20 pb-10 sm:pb-20">
+    <section className="relative overflow-hidden mt-0 px-5 sm:px-10 md:px-16 pb-8 sm:pb-14 pt-6">
 
       {/* Líneas decorativas */}
       <div className="absolute inset-0 opacity-10">
@@ -68,11 +68,11 @@ export default function ContactForm() {
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
 
-          <CardContent className="p-6 sm:p-10 md:p-20">
-            <form className="space-y-16 sm:space-y-20 md:space-y-24" onSubmit={handleSubmit}>
+          <CardContent className="p-6 sm:p-8 md:p-12">
+            <form className="space-y-10 sm:space-y-12" onSubmit={handleSubmit}>
               {/* === Secciones del Formulario === */}
               <FormSection title="Información Personal">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                   <InputField label="Nombre completo" name="nombre" value={formData.nombre} onChange={handleChange} />
                   <InputField label="Correo electrónico" name="email" type="email" value={formData.email} onChange={handleChange} />
                   <InputField label="Número de teléfono" name="telefono" type="tel" value={formData.telefono} onChange={handleChange} colSpan />
@@ -128,23 +128,6 @@ export default function ContactForm() {
           </CardContent>
         </Card>
 
-        {/* === Nota Final === */}
-        <Card
-          className="mt-10 sm:mt-16 border-2 shadow-2xl backdrop-blur-xl rounded-3xl p-6 sm:p-12 text-center
-                     transition-all duration-1000 hover:shadow-4xl hover:scale-[1.01] animate-in slide-in-from-bottom-12"
-          style={{ backgroundColor: "#E3E5E8", borderColor: "#1A3A52" }}
-        >
-          <h4 style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }} className="text-xl sm:text-2xl font-serif mb-4">
-            Una Nota para el Candidato
-          </h4>
-          <p style={{ fontFamily: "var(--font-glacial)", color: "#183a5d" }} className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-            Queremos ser totalmente transparentes: este formulario no tiene respuestas “correctas” o “incorrectas”.
-            El objetivo es conocerte genuinamente y entender si tus valores se alinean con la cultura de nuestra marca.
-            Si hay una desconexión, es mejor descubrirla ahora que más adelante. La sinceridad es clave para construir una asociación exitosa.
-            Una vez recibido el formulario, nuestro equipo de desarrollo lo revisará. Si tu perfil se alinea con nuestros criterios, te contactaremos para una reunión inicial.
-            Agradecemos tu tiempo y compromiso con este proceso.
-          </p>
-        </Card>
       </div>
 
       {/* Estilos utilitarios */}
@@ -176,7 +159,7 @@ function FormSection({ title, children }: { title: string; children: React.React
     <div>
       <h3
         style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-        className="text-2xl sm:text-3xl font-serif font-light mb-8 sm:mb-14 text-center md:text-left"
+        className="text-xl sm:text-2xl font-serif font-light mb-5 sm:mb-8 text-center md:text-left"
       >
         {title}
       </h3>

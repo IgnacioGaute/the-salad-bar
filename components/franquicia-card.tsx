@@ -4,202 +4,166 @@ import { useState, useEffect, useRef } from "react"
 import ContactForm from "./contact-form"
 
 export default function FranquiciaCard() {
-  const [selectedCarouselItem, setSelectedCarouselItem] = useState<string | null>(null)
+  const [open, setOpen] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [startBreathing, setStartBreathing] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       if (!cardRef.current) return
-
       const rect = cardRef.current.getBoundingClientRect()
       const windowHeight = window.innerHeight
-
-      // Calculamos qué tanto del card está visible
       const visibleTop = Math.max(0, rect.top)
       const visibleBottom = Math.min(windowHeight, rect.bottom)
       const visibleHeight = Math.max(0, visibleBottom - visibleTop)
-      const totalHeight = rect.height
-
-      const newProgress = Math.min(Math.max(visibleHeight / totalHeight, 0), 1)
+      const newProgress = Math.min(Math.max(visibleHeight / rect.height, 0), 1)
       setProgress(newProgress)
-
-      // Delay antes de la respiración
-      if (newProgress > 0.95) {
-        setTimeout(() => setStartBreathing(true), 2000)
-      } else {
-        setStartBreathing(false)
-      }
     }
-
     window.addEventListener("scroll", handleScroll)
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Scroll reveal lento
-  const translateX = (1 - progress) * -300
-  const opacity = Math.min(progress * 1.2, 1)
-  const scale = 0.98 + progress * 0.02
+  const opacity = Math.min(progress * 1.5, 1)
+  const translateY = (1 - progress) * 50
 
   return (
-    <div className="mt-10 px-0 flex">
+    <>
+      {/* Card */}
       <div
         ref={cardRef}
-        className={`group relative overflow-hidden shadow-2xl transition-shadow duration-700 cursor-pointer rounded-r-2xl 
-          w-full max-w-[650px] h-[20vh] md:h-[36vh] lg:h-[30vh]
-          ${startBreathing ? "animate-breathSmooth" : ""}`}
-        onClick={() => setSelectedCarouselItem("extra")}
+        className="relative w-full overflow-hidden cursor-pointer group"
         style={{
-          transform: `translateX(${translateX}px) scale(${scale})`,
+          height: "420px",
           opacity,
-          transition: "transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.8s ease-out",
+          transform: `translateY(${translateY}px)`,
+          transition: "transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.4s ease-out",
         }}
+        onClick={() => setOpen(true)}
       >
-        {/* Fondo con colores */}
+        {/* Foto de fondo */}
+        <img
+          src="/pg-04.jpeg"
+          alt="Franquicias The Salad Bar"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] group-hover:scale-105"
+        />
+
+        {/* Overlay gradiente navy */}
         <div
-          className="w-full h-full rounded-r-2xl"
+          className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, #d1cec9 0%, #bdc7c8 50%, #dbdce0 100%)",
+            background:
+              "linear-gradient(to right, rgba(26,58,82,0.97) 0%, rgba(26,58,82,0.80) 45%, rgba(26,58,82,0.25) 100%)",
           }}
-        ></div>
+        />
 
-        {/* Gradiente decorativo */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#183a5d]/20 via-transparent to-transparent rounded-r-2xl"></div>
+        {/* Contenido */}
+        <div className="absolute inset-0 flex items-center px-10 md:px-20">
+          <div className="max-w-lg">
+            <div className="w-14 h-px mb-6" style={{ backgroundColor: "#7fcdcd" }} />
 
-        {/* Título */}
-        <div className="absolute bottom-16 left-6 transition-all duration-700">
-          <h3
-            style={{ fontFamily: "var(--font-times)", color: "#183a5d" }}
-            className="font-bold leading-tight tracking-wide text-2xl md:text-3xl lg:text-4xl drop-shadow-md font-sans"
-          >
-            FRANQUICIAS DISPONIBLES
-          </h3>
-        </div>
-
-        {/* Subtítulo */}
-        <div className="absolute bottom-4 left-6 transition-all duration-700">
-          <p
-            style={{ fontFamily: "var(--font-muli)", color: "#183a5d" }}
-            className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg italic drop-shadow-sm"
-          >
-            Llevá The Salad Bar a tu ciudad
-          </p>
-        </div>
-
-        {/* 🔘 Botón "Ver más" */}
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button
-            className="flex cursor-pointer items-center gap-2 px-4 py-2 rounded-lg shadow-md text-sm font-medium border transition-all duration-300"
-            style={{
-              backgroundColor: "white",
-              color: "#7FCDCD",
-              borderColor: "#7FCDCD",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#7FCDCD"
-              e.currentTarget.style.color = "white"
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "white"
-              e.currentTarget.style.color = "#7FCDCD"
-            }}
-          >
-            <span>Ver más</span>
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <h2
+              style={{ fontFamily: "var(--font-times)", color: "white" }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-wide mb-2"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+              FRANQUICIAS
+            </h2>
+            <h2
+              style={{ fontFamily: "var(--font-times)", color: "#7fcdcd" }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-wide mb-6"
+            >
+              DISPONIBLES
+            </h2>
+
+            <p
+              style={{ fontFamily: "var(--font-muli)", color: "rgba(255,255,255,0.80)" }}
+              className="text-lg italic mb-10 tracking-wide"
+            >
+              Llevá The Salad Bar a tu ciudad
+            </p>
+
+            <button
+              className="flex items-center gap-3 px-8 py-3 border-2 font-medium tracking-widest uppercase transition-all duration-500"
+              style={{
+                fontFamily: "var(--font-muli)",
+                borderColor: "#7fcdcd",
+                color: "white",
+                fontSize: "0.8rem",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#7fcdcd"
+                e.currentTarget.style.color = "#1a3a52"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent"
+                e.currentTarget.style.color = "white"
+              }}
+            >
+              SOLICITAR INFORMACIÓN
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Elemento decorativo derecha */}
+        <div className="absolute right-16 top-1/2 -translate-y-1/2 hidden md:block pointer-events-none">
+          <div className="w-48 h-48 border border-white/20 rounded-full group-hover:border-white/30 transition-all duration-700" />
+          <div className="w-32 h-32 border border-[#7fcdcd]/30 rounded-full absolute top-8 left-8 group-hover:border-[#7fcdcd]/50 transition-all duration-700" />
+          <div className="w-4 h-4 rounded-full absolute top-22 left-22 group-hover:scale-150 transition-all duration-700" style={{ backgroundColor: "#7fcdcd", opacity: 0.5, top: "88px", left: "88px" }} />
         </div>
       </div>
 
       {/* Modal */}
-      {selectedCarouselItem === "extra" && (
+      {open && (
         <div
-          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedCarouselItem(null)}   // 👈 click afuera cierra
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300"
+          onClick={() => setOpen(false)}
         >
           <div
-            className="rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col relative"
-            style={{ backgroundColor: "#E3E5E8" }}
-            onClick={(e) => e.stopPropagation()}          // 👈 evita que el click dentro cierre
+            className="rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 duration-400"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Botón X ahora dentro del dialog */}
-            <button
-              onClick={() => setSelectedCarouselItem(null)}
-              className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
-            >
-              <svg
-                className="w-6 h-6"
-                style={{ color: "#183a5d" }}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {/* Header del dialog */}
+            <div className="relative flex-shrink-0 px-8 md:px-12 py-8" style={{ backgroundColor: "#1a3a52" }}>
+              <div className="w-10 h-px mb-4" style={{ backgroundColor: "#7fcdcd" }} />
+              <h3
+                style={{ fontFamily: "var(--font-times)", color: "white" }}
+                className="text-3xl md:text-4xl font-bold mb-1 leading-tight"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+                FRANQUICIAS DISPONIBLES
+              </h3>
+              <p
+                style={{ fontFamily: "var(--font-muli)", color: "#7fcdcd" }}
+                className="text-base italic mb-3"
+              >
+                Llevá The Salad Bar a tu ciudad
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-glacial)", color: "rgba(255,255,255,0.70)" }}
+                className="text-sm leading-relaxed max-w-2xl"
+              >
+                Agradecemos tu interés. Este formulario nos permite conocerte mejor y asegurar
+                una asociación exitosa y duradera. Toda la información es tratada con estricta confidencialidad.
+              </p>
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 bg-white/10 hover:bg-white/25 rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
+              >
+                <svg className="w-5 h-5" style={{ color: "white" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-            <div className="flex-1 overflow-y-auto space-y-6">
-              <div className="md:p-8">
-                <h3
-                  style={{ fontFamily: "var(--font-times)", color: "#183a5d" }}
-                  className="text-3xl font-bold mb-4 font-sans"
-                >
-                  FRANQUICIAS DISPONIBLES
-                </h3>
-                <p
-                  style={{ fontFamily: "var(--font-muli)", color: "#183a5d" }}
-                  className="text-lg italic mb-6 font-sans"
-                >
-                  Llevá The Salad Bar a tu ciudad
-                </p>
-                <p
-                  style={{ fontFamily: "var(--font-glacial)", color: "#000000" }}
-                  className="leading-relaxed text-base font-sans"
-                >
-                  Agradecemos tu interés en unirte a la red de franquicias de The Salad Bar. Como parte de nuestro
-                  proceso de selección, hemos diseñado este formulario con el objetivo de comprender mejor tu perfil,
-                  experiencia y expectativas, asegurando así una sinergia exitosa y duradera entre ambas partes.
-                  Toda la información proporcionada será tratada con estricta confidencialidad.
-                </p>
-              </div>
+            {/* Formulario */}
+            <div className="flex-1 overflow-y-auto" style={{ backgroundColor: "#f5f3ef" }}>
               <ContactForm />
             </div>
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        /* 🌬️ Respiración fluida y visible */
-        @keyframes breathSmooth {
-          0%, 100% {
-            transform: scale(1);
-            filter: brightness(1);
-            box-shadow: 0 0 25px rgba(31, 62, 83, 0.1);
-          }
-          40% {
-            transform: scale(1.1);
-            filter: brightness(1.15);
-            box-shadow: 0 0 50px rgba(127, 205, 205, 0.3);
-          }
-          70% {
-            transform: scale(1.04);
-            filter: brightness(1.08);
-            box-shadow: 0 0 35px rgba(127, 205, 205, 0.25);
-          }
-        }
-
-        .animate-breathSmooth {
-          animation: breathSmooth 5s ease-in-out infinite;
-        }
-      `}</style>
-    </div>
+    </>
   )
 }
