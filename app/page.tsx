@@ -143,7 +143,7 @@ export default function HomePage() {
       loop
       playsInline
       className="absolute inset-0 w-full h-full object-cover"
-      poster="/fondo-med.png"
+      poster=""
     >
       <source src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4" type="video/mp4" />
       <img src="/fondo-med.png" alt="The Salad Bar" className="w-full h-full object-cover" />
@@ -151,26 +151,6 @@ export default function HomePage() {
     <div className="absolute inset-0 bg-gradient-to-b from-stone-900/30 via-transparent to-stone-900/70"></div>
   </div>
 
-  {/* Contenido */}
-  <div className="relative text-center text-white item-center">
-    <div className="animate-in fade-in duration-3000 delay-500 relative inline-block">
-      {/* Logo con animación mejorada */}
-      <div className="animate-in top-10 fade-in duration-3000 delay-500 relative inline-block">
-            {/* Logo con animación mejorada */}
-            <div className="relative group item-center">
-              <img
-                src="/THE-SALAD-BARpagina.png"
-                alt="The Salad Bar"
-                className="filter hover:scale-110 transition-all duration-1000 relative group-hover:drop-shadow-2xl"
-                width={1000}
-                height={800}
-              />
-
-            </div>
-          </div>
-
-    </div>
-  </div>
 </section>
 
 <section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
@@ -222,7 +202,7 @@ export default function HomePage() {
       <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
         <div className="relative w-full h-[700px]">
           <img
-            src="/new-filosofia.jpeg"
+            src="/filosofia.jpeg"
             alt="Barra de ensaladas con ingredientes frescos"
             className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
           />
