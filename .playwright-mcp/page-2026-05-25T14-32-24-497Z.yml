@@ -1,0 +1,81 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: TowerHouse Studio
+        - generic [ref=e6]: Operations Panel
+      - navigation "Primary" [ref=e7]:
+        - link "Dashboard" [ref=e8] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Operaciones" [ref=e9] [cursor=pointer]:
+          - /url: /operations
+        - link "Vendedores" [ref=e10] [cursor=pointer]:
+          - /url: /vendedores
+    - generic [ref=e11]:
+      - generic [ref=e12]: Vista general
+      - heading "Dashboard" [level=1] [ref=e13]
+      - paragraph [ref=e14]: Seguimiento rápido de volumen operado, fee generado y distribución por estado y vendedor.
+    - generic [ref=e15]:
+      - article [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: Operaciones
+          - generic [ref=e19]: "13"
+      - article [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: Monto total operado
+          - generic [ref=e23]: US$ 274.200,00
+      - article [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: Fee total
+          - generic [ref=e27]: US$ 50.596,00
+      - article [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: Ticket promedio
+          - generic [ref=e31]: US$ 21.092,31
+    - generic [ref=e32]:
+      - article [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e36]:
+            - heading "Rendimiento por vendedor" [level=2] [ref=e37]
+            - paragraph [ref=e38]: Operaciones, volumen total y fee generado.
+          - table [ref=e40]:
+            - rowgroup [ref=e41]:
+              - row "Vendedor Operaciones Monto total Fee total Comisión liquidable" [ref=e42]:
+                - columnheader "Vendedor" [ref=e43]
+                - columnheader "Operaciones" [ref=e44]
+                - columnheader "Monto total" [ref=e45]
+                - columnheader "Fee total" [ref=e46]
+                - columnheader "Comisión liquidable" [ref=e47]
+            - rowgroup [ref=e48]:
+              - row "Ana Costa 1 US$ 100.000,00 US$ 9.000,00 US$ 0,00" [ref=e49]:
+                - cell "Ana Costa" [ref=e50]
+                - cell "1" [ref=e51]
+                - cell "US$ 100.000,00" [ref=e52]
+                - cell "US$ 9.000,00" [ref=e53]
+                - cell "US$ 0,00" [ref=e54]
+              - row "Martina Silva 4 US$ 82.700,00 US$ 9.924,00 US$ 597,60" [ref=e55]:
+                - cell "Martina Silva" [ref=e56]
+                - cell "4" [ref=e57]
+                - cell "US$ 82.700,00" [ref=e58]
+                - cell "US$ 9.924,00" [ref=e59]
+                - cell "US$ 597,60" [ref=e60]
+              - row "Camila Torres 4 US$ 59.400,00 US$ 29.700,00 US$ 7.850,00" [ref=e61]:
+                - cell "Camila Torres" [ref=e62]
+                - cell "4" [ref=e63]
+                - cell "US$ 59.400,00" [ref=e64]
+                - cell "US$ 29.700,00" [ref=e65]
+                - cell "US$ 7.850,00" [ref=e66]
+              - row "Diego Pereira 4 US$ 32.100,00 US$ 1.972,00 US$ 0,00" [ref=e67]:
+                - cell "Diego Pereira" [ref=e68]
+                - cell "4" [ref=e69]
+                - cell "US$ 32.100,00" [ref=e70]
+                - cell "US$ 1.972,00" [ref=e71]
+                - cell "US$ 0,00" [ref=e72]
+      - article [ref=e73]:
+        - generic [ref=e74]:
+          - generic [ref=e76]:
+            - heading "Estado de la cartera" [level=2] [ref=e77]
+            - paragraph [ref=e78]: Distribución actual de operaciones por estado.
+          - paragraph [ref=e79]: Cargando estado actual...
+  - button "Open Next.js Dev Tools" [ref=e85] [cursor=pointer]:
+    - img [ref=e86]

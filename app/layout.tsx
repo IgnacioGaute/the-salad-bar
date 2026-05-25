@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: "The Salad Bar® - Cocina Mediterránea Contemporánea",
   description:
     "Experiencia culinaria mediterránea única con ingredientes frescos y ambiente sofisticado",
+  icons: {
+    icon: "/favicon-logo.png",
+    apple: "/favicon-logo.png",
+  },
 }
 
 export default function RootLayout({

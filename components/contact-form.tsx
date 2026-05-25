@@ -3,8 +3,6 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<Record<string, string>>({})
@@ -12,13 +10,8 @@ export default function ContactForm() {
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,21 +19,19 @@ export default function ContactForm() {
     setIsSubmitting(true)
     setSuccess(null)
     setError(null)
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-
       if (res.ok) {
-        setSuccess("Tu mensaje fue enviado con éxito 🎉")
+        setSuccess("Tu mensaje fue enviado con éxito")
         setFormData({})
       } else {
         setError("Hubo un error al enviar el mensaje. Intenta de nuevo.")
       }
-    } catch (err) {
+    } catch {
       setError("No se pudo conectar con el servidor.")
     } finally {
       setIsSubmitting(false)
@@ -48,118 +39,128 @@ export default function ContactForm() {
   }
 
   return (
-    <section className="relative overflow-hidden mt-0 px-5 sm:px-10 md:px-16 pb-8 sm:pb-14 pt-6">
+    <form className="space-y-10" onSubmit={handleSubmit}>
+      <FormSection title="Información Personal">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+          <InputField label="Nombre completo" name="nombre" value={formData.nombre} onChange={handleChange} />
+          <InputField label="Correo electrónico" name="email" type="email" value={formData.email} onChange={handleChange} />
+          <InputField label="Número de teléfono" name="telefono" type="tel" value={formData.telefono} onChange={handleChange} colSpan />
+          <InputField label="Ciudad y país de residencia" name="ciudad" value={formData.ciudad} onChange={handleChange} colSpan />
+          <InputField label="Ocupación actual" name="ocupacion" value={formData.ocupacion} onChange={handleChange} colSpan />
+        </div>
+      </FormSection>
 
-      {/* Líneas decorativas */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#4A90E2] to-transparent"></div>
-      </div>
+      <FormSection title="Interés y Expectativas">
+        <TextAreaField label="¿Por qué le interesa adquirir una franquicia de nuestro negocio?" name="interes" value={formData.interes} onChange={handleChange} />
+        <InputField label="Ubicación geográfica de interés" name="ubicacion" value={formData.ubicacion} onChange={handleChange} />
+        <TextAreaField label="Experiencia en hostelería o negocios" name="experiencia" value={formData.experiencia} onChange={handleChange} />
+        <TextAreaField label="¿Tiene experiencia previa como empresario?" name="empresario" value={formData.empresario} onChange={handleChange} />
+        <InputField label="Motivación principal" name="motivacion" value={formData.motivacion} onChange={handleChange} />
+        <InputField label="¿Cómo se imagina su participación diaria?" name="participacion" value={formData.participacion} onChange={handleChange} />
+        <InputField label="Expectativas de retorno de inversión y rentabilidad" name="expectativas" value={formData.expectativas} onChange={handleChange} />
+      </FormSection>
 
-      <div className="max-w-6xl mx-auto relative">
-        {/* Formulario */}
-        <Card
-          className="border-2 shadow-3xl backdrop-blur-xl hover:shadow-4xl 
-                     transition-all duration-1000 animate-in slide-in-from-bottom-12 
-                     hover:scale-[1.01] rounded-3xl relative overflow-hidden"
-          style={{ backgroundColor: "#E3E5E8", borderColor: "#1A3A52" }}
+      <FormSection title="Capacidad Financiera">
+        <InputField label="Capacidad de inversión aproximada" name="inversion" value={formData.inversion} onChange={handleChange} />
+        <TextAreaField label="¿Cómo planea financiar la inversión inicial?" name="financiamiento" value={formData.financiamiento} onChange={handleChange} />
+        <InputField label="Horizonte de tiempo para comenzar el negocio" name="horizonte" value={formData.horizonte} onChange={handleChange} />
+      </FormSection>
+
+      <FormSection title="Conectando con la Marca">
+        <InputField label="¿Qué cree que es lo más importante en un restaurante exitoso?" name="exito" value={formData.exito} onChange={handleChange} />
+        <InputField label="En una palabra, describa la experiencia que quiere ofrecer" name="experiencia_ofrecer" value={formData.experiencia_ofrecer} onChange={handleChange} />
+        <TextAreaField label="Describa su estilo de liderazgo" name="liderazgo" value={formData.liderazgo} onChange={handleChange} />
+        <InputField label="¿Qué tan importante es el bienestar de sus empleados?" name="bienestar" value={formData.bienestar} onChange={handleChange} />
+      </FormSection>
+
+      <div className="text-center">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          style={{
+            fontFamily: "var(--font-muli)",
+            fontSize: 15,
+            fontWeight: 500,
+            letterSpacing: ".08em",
+            padding: "12px 40px",
+            backgroundColor: "#7FCDCD",
+            color: "white",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            transition: "background-color .25s, transform .2s",
+            boxShadow: "0 4px 14px -4px rgba(127,205,205,.6)",
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#5bb5b5"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#7FCDCD"; e.currentTarget.style.transform = "translateY(0)"; }}
         >
-          {/* Líneas de borde */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent z-10"></div>
-
-          <CardContent className="p-6 sm:p-8 md:p-12">
-            <form className="space-y-10 sm:space-y-12" onSubmit={handleSubmit}>
-              {/* === Secciones del Formulario === */}
-              <FormSection title="Información Personal">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-                  <InputField label="Nombre completo" name="nombre" value={formData.nombre} onChange={handleChange} />
-                  <InputField label="Correo electrónico" name="email" type="email" value={formData.email} onChange={handleChange} />
-                  <InputField label="Número de teléfono" name="telefono" type="tel" value={formData.telefono} onChange={handleChange} colSpan />
-                  <InputField label="Ciudad y país de residencia" name="ciudad" value={formData.ciudad} onChange={handleChange} colSpan />
-                  <InputField label="Ocupación actual" name="ocupacion" value={formData.ocupacion} onChange={handleChange} colSpan />
-                </div>
-              </FormSection>
-
-              <FormSection title="Interés y Expectativas">
-                <TextAreaField label="¿Por qué le interesa adquirir una franquicia de nuestro negocio?" name="interes" value={formData.interes} onChange={handleChange} />
-                <InputField label="Ubicación geográfica de interés" name="ubicacion" value={formData.ubicacion} onChange={handleChange} />
-                <TextAreaField label="Experiencia en hostelería o negocios" name="experiencia" value={formData.experiencia} onChange={handleChange} />
-                <TextAreaField label="¿Tiene experiencia previa como empresario?" name="empresario" value={formData.empresario} onChange={handleChange} />
-                <InputField label="Motivación principal" name="motivacion" value={formData.motivacion} onChange={handleChange} />
-                <InputField label="¿Cómo se imagina su participación diaria?" name="participacion" value={formData.participacion} onChange={handleChange} />
-                <InputField label="Expectativas de retorno de inversión y rentabilidad" name="expectativas" value={formData.expectativas} onChange={handleChange} />
-              </FormSection>
-
-              <FormSection title="Capacidad Financiera">
-                <InputField label="Capacidad de inversión aproximada" name="inversion" value={formData.inversion} onChange={handleChange} />
-                <TextAreaField label="¿Cómo planea financiar la inversión inicial?" name="financiamiento" value={formData.financiamiento} onChange={handleChange} />
-                <InputField label="Horizonte de tiempo para comenzar el negocio" name="horizonte" value={formData.horizonte} onChange={handleChange} />
-              </FormSection>
-
-              <FormSection title="Conectando con la Marca">
-                <InputField label="¿Qué cree que es lo más importante en un restaurante exitoso?" name="exito" value={formData.exito} onChange={handleChange} />
-                <InputField label="En una palabra, describa la experiencia que quiere ofrecer" name="experiencia_ofrecer" value={formData.experiencia_ofrecer} onChange={handleChange} />
-                <TextAreaField label="Describa su estilo de liderazgo" name="liderazgo" value={formData.liderazgo} onChange={handleChange} />
-                <InputField label="¿Qué tan importante es el bienestar de sus empleados?" name="bienestar" value={formData.bienestar} onChange={handleChange} />
-              </FormSection>
-
-              {/* === Botón === */}
-              <div className="text-center">
-                <Button
-                  style={{ fontFamily: "var(--font-muli)", borderColor: "#1A3A52", color: "#1A3A52" }}
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="bg-transparent border-2 hover:bg-[#1A3A52] hover:border-[#1A3A52] 
-                             px-10 sm:px-16 py-4 sm:py-6 text-lg sm:text-xl font-light rounded-none 
-                             transition-all duration-700 hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
-                             tracking-widest uppercase font-sans"
-                  onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#E3E5E8" }}
-                  onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#1A3A52" }}
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
-                </Button>
-              </div>
-
-              {success && <p className="text-green-600 text-center">{success}</p>}
-              {error && <p className="text-red-500 text-center">{error}</p>}
-            </form>
-          </CardContent>
-        </Card>
-
+          {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
+        </button>
       </div>
 
-      {/* Estilos utilitarios */}
+      {success && (
+        <div style={{
+          padding: "14px 20px",
+          borderRadius: 10,
+          background: "rgba(127,205,205,0.12)",
+          border: "1px solid rgba(127,205,205,0.45)",
+          display: "flex", alignItems: "center", gap: 12,
+          fontFamily: "var(--font-muli)", fontSize: 15, color: "#1a5c4a",
+        }}>
+          <span style={{ fontSize: 20 }}>✓</span>
+          {success}
+        </div>
+      )}
+      {error && (
+        <div style={{
+          padding: "14px 20px",
+          borderRadius: 10,
+          background: "rgba(192,57,43,0.07)",
+          border: "1px solid rgba(192,57,43,0.25)",
+          display: "flex", alignItems: "center", gap: 12,
+          fontFamily: "var(--font-muli)", fontSize: 15, color: "#922b21",
+        }}>
+          <span style={{ fontSize: 20 }}>✕</span>
+          {error}
+        </div>
+      )}
+
       <style jsx>{`
         .field label {
           display: block;
           margin-bottom: 0.75rem;
-          color: #1A3A52 !important;
+          color: #1a3a52 !important;
           font-size: 1rem;
-          font-family: sans-serif;
+          font-family: var(--font-muli);
           letter-spacing: 0.02em;
         }
         .customInput {
-          @apply w-full h-12 sm:h-14 md:h-16 border-0 border-b-2 
-                 bg-transparent text-[#1A3A52] placeholder:text-gray-400
-                 transition-all duration-500 text-base sm:text-lg md:text-xl rounded-none font-sans;
+          width: 100%;
+          height: 3rem;
+          border: 0;
+          border-bottom: 2px solid #ddd5ca;
+          background: transparent;
+          color: #1a3a52;
+          transition: all 0.5s;
+          font-size: 1rem;
+          font-family: var(--font-muli);
+          border-radius: 0;
+          outline: none;
         }
         .customInput:focus {
-          border-color: #1A3A52 !important;
+          border-color: #1a3a52 !important;
         }
       `}</style>
-    </section>
+    </form>
   )
 }
 
-/* === Subcomponentes reutilizables === */
 function FormSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
       <h3
         style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-        className="text-xl sm:text-2xl font-serif font-light mb-5 sm:mb-8 text-center md:text-left"
+        className="text-xl sm:text-2xl font-light mb-5 sm:mb-8 text-center md:text-left"
       >
         {title}
       </h3>
@@ -168,14 +169,14 @@ function FormSection({ title, children }: { title: string; children: React.React
   )
 }
 
-function InputField({
-  label,
-  name,
-  value,
-  onChange,
-  type = "text",
-  colSpan,
-}: any) {
+function InputField({ label, name, value, onChange, type = "text", colSpan }: {
+  label: string
+  name: string
+  value?: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  type?: string
+  colSpan?: boolean
+}) {
   return (
     <div className={`field ${colSpan ? "md:col-span-2" : ""}`}>
       <label>{label}</label>
@@ -184,12 +185,12 @@ function InputField({
   )
 }
 
-function TextAreaField({
-  label,
-  name,
-  value,
-  onChange,
-}: any) {
+function TextAreaField({ label, name, value, onChange }: {
+  label: string
+  name: string
+  value?: string
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+}) {
   return (
     <div className="field">
       <label>{label}</label>

@@ -4,17 +4,13 @@ import { NextResponse } from 'next/server';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
+  try {
   const body = await req.json();
-
-  // Generamos el HTML con todas las preguntas y respuestas
-  const fieldsHtml = Object.entries(body)
-    .map(([key, value]) => `<p><b>${key}:</b> ${value}</p>`)
-    .join("");
 
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'nachitogaute@gmail.com',
-      subject: 'Nuevo formulario de franquicia recibido',
+      to: 'thesaladbar.salta@gmail.com',
+      subject: 'Nueva solicitud de franquicia — The Salad Bar',
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width:600px; margin:0 auto; padding:20px;">
           <h2 style="text-align:center; color:#2c3e50;">📩 Nuevo formulario de franquicia recibido</h2>
@@ -120,7 +116,10 @@ export async function POST(req: Request) {
         </div>
       `,
     });
-    
 
-  return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error enviando franquicia:", error);
+    return NextResponse.json({ success: false }, { status: 500 });
+  }
 }

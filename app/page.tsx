@@ -1,191 +1,476 @@
 "use client"
-import { Button } from "@/components/ui/button"
-import type React from "react"
-import { useEffect, useState } from "react"
-import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
-import FranquiciaCard from "@/components/franquicia-card"
-import MainContactForm from "@/components/main-contact"
-import { Instagram, Mail, Phone } from "lucide-react"
+import React, { useState, useEffect, useRef } from "react"
+import ContactForm from "@/components/contact-form"
 import JoinTeamForm from "@/components/join-team-form"
+import MainContactForm from "@/components/main-contact"
 
-function CarouselCell({
-  images,
-  initialDelay = 0,
-  objectFit = "cover",
-  height = "220px",
-  containerStyle = {},
-}: {
-  images: string[]
-  initialDelay?: number
-  objectFit?: "cover" | "contain"
-  height?: string
-  containerStyle?: React.CSSProperties
-}) {
+/* =========== DATA =========== */
+const PROPUESTA_CELLS = [
+  ["/pg-04.jpeg", "/pg-10.jpeg", "/pg-05.jpeg"],
+  ["/pg-02.jpeg", "/pg-08.jpeg", "/pg-11.jpeg"],
+  ["/pg-01.jpeg", "/pg-07.jpeg", "/pg-12.jpeg"],
+  ["/pg-03.jpeg", "/pg-09.jpeg", "/pg-06.jpeg"],
+]
+
+const CAFETERIA_CELLS = [
+  ["/cf-01.jpeg", "/cf-07.jpeg", "/cf-12.jpeg"],
+  ["/cf-02.jpeg", "/cf-08.jpeg"],
+  ["/cf-03.jpeg", "/cf-09.jpeg"],
+  ["/cf-04.jpeg", "/cf-10.jpeg", "/cf-11.jpeg"],
+]
+
+const CAROUSEL_ITEMS = [
+  {
+    src: "/new-seasons.jpeg",
+    title: "THE\nSEASONS",
+    subtitle: "Las estaciones no solo hablan del clima.",
+    description:
+      "En The Salad Bar, la experiencia es tan importante como la comida. Acompañamos el ritmo de las estaciones y los diferentes momentos de nuestros clientes, creando un ambiente que conecta con su estado de ánimo a través de la música, el entorno y la decoración. Nuestro compromiso con la calidad, la frescura de los ingredientes y la lealtad de nuestros clientes nos impulsa a renovar la carta constantemente, con cada estación. De esta manera, no solo seguimos las tendencias, sino que también las creamos nosotros mismos, garantizando que siempre haya algo nuevo para disfrutar. Las estaciones no solo hablan del clima. Hablan de un mood, de un momento, de una energía. Y en The Salad Bar, respetamos cada uno de ellos.",
+    gallery: ["/ts-01.jpeg", "/ts-02.jpeg", "/ts-03.jpeg", "/ts-04.jpeg", "/ts-05.jpeg", "/ts-06.jpeg", "/ts-07.jpeg", "/ts-08.jpeg"],
+    withForm: false,
+  },
+  {
+    src: "/new-equipo.jpeg",
+    title: "SE PARTE DE NUESTRO EQUIPO",
+    subtitle: "",
+    description:
+      "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
+    gallery: ["/new-equipo.jpeg"],
+    withForm: true,
+  },
+  {
+    src: "/new-historia.jpeg",
+    title: "NUESTRA HISTORIA",
+    subtitle: "",
+    description:
+      "Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos The Salad Bar: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. Jorge, se convierte en un pilar fundamental para The Salad Bar, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito.  Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación.",
+    gallery: ["/nh-01.jpeg", "/nh-02.jpeg", "/nh-03.jpeg"],
+    withForm: false,
+  },
+  {
+    src: "/new-momentos.jpeg",
+    title: "MOMENTOS",
+    subtitle: "Be Real",
+    description:
+      "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir. Si andás cerca súmate y vivámoslo juntos.",
+    gallery: ["/new-momentos.jpeg"],
+    withForm: false,
+  },
+]
+
+type CarouselItem = (typeof CAROUSEL_ITEMS)[0]
+
+/* =========== HOOKS =========== */
+function useGallery(gallery: string[], interval = 3500) {
+  const [idx, setIdx] = useState(0)
+  useEffect(() => {
+    if (!gallery || gallery.length <= 1) return
+    const id = setInterval(() => setIdx((p) => (p + 1) % gallery.length), interval)
+    return () => clearInterval(id)
+  }, [gallery.length, interval])
+  return [idx, setIdx] as [number, React.Dispatch<React.SetStateAction<number>>]
+}
+
+/* =========== REVEAL =========== */
+function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            el.style.opacity = "1"
+            el.style.transform = "translateY(0)"
+            io.unobserve(el)
+          }
+        }),
+      { threshold: 0.1 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: 0,
+        transform: "translateY(40px)",
+        transition: `opacity 0.9s ease ${delay}ms, transform 0.9s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+/* =========== CYCLE CELL (auto-cycling square image) =========== */
+function CycleCell({ images, radius = 22 }: { images: string[]; radius?: number }) {
   const [current, setCurrent] = useState(0)
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => setCurrent(p => (p + 1) % images.length), 2800)
-      return () => clearInterval(interval)
-    }, initialDelay)
-    return () => clearTimeout(timeout)
-  }, [images.length, initialDelay])
+    if (images.length <= 1) return
+    const id = setInterval(() => setCurrent((p) => (p + 1) % images.length), 2800)
+    return () => clearInterval(id)
+  }, [images.length])
   return (
-    <div className="relative overflow-hidden rounded-sm" style={{ height, ...containerStyle }}>
+    <div
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: radius,
+        aspectRatio: "1 / 1",
+        backgroundColor: "#ddd5ca",
+        boxShadow: "0 22px 50px -28px rgba(26,58,82,.4)",
+        transition: "transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s",
+      }}
+    >
       {images.map((src, i) => (
         <img
           key={src}
           src={src}
-          alt="Plato The Salad Bar"
-          className="absolute inset-0 w-full h-full transition-opacity duration-700"
-          style={{ opacity: i === current ? 1 : 0, objectFit }}
+          alt=""
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: i === current ? 1 : 0,
+            transition: "opacity 1.1s ease",
+          }}
         />
       ))}
     </div>
   )
 }
 
-export default function HomePage() {
-  const [isHistoryExpanded, setIsHistoryExpanded] = useState(false)
-  const [experienciaCarouselApi, setExperienciaCarouselApi] = useState<CarouselApi | undefined>(undefined)
-  const [experienciaSelectedIndex, setExperienciaSelectedIndex] = useState(0)
-  const [selectedCarouselItem, setSelectedCarouselItem] = useState<number | null>(null)
+/* =========== AUTO GRID (2×2) =========== */
+function AutoGrid({ cells, radius = 22 }: { cells: string[][]; radius?: number }) {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 14,
+        width: "100%",
+        alignSelf: "center",
+      }}
+    >
+      {cells.map((imgs, i) => (
+        <CycleCell key={i} images={imgs} radius={radius} />
+      ))}
+    </div>
+  )
+}
 
-  
-  const carouselData = [
-    {
-      src: "/new-seasons.jpeg",
-      title: "THE\nSEASONS",
-      subtitle: "Las estaciones no solo hablan del clima.",
-      description:
-        "En The Salad Bar, la experiencia es tan importante como la comida. Acompañamos el ritmo de las estaciones y los diferentes momentos de nuestros clientes, creando un ambiente que conecta con su estado de ánimo a través de la música, el entorno y la decoración. Nuestro compromiso con la calidad, la frescura de los ingredientes y la lealtad de nuestros clientes nos impulsa a renovar la carta constantemente, con cada estación. De esta manera, no solo seguimos las tendencias, sino que también las creamos nosotros mismos, garantizando que siempre haya algo nuevo para disfrutar. Las estaciones no solo hablan del clima. Hablan de un mood, de un momento, de una energía. Y en The Salad Bar, respetamos cada uno de ellos.",
-    },
-    {
-      src: "/new-equipo.jpeg",
-      title: "SE PARTE DE NUESTRO EQUIPO",
-      subtitle: "",
-      description:
-        "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
-    },
-    {
-      src: "/new-historia.jpeg",
-      title: "NUESTRA HISTORIA",
-      subtitle: "",
-      description:
-        "Juli y Jorge son nuestros fundadores. Juli dedicó muchos años al mundo gastronómico en destinos como Norteamérica, España y el Caribe. Allí vivió experiencias que le demostraron que lo saludable podía ser rico, abundante y nutritivo, sin perder sabor ni disfrute. Al regresar a Argentina en 2022 notó que esa propuesta no existía y deciden crear juntos The Salad Bar: un proyecto con alma propia, pensado para que la alimentación consciente no fuera aburrida y para que cada persona —cliente o colaborador— pudiera sentirse parte de algo especial. Jorge, se convierte en un pilar fundamental para The Salad Bar, aportando su experiencia, compromiso y apoyo en diferentes áreas para que el proyecto creciera y se consolidara. Con pasión por los detalles y por la experiencia humana, pensaron cada aspecto del local: desde la carta, los espacios y  hasta la música que acompaña cada momento. Comenzaron con una libreta llena de recetas, una idea clara y el deseo de formar un equipo que trabajara con compromiso, pero también con alegría y propósito.  Hoy The Salad Bar no es solo un lugar para comer: es el reflejo en cada plato, detalle y experiencia de la misma energía que inspiró su creación. ",
-    },
-    {
-      src: "/new-momentos.jpeg",
-      title: "MOMENTOS",
-      subtitle: "Be Real",
-      description:
-        "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir. Si andás cerca súmate y vivámoslo juntos.",
-    },
+/* =========== NAV =========== */
+function Nav() {
+  const [solid, setSolid] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 80)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  const navLinks = [
+    { href: "#filosofia", label: "Filosofía" },
+    { href: "#historia", label: "Carta" },
+    { href: "#cafeteria", label: "Cafetería" },
+    { href: "#experiencia-culinaria", label: "Historia" },
+    { href: "#franquicias", label: "Franquicias" },
   ]
 
+  return (
+    <nav
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: solid ? "14px 48px" : "22px 48px",
+        transition: "background .4s ease, padding .4s ease, border-color .4s ease",
+        background: solid ? "rgba(245,243,239,0.88)" : "transparent",
+        backdropFilter: solid ? "blur(14px) saturate(140%)" : "none",
+        WebkitBackdropFilter: solid ? "blur(14px) saturate(140%)" : "none",
+        color: solid ? "#1a3a52" : "rgba(255,255,255,.95)",
+        borderBottom: solid ? "1px solid rgba(26,58,82,.06)" : "1px solid transparent",
+      }}
+    >
+      <div style={{ fontFamily: "var(--font-muli)", fontWeight: 600, fontSize: 17, letterSpacing: ".14em" }}>
+        THE SALAD BAR<sup style={{ fontSize: ".52em", marginLeft: 3 }}>®</sup>
+      </div>
 
+      <div
+        className="hidden md:flex"
+        style={{ gap: 30, fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" as const }}
+      >
+        {navLinks.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            style={{ color: "inherit", textDecoration: "none", opacity: 0.85, transition: "opacity .2s" }}
+            onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "1")}
+            onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = ".85")}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [success, setSuccess] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
+      <button
+        onClick={() => document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" })}
+        style={{
+          fontFamily: "var(--font-muli)",
+          fontSize: 11,
+          letterSpacing: ".22em",
+          textTransform: "uppercase",
+          padding: "9px 20px",
+          border: "1px solid currentColor",
+          borderRadius: 999,
+          background: "transparent",
+          color: "inherit",
+          cursor: "pointer",
+          transition: "background .2s, color .2s",
+        }}
+        onMouseEnter={(e) => {
+          const b = e.currentTarget
+          b.style.background = "#1a3a52"
+          b.style.color = "#f5f3ef"
+          b.style.borderColor = "#1a3a52"
+        }}
+        onMouseLeave={(e) => {
+          const b = e.currentTarget
+          b.style.background = "transparent"
+          b.style.color = solid ? "#1a3a52" : "rgba(255,255,255,.95)"
+          b.style.borderColor = "currentColor"
+        }}
+      >
+        Contacto
+      </button>
+    </nav>
+  )
+}
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSuccess(null)
-    setError(null)
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      })
-
-      if (res.ok) {
-        setSuccess("Tu mensaje fue enviado con éxito 🎉")
-        setFormData({ name: "", email: "", phone: "", message: "" })
-      } else {
-        setError("Hubo un error al enviar el mensaje. Intenta de nuevo.")
-      }
-    } catch (err) {
-      setError("No se pudo conectar con el servidor.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+/* =========== EDITORIAL DIALOG =========== */
+function EditorialDialog({
+  item,
+  idx,
+  total,
+  onClose,
+  extraContent,
+}: {
+  item: CarouselItem
+  idx: number
+  total: number
+  onClose: () => void
+  extraContent?: React.ReactNode
+}) {
+  const gallery = item.gallery || [item.src]
+  const [activeIdx, setActiveIdx] = useGallery(gallery, 3500)
 
   useEffect(() => {
-    if (!experienciaCarouselApi) return
-    const updateSelected = () => setExperienciaSelectedIndex(experienciaCarouselApi.selectedScrollSnap())
-    updateSelected()
-    experienciaCarouselApi.on("select", updateSelected)
-    experienciaCarouselApi.on("reInit", updateSelected)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
     return () => {
-      experienciaCarouselApi.off("select", updateSelected)
-      experienciaCarouselApi.off("reInit", updateSelected)
+      document.body.style.overflow = prev
     }
-  }, [experienciaCarouselApi])
+  }, [])
+
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#F5F3EF" }}>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden px-4 sm:px-10 pb-10 sm:pb-0">
-  {/* Fondo con video */}
-  <div className="absolute inset-0 z-0 overflow-hidden bg-stone-900">
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover"
-      poster=""
-    >
-      <source src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4" type="video/mp4" />
-      <img src="/fondo-med.png" alt="The Salad Bar" className="w-full h-full object-cover" />
-    </video>
-    <div className="absolute inset-0 bg-gradient-to-b from-stone-900/30 via-transparent to-stone-900/70"></div>
-  </div>
+    <div className="dlg-backdrop" onClick={onClose}>
+      <div className="dlg dlg-ed" onClick={(e) => e.stopPropagation()}>
+        {/* Close */}
+        <button className="dlg-close" aria-label="Cerrar" onClick={onClose}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M6 6l12 12M18 6l-6 6-6 6" />
+          </svg>
+        </button>
 
-</section>
+        {/* Photo side */}
+        <div className="dlg-ed__photo">
+          {gallery.map((src, i) => (
+            <img key={src} src={src} alt={item.title} className="dlg-ed__photo-img" style={{ opacity: i === activeIdx ? 1 : 0 }} />
+          ))}
+          <div className="dlg-ed__photo-meta">
+            <span>The Salad Bar</span>
+            <span>
+              {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
+          </div>
+          <h2 className="dlg-ed__photo-title">{item.title}</h2>
+          {gallery.length > 1 && (
+            <div className="dlg-ed__thumbs">
+              {gallery.map((src, i) => (
+                <button
+                  key={src}
+                  className={`dlg-ed__thumb${i === activeIdx ? " active" : ""}`}
+                  onClick={() => setActiveIdx(i)}
+                  aria-label={`Foto ${i + 1}`}
+                >
+                  <img src={src} alt="" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
-<section id="filosofia" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
-  <div className="absolute inset-0 opacity-5">
+        {/* Text side */}
+        <div className="dlg-ed__text">
+          <div className="dlg-ed__eyebrow">
+            The Salad Bar — capítulo {String(idx + 1).padStart(2, "0")}
+          </div>
+          {item.subtitle ? <p className="dlg-ed__subtitle">{item.subtitle}</p> : null}
+          <p className="dlg-ed__body">{item.description}</p>
+          {extraContent}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* =========== FRANCHISE DIALOG =========== */
+function FranqDialog({ onClose }: { onClose: () => void }) {
+  const franqItem: CarouselItem = {
+    src: "/pg-04.jpeg",
+    title: "FRANQUICIAS\nDISPONIBLES",
+    subtitle: "Llevá The Salad Bar a tu ciudad",
+    description:
+      "Agradecemos tu interés. Este formulario nos permite conocerte mejor y asegurar una asociación exitosa y duradera. Toda la información es tratada con estricta confidencialidad.",
+    gallery: ["/pg-04.jpeg", "/pg-08.jpeg", "/cf-07.jpeg"],
+    withForm: false,
+  }
+  return (
+    <EditorialDialog
+      item={franqItem}
+      idx={0}
+      total={1}
+      onClose={onClose}
+      extraContent={<ContactForm />}
+    />
+  )
+}
+
+/* =========== SECTION RULE =========== */
+function SectionRule() {
+  return (
     <div
-      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
-    <div
-      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
-  </div>
+      style={{
+        width: 96,
+        height: 1,
+        background: "linear-gradient(90deg, #1a3a52, transparent)",
+        marginBottom: 28,
+      }}
+    />
+  )
+}
 
-  <div className="max-w-8xl mx-auto px-6 relative">
-    {/* 👇 unificado: gap + min height + centrado vertical */}
-    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
-      <div className="animate-in slide-in-from-left-12 duration-1500 h-full flex flex-col justify-center">
-        <div className="space-y-12">
-          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
+/* =========== PAGE =========== */
+export default function HomePage() {
+  const [openCarousel, setOpenCarousel] = useState<number | null>(null)
+  const [openFranq, setOpenFranq] = useState(false)
+  const carTrackRef = useRef<HTMLDivElement>(null)
 
-          <h2
-            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-            className="text-6xl md:text-8xl font-serif font-light leading-none tracking-wide"
-          >
+  const scrollCarousel = (dir: number) => {
+    const el = carTrackRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>(".car-card")
+    const step = card ? card.getBoundingClientRect().width + 16 : 360
+    el.scrollBy({ left: dir * step, behavior: "smooth" })
+  }
+
+  const dialogItem = openCarousel !== null ? CAROUSEL_ITEMS[openCarousel] : null
+
+  return (
+    <div style={{ minHeight: "100vh", backgroundColor: "#f5f3ef", overflowX: "hidden" }}>
+      <Nav />
+
+      {/* ========== HERO ========== */}
+      <section style={{ position: "relative", height: "100vh", minHeight: 640, overflow: "hidden" }}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          poster="/fondo-med.png"
+        >
+          <source
+            src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4"
+            type="video/mp4"
+          />
+          <img src="/fondo-med.png" alt="The Salad Bar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </video>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(26,58,82,.45) 0%, rgba(26,58,82,.05) 35%, rgba(26,58,82,.6) 100%)",
+          }}
+        />
+        {/* Scroll indicator */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 36,
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 2,
+            color: "white",
+            fontSize: 10,
+            letterSpacing: ".4em",
+            textTransform: "uppercase",
+            opacity: 0.7,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <span>Scroll</span>
+          <span
+            style={{
+              width: 1,
+              height: 38,
+              background: "rgba(255,255,255,.6)",
+              display: "block",
+              animation: "scrollLine 2s ease-in-out infinite",
+            }}
+          />
+        </div>
+      </section>
+
+      {/* ========== FILOSOFIA ========== */}
+      <section
+        id="filosofia"
+        style={{ backgroundColor: "#e8e4dd", padding: "clamp(90px,10vw,140px) clamp(22px,4vw,80px)", position: "relative", overflow: "hidden" }}
+      >
+        <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)", gap: "clamp(50px,7vw,100px)", alignItems: "center" }} className="two-col-grid">
+          <Reveal>
+            <SectionRule />
+              <h2
+                style={{
+                  fontFamily: "var(--font-muli)",
+                  fontWeight: 200,
+                  fontSize: "clamp(50px, 5.4vw, 80px)",
+                  lineHeight: 0.98,
+                  letterSpacing: ".015em",
+                  textTransform: "uppercase",
+                  margin: "0 0 32px",
+                  color: "#1a3a52",
+                }}
+              >
             FILOSOFIA
-          </h2>
 
-          <div className="space-y-8" style={{ color: "#1A3A52" }}>
-            <p
-              style={{ fontFamily: "var(--font-glacial)" }}
-              className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
-            >
+              </h2>
+            <p style={{ fontFamily: "var(--font-glacial)", fontSize: 19, lineHeight: 1.65, fontWeight: 400, color: "#1a3a52", maxWidth: "60ch" }}>
               Nuestros valores destacan que{" "}
-              <span className="block italic font-light" style={{ color: "#2C4F6B" }}>
+              <span style={{ fontFamily: "var(--font-glacial)", fontStyle: "italic", color: "#2c4f6b", display: "block", margin: "8px 0", letterSpacing: ".02em" }}>
                 COMER BIEN ES UNA FORMA DE AUTO RESPETO
               </span>
               y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos
@@ -195,484 +480,555 @@ export default function HomePage() {
               propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con
               la marca.
             </p>
-          </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            {/* Decorative frame */}
+            <div style={{ position: "relative", aspectRatio: "4/5", width: "100%" }}>
+              <img
+                src="/filosofia.jpeg"
+                alt="Barra de ensaladas con ingredientes frescos"
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: 4,
+                  boxShadow: "0 30px 60px -30px rgba(26,58,82,.4)",
+                  display: "block",
+                }}
+              />
+              {/* deco squares */}
+              <div style={{ position: "absolute", bottom: -28, right: -28, width: 130, height: 130, background: "#d4c5a9", opacity: 0.55, zIndex: -1 }} />
+              <div style={{ position: "absolute", top: -28, left: -28, width: 100, height: 100, border: "1px solid #1a3a52", opacity: 0.25 }} />
+            </div>
+          </Reveal>
         </div>
-      </div>
+      </section>
 
-      <div className="animate-in slide-in-from-right-12 duration-1500 group h-full flex items-center">
-        <div className="relative w-full h-[700px]">
-          <img
-            src="/filosofia.jpeg"
-            alt="Barra de ensaladas con ingredientes frescos"
-            className="w-full h-full object-cover shadow-2xl transition-all duration-1000 group-hover:shadow-3xl"
-          />
-          <div
-            className="absolute -bottom-8 -right-8 w-32 h-32 opacity-20 group-hover:opacity-30 transition-opacity duration-700"
-            style={{ backgroundColor: "#DDD5CA" }}
-          ></div>
-          <div
-            className="absolute -top-8 -left-8 w-24 h-24 border-2 opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-            style={{ borderColor: "#DDD5CA" }}
-          ></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section
-  id="historia"
-  className="py-40 relative overflow-hidden animate-in slide-in-from-top-8 duration-[2000ms]"
-  style={{ backgroundColor: "#F5F3EF" }}
->
-  <div className="absolute inset-0 opacity-5">
-    <div className="absolute top-20 left-20 w-96 h-96 border rounded-full" style={{ borderColor: "#DDD5CA" }}></div>
-    <div className="absolute bottom-20 right-20 w-64 h-64 border rounded-full" style={{ borderColor: "#DDD5CA" }}></div>
-  </div>
-  <div className="max-w-8xl mx-auto px-6 relative">
-    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
-
-      {/* 2×3 carruseles automáticos — izquierda */}
-      <div className="animate-in slide-in-from-left-12 duration-1000 delay-200">
-        <div className="grid grid-cols-2 gap-3">
-          <CarouselCell initialDelay={0}    images={["/pg-04.jpeg", "/pg-10.jpeg", "/pg-16.jpeg"]} />
-          <CarouselCell initialDelay={500}  images={["/pg-02.jpeg", "/pg-08.jpeg", "/pg-14.jpeg"]} />
-          <CarouselCell initialDelay={1000} images={["/pg-01.jpeg", "/pg-07.jpeg", "/pg-13.jpeg"]} />
-          <CarouselCell initialDelay={1500} images={["/pg-03.jpeg", "/pg-09.jpeg", "/pg-15.jpeg"]} />
-          <CarouselCell initialDelay={2000} images={["/pg-05.jpeg", "/pg-11.jpeg", "/pg-06.jpeg"]} />
-          <CarouselCell initialDelay={2500} images={["/pg-12.jpeg", "/pg-16.jpeg", "/pg-02.jpeg"]} />
-        </div>
-      </div>
-
-      {/* Texto — derecha */}
-      <div className="animate-in slide-in-from-right-12 duration-1000 delay-400 h-full flex flex-col justify-center">
-        <div className="space-y-8">
-          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-          <h3
-            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-            className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
-          >
-            PROPUESTA GASTRONÓMICA
-          </h3>
-          <ul
-            style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
-            className="list-disc list-inside space-y-2 text-lg font-sans"
-          >
-            <li>Desayunos, brunch y meriendas</li>
-            <li>Armá tu propia ensalada / The Salad Bar + de 55 ingredientes</li>
-            <li>Pre Set Bowls</li>
-            <li>Sopas</li>
-            <li>Platos elaborados</li>
-            <li>Wraps y Sandwiches</li>
-            <li>Jugos naturales y smoothies</li>
-            <li>The Bar: aperitivos, vinos y cerveza</li>
-          </ul>
-          <div
-            style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }}
-            className="space-y-4 text-lg leading-relaxed font-sans"
-          >
-            <p>
-              En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y
-              atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para
-              destacar sus sabores naturales.
-            </p>
-            <p>
-              Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea.
-              Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.
-            </p>
-            <p>
-              Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad,
-              logramos un producto que hace que la gente nos recomiende y quiera volver.
-            </p>
-          </div>
-          <div className="w-16 h-px bg-gradient-to-r from-[#1A3A52] to-transparent"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="cafeteria" className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
-  <div className="absolute inset-0 opacity-5">
-    <div
-      className="absolute top-20 left-20 w-96 h-96 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
-    <div
-      className="absolute bottom-20 right-20 w-64 h-64 border rounded-full"
-      style={{ borderColor: "#DDD5CA" }}
-    ></div>
-  </div>
-
-  <div className="max-w-8xl mx-auto px-6 relative">
-    {/* 👇 mismo layout que las otras dos */}
-    <div className="grid md:grid-cols-2 gap-24 items-center min-h-[700px]">
-      <div className="animate-in slide-in-from-left-12 duration-1500 h-full flex flex-col justify-center">
-        <div className="space-y-12">
-          <div className="w-24 h-px bg-gradient-to-r from-[#1A3A52] to-transparent animate-in slide-in-from-left-8 duration-1500 delay-200"></div>
-
-          <h2
-            style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-            className="text-5xl md:text-6xl font-serif font-light leading-none tracking-wide"
-          >
-            CAFETERIA - EASY NIGHTS
-          </h2>
-          <div className="space-y-8" style={{ color: "#1A3A52" }}>
-            <p
-              style={{ fontFamily: "var(--font-glacial)" }}
-              className="text-xl leading-relaxed font-light animate-in fade-in duration-1500 delay-400 font-sans"
-            >
-              Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch,
-              merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies,
-              panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para
-              levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre,
-              sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte. 
-              <br />
-              Y parte de llevar una vida
-              saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un
-              aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para
-              que te relajes, desconectes, las charlas fluyan y te pongas al dia.
-            </p>
-          </div>
-        </div>
-      </div>
-      {/* 2×3 carruseles automáticos — cafetería */}
-      <div className="animate-in slide-in-from-right-12 duration-1500 h-full flex items-center">
-        <div className="grid grid-cols-2 gap-3 w-full">
-          <CarouselCell initialDelay={0}    images={["/cf-01.jpeg", "/cf-07.jpeg", "/cf-13.jpeg"]} />
-          <CarouselCell initialDelay={500}  images={["/cf-02.jpeg", "/cf-08.jpeg", "/cf-14.jpeg"]} />
-          <CarouselCell initialDelay={1000} images={["/cf-03.jpeg", "/cf-09.jpeg", "/cf-15.jpeg"]} />
-          <CarouselCell initialDelay={1500} images={["/cf-04.jpeg", "/cf-10.jpeg"]} />
-          <CarouselCell initialDelay={2000} images={["/cf-05.jpeg", "/cf-11.jpeg"]} />
-          <CarouselCell initialDelay={2500} images={["/cf-06.jpeg", "/cf-12.jpeg"]} />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      {/* ========== PROPUESTA GASTRONÓMICA ========== */}
       <section
-        className="py-5 pr-10 pl-10"
-        style={{ background: "linear-gradient(to bottom, #F5F3EF, #E8E4DD)" }}
-        id="experiencia-culinaria"
+        id="historia"
+        style={{ backgroundColor: "#f5f3ef", padding: "clamp(90px,10vw,140px) clamp(22px,4vw,80px)", position: "relative", overflow: "hidden" }}
       >
-        <div className="w-full px-0">
-          <div className="text-center md:mb-12 animate-in fade-in duration-1500">
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#DDD5CA] to-transparent mx-auto mb-8"></div>
-            <h2
-              className="text-5xl md:text-6xl font-serif font-light mb-4 md:mb-8 tracking-wide"
-              style={{ color: "#1A3A52" }}
-            ></h2>
-          </div>
+        <div
+          style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)", gap: "clamp(50px,6vw,80px)", alignItems: "center" }}
+          className="two-col-grid"
+        >
+          <Reveal delay={80}>
+            <AutoGrid cells={PROPUESTA_CELLS} radius={22} />
+          </Reveal>
 
-          {/* Flechas de navegación arriba a la derecha */}
-          <div className="flex justify-end gap-4 mb-6 mr-5">
-            <button
-              onClick={() => experienciaCarouselApi?.scrollPrev()}
-              className="bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-              style={{ color: "#1A3A52" }}
-              onMouseEnter={(e) => {
-                ;(e.target as HTMLElement).style.color = "#2C4F6B"
-              }}
-              onMouseLeave={(e) => {
-                ;(e.target as HTMLElement).style.color = "#1A3A52"
-              }}
-              aria-label="Anterior"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={() => experienciaCarouselApi?.scrollNext()}
-              className="bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
-              style={{ color: "#1A3A52" }}
-              onMouseEnter={(e) => {
-                ;(e.target as HTMLElement).style.color = "#2C4F6B"
-              }}
-              onMouseLeave={(e) => {
-                ;(e.target as HTMLElement).style.color = "#1A3A52"
-              }}
-              aria-label="Siguiente"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+          <Reveal>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <SectionRule />
+              <h2
+                style={{
+                  fontFamily: "var(--font-muli)",
+                  fontWeight: 200,
+                  fontSize: "clamp(32px, 4.5vw, 68px)",
+                  lineHeight: 0.98,
+                  letterSpacing: ".015em",
+                  textTransform: "uppercase",
+                  margin: "0 0 32px",
+                  color: "#1a3a52",
+                }}
+              >
+                PROPUESTA
+                <br />
+                GASTRONÓMICA
+              </h2>
+              {/* List with aqua dots */}
+              <ul
+                style={{
+                  fontFamily: "var(--font-muli)",
+                  fontSize: 16,
+                  lineHeight: 1.8,
+                  color: "#1a3a52",
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "4px 24px",
+                  borderTop: "1px solid #ddd5ca",
+                  paddingTop: 22,
+                }}
+              >
+                {[
+                  "Desayunos, brunch y meriendas",
+                  "Armá tu propia ensalada / The Salad Bar + de 55 ingredientes",
+                  "Pre Set Bowls",
+                  "Sopas",
+                  "Platos elaborados",
+                  "Wraps y Sandwiches",
+                  "Jugos naturales y smoothies",
+                  "The Bar: aperitivos, vinos y cerveza",
+                ].map((item) => (
+                  <li key={item} style={{ display: "flex", alignItems: "center", gap: 12, padding: "6px 0" }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#7fcdcd", flexShrink: 0, display: "block" }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              {[
+                "En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.",
+                "Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo.",
+                "Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver.",
+              ].map((text, i) => (
+                <p key={i} style={{ fontFamily: "var(--font-glacial)", fontSize: 17, lineHeight: 1.65, color: "#1a3a52", margin: i === 0 ? 0 : "14px 0 0" }}>
+                  {text}
+                </p>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="relative">
-            <Carousel
-              className="relative w-full"
-              opts={{ loop: true, align: "start", slidesToScroll: 1, watchDrag: true, dragFree: false }}
-              setApi={setExperienciaCarouselApi}
-            >
-              <CarouselContent>
-                {[...carouselData, ...carouselData].map((_, idx) => {
-                  const item = carouselData[idx % carouselData.length]
-                  return (
-                    <CarouselItem key={`${item.title}-${idx}`} className="basis-full md:basis-1/3">
-                      <div
-                        className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-1000 cursor-pointer"
-                        onClick={() => setSelectedCarouselItem(idx % carouselData.length)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault()
-                            setSelectedCarouselItem(idx % carouselData.length)
-                          }
-                        }}
-                      >
-                        <img
-                          src={item.src || "/placeholder.svg"}
-                          alt={item.title}
-                          className="w-full h-[32vh] md:h-[44vh] lg:h-[56vh] object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#1A3A52]/60 via-[#1A3A52]/30 to-transparent"></div>
+      {/* ========== CAFETERIA · EASY NIGHTS ========== */}
+      <section
+        id="cafeteria"
+        style={{ backgroundColor: "#e8e4dd", padding: "clamp(90px,10vw,140px) clamp(22px,4vw,80px)", position: "relative", overflow: "hidden" }}
+      >
+        <div
+          style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1.3fr)", gap: "clamp(50px,6vw,80px)", alignItems: "center" }}
+          className="two-col-grid"
+        >
+          <Reveal>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <SectionRule />
+              <h2
+                style={{
+                  fontFamily: "var(--font-muli)",
+                  fontWeight: 200,
+                  fontSize: "clamp(32px, 4.5vw, 68px)",
+                  lineHeight: 0.98,
+                  letterSpacing: ".015em",
+                  textTransform: "uppercase",
+                  margin: "0 0 32px",
+                  color: "#1a3a52",
+                }}
+              >
+                CAFETERIA
+                <br />
+                EASY NIGHTS
+              </h2>
+              {[
+                "Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch, merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies, panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre, sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte.",
+                "Y parte de llevar una vida saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para que te relajes, desconectes, las charlas fluyan y te pongas al dia.",
+              ].map((text, i) => (
+                <p key={i} style={{ fontFamily: "var(--font-glacial)", fontSize: 17, lineHeight: 1.65, color: "#1a3a52", margin: i === 0 ? 0 : "14px 0 0" }}>
+                  {text}
+                </p>
+              ))}
+            </div>
+          </Reveal>
 
-                        {/* Título abajo a la izquierda - siempre visible con altura fija */}
-                        <div className="absolute bottom-20 left-6 text-white opacity-100 transition-all duration-500">
-                          <h3
-                            style={{ fontFamily: "var(--font-times)" }}
-                            className="font-bold leading-tight tracking-wide whitespace-pre-line text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] font-sans h-16 flex items-end"
-                          >
-                            {item.title}
-                          </h3>
-                        </div>
+          <Reveal delay={80}>
+            <AutoGrid cells={CAFETERIA_CELLS} radius={22} />
+          </Reveal>
+        </div>
+      </section>
 
-                        {/* Subtítulo abajo, debajo del título - siempre visible */}
-                        <div className="absolute bottom-6 left-6 text-white opacity-90 transition-all duration-500">
-                          <p
-                            style={{ fontFamily: "var(--font-muli)" }}
-                            className="font-light leading-snug tracking-wide text-sm md:text-base lg:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-sans italic"
-                          >
-                            {item.subtitle}
-                          </p>
-                        </div>
-
-                        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button
-          className="flex cursor-pointer items-center gap-2 px-4 py-2 rounded-lg shadow-md text-sm font-medium border transition-all duration-300"
+      {/* ========== EXPERIENCIA CAROUSEL ========== */}
+      <section
+        id="experiencia-culinaria"
+        style={{
+          position: "relative",
+          padding: "100px 0 140px",
+          background: "linear-gradient(180deg, #f5f3ef 0%, #e8e4dd 100%)",
+          overflow: "hidden",
+        }}
+      >
+        {/* Arrow buttons */}
+        <div
           style={{
-            backgroundColor: "white",
-            color: "#7FCDCD",
-            borderColor: "#7FCDCD",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#7FCDCD";
-            e.currentTarget.style.color = "white";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "white";
-            e.currentTarget.style.color = "#7FCDCD";
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "flex-end",
+            padding: "0 48px",
+            marginBottom: 48,
           }}
         >
-          <span>Ver más</span>
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  )
-                })}
-              </CarouselContent>
-            </Carousel>
-
-            {/* Panel lateral con descripción */}
-            {selectedCarouselItem !== null && (
-              <div
-                className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-6 animate-in fade-in duration-300"
-                onClick={() => setSelectedCarouselItem(null)}   // 👈 click afuera cierra
+          <div style={{ display: "flex", gap: 12 }}>
+            {[{ dir: -1, d: "M15 19l-7-7 7-7" }, { dir: 1, d: "M9 5l7 7-7 7" }].map(({ dir, d }) => (
+              <button
+                key={dir}
+                onClick={() => scrollCarousel(dir)}
+                aria-label={dir === -1 ? "Anterior" : "Siguiente"}
+                style={{
+                  width: 52,
+                  height: 52,
+                  borderRadius: "50%",
+                  border: "1px solid #1a3a52",
+                  background: "transparent",
+                  color: "#1a3a52",
+                  cursor: "pointer",
+                  display: "grid",
+                  placeItems: "center",
+                  transition: "all .25s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1a3a52"
+                  e.currentTarget.style.color = "#f5f3ef"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent"
+                  e.currentTarget.style.color = "#1a3a52"
+                }}
               >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <path d={d} />
+                </svg>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Scroll track */}
+        <div
+          ref={carTrackRef}
+          style={{
+            display: "flex",
+            gap: 16,
+            padding: "0 48px",
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            scrollbarWidth: "none",
+          }}
+        >
+          {[...CAROUSEL_ITEMS, ...CAROUSEL_ITEMS].map((item, i) => {
+            const realIdx = i % CAROUSEL_ITEMS.length
+            return (
+              <article
+                key={i}
+                className="car-card"
+                onClick={() => setOpenCarousel(realIdx)}
+                style={{
+                  flexShrink: 0,
+                  flexBasis: "calc(33.333% - 11px)",
+                  minWidth: 300,
+                  height: 560,
+                  position: "relative",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  scrollSnapAlign: "start",
+                  borderRadius: 6,
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 1.2s cubic-bezier(.2,.7,.2,1)",
+                    display: "block",
+                  }}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.transform = "scale(1.06)")}
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.transform = "scale(1)")}
+                />
+                {/* Shade */}
                 <div
-                  className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden animate-in slide-in-from-right-8 duration-500 flex flex-col"
-                  onClick={(e) => e.stopPropagation()}          // 👈 evita que el click dentro cierre
-                >
-                  {selectedCarouselItem === 0 || selectedCarouselItem === 2 ? (
-                    <>
-                      <div className="relative flex-shrink-0">
-                        {selectedCarouselItem === 0 ? (
-                          <div className="flex gap-0.5 overflow-hidden" style={{ height: "220px", borderRadius: "1rem 1rem 0 0" }}>
-                            {["/ts-01.jpeg","/ts-02.jpeg","/ts-03.jpeg","/ts-04.jpeg","/ts-05.jpeg","/ts-06.jpeg","/ts-07.jpeg","/ts-08.jpeg"].map(src => (
-                              <div key={src} className="flex-1 overflow-hidden">
-                                <img src={src} alt="The Seasons" className="w-full h-full object-cover" />
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="flex gap-0.5 overflow-hidden" style={{ height: "280px", borderRadius: "1rem 1rem 0 0" }}>
-                            {["/nh-01.jpeg","/nh-02.jpeg","/nh-03.jpeg"].map(src => (
-                              <div key={src} className="flex-1 overflow-hidden">
-                                <img src={src} alt="Nuestra Historia" className="w-full h-full object-cover" />
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                        <button
-                          onClick={() => setSelectedCarouselItem(null)}
-                          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
-                        >
-                          <svg className="w-6 h-6" style={{ color: "#1A3A52" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="flex-1 overflow-y-auto">
-                        <div className="p-8">
-                          <h3 style={{ fontFamily: "var(--font-times)", color: "#1A3A52" }} className="text-3xl font-bold mb-4 font-sans">
-                            {carouselData[selectedCarouselItem].title}
-                          </h3>
-                          <p style={{ fontFamily: "var(--font-glacial)", color: "#2C4F6B" }} className="text-lg italic mb-6 font-sans">
-                            {carouselData[selectedCarouselItem].subtitle}
-                          </p>
-                          <p style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }} className="leading-relaxed text-base font-sans">
-                            {carouselData[selectedCarouselItem].description}
-                          </p>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    /* Equipo & Momentos: texto izquierda, foto derecha */
-                    <div className="flex flex-row flex-1 overflow-hidden">
-                      <div className="flex-1 overflow-y-auto p-8 flex flex-col justify-center">
-                        <h3 style={{ fontFamily: "var(--font-times)", color: "#1A3A52" }} className="text-3xl font-bold mb-4 font-sans">
-                          {carouselData[selectedCarouselItem].title}
-                        </h3>
-                        <p style={{ fontFamily: "var(--font-glacial)", color: "#2C4F6B" }} className="text-lg italic mb-6 font-sans">
-                          {carouselData[selectedCarouselItem].subtitle}
-                        </p>
-                        <p style={{ fontFamily: "var(--font-glacial)", color: "#1A3A52" }} className="leading-relaxed text-base font-sans">
-                          {carouselData[selectedCarouselItem].description}
-                        </p>
-                        {carouselData[selectedCarouselItem].title === "SE PARTE DE NUESTRO EQUIPO" && (
-                          <div className="mt-8 pt-6 border-t border-[#E5E7EB]">
-                            <JoinTeamForm />
-                          </div>
-                        )}
-                      </div>
-                      <div className="w-2/5 flex-shrink-0 relative">
-                        <img
-                          src={carouselData[selectedCarouselItem].src || "/placeholder.svg"}
-                          alt={carouselData[selectedCarouselItem].title}
-                          className="w-full h-full object-cover"
-                          style={{ borderRadius: "0 1rem 1rem 0" }}
-                        />
-                        <button
-                          onClick={() => setSelectedCarouselItem(null)}
-                          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-200 hover:scale-110 cursor-pointer"
-                        >
-                          <svg className="w-6 h-6" style={{ color: "#1A3A52" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(180deg, transparent 35%, rgba(26,58,82,.85) 100%)",
+                  }}
+                />
+                {/* Title block */}
+                <div style={{ position: "absolute", left: 28, right: 28, bottom: 26, color: "white" }}>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-muli)",
+                      fontWeight: 300,
+                      fontSize: "clamp(24px, 2.2vw, 36px)",
+                      lineHeight: 1,
+                      margin: "0 0 10px",
+                      whiteSpace: "pre-line",
+                      letterSpacing: ".04em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  {item.subtitle ? (
+                    <div style={{ fontFamily: "var(--font-times)", fontStyle: "italic", fontSize: 16, opacity: 0.92 }}>
+                      {item.subtitle}
                     </div>
-                  )}
+                  ) : null}
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      marginTop: 16,
+                      fontSize: 11,
+                      letterSpacing: ".3em",
+                      textTransform: "uppercase",
+                      color: "white",
+                      opacity: 0,
+                      transition: "opacity .4s, transform .4s",
+                      transform: "translateY(8px)",
+                    }}
+                    className="car-cta"
+                  >
+                    Ver más →
+                  </span>
                 </div>
-              </div>
-            )}
-
-          </div>
+              </article>
+            )
+          })}
         </div>
       </section>
-      <section className="py-16">
-        <FranquiciaCard />
-      </section>
 
-      <section className="py-40 relative overflow-hidden" style={{ backgroundColor: "#E8E4DD" }}>
-        <MainContactForm />
-      </section>
-
-      <footer
-        className="py-32 animate-in fade-in duration-1500 relative overflow-hidden"
-        style={{ backgroundColor: "#DDD5CA", color: "#1A3A52" }}
+      {/* ========== FRANQUICIAS ========== */}
+      <section
+        id="franquicias"
+        style={{
+          position: "relative",
+          height: "88vh",
+          minHeight: 600,
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#1a3a52",
+          color: "#f5f3ef",
+        }}
       >
-        {/* Elementos decorativos de fondo */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-px bg-gradient-to-r from-transparent via-[#D4C5A9] to-transparent"></div>
-          <div className="absolute top-20 left-20 w-64 h-64 border border-[#D4C5A9]/20 rounded-full"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 border border-[#D4C5A9]/20 rounded-full"></div>
-          <div className="absolute top-1/3 right-1/4 w-32 h-32 border border-[#D4C5A9]/20 rounded-full"></div>
+        {/* Background image */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.35 }}>
+          <img src="/pg-04.jpeg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </div>
+        {/* Radial overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse at center, transparent 0%, rgba(26,58,82,.85) 75%)",
+          }}
+        />
+        {/* Content */}
+        <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 24px", maxWidth: 720 }}>
+          <div style={{ width: 56, height: 1, background: "#7fcdcd", margin: "0 auto 32px" }} />
+          <h2
+            style={{
+              fontFamily: "var(--font-muli)",
+              fontWeight: 200,
+              fontSize: "clamp(44px, 8vw, 96px)",
+              lineHeight: 1,
+              margin: 0,
+              letterSpacing: ".02em",
+              textTransform: "uppercase",
+            }}
+          >
+            FRANQUICIAS
+          </h2>
+          <h2
+            style={{
+              fontFamily: "var(--font-muli)",
+              fontWeight: 200,
+              fontSize: "clamp(44px, 8vw, 96px)",
+              lineHeight: 1,
+              margin: "6px 0 0",
+              letterSpacing: ".02em",
+              textTransform: "uppercase",
+              color: "#7fcdcd",
+            }}
+          >
+            DISPONIBLES
+          </h2>
+          <p
+            style={{
+              fontFamily: "var(--font-times)",
+              fontStyle: "italic",
+              fontSize: 22,
+              lineHeight: 1.5,
+              margin: "28px auto 38px",
+              opacity: 0.92,
+              letterSpacing: ".02em",
+            }}
+          >
+            Llevá The Salad Bar a tu ciudad
+          </p>
+          <button
+            onClick={() => setOpenFranq(true)}
+            style={{
+              fontFamily: "var(--font-muli)",
+              fontSize: 12,
+              letterSpacing: ".35em",
+              textTransform: "uppercase",
+              padding: "16px 32px",
+              background: "transparent",
+              color: "white",
+              border: "2px solid #7fcdcd",
+              cursor: "pointer",
+              transition: "all .35s",
+              fontWeight: 500,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 12,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#7fcdcd"
+              e.currentTarget.style.color = "#1a3a52"
+              e.currentTarget.style.transform = "translateY(-2px)"
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent"
+              e.currentTarget.style.color = "white"
+              e.currentTarget.style.transform = "translateY(0)"
+            }}
+          >
+            SOLICITAR INFORMACIÓN
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      {/* ========== CONTACTO ========== */}
+      <MainContactForm />
+
+      {/* ========== FOOTER ========== */}
+      <footer
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#ddd5ca",
+          color: "#1a3a52",
+          padding: "clamp(80px,10vw,128px) 32px 36px",
+        }}
+      >
+        {/* Decorative circles */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.12, pointerEvents: "none" }}>
+          {[
+            { top: 80, left: 80, size: 256 },
+            { bottom: 80, right: 80, size: 192 },
+            { top: "33%", right: "25%", size: 128 },
+          ].map((style, i) => (
+            <span
+              key={i}
+              style={{
+                position: "absolute",
+                border: "1px solid #d4c5a9",
+                borderRadius: "50%",
+                width: style.size,
+                height: style.size,
+                ...style,
+                display: "block",
+              }}
+            />
+          ))}
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 relative">
-          {/* Sección principal del footer */}
-          <div className="text-center mb-16">
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#D4C5A9] to-transparent mx-auto mb-8"></div>
+        <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
+          {/* Head */}
+          <div style={{ textAlign: "center", marginBottom: 80 }}>
+            <div style={{ width: 80, height: 1, background: "linear-gradient(90deg, transparent, #d4c5a9, transparent)", margin: "0 auto 32px" }} />
             <h3
-              style={{ fontFamily: "var(--font-muli)" }}
-              className="text-6xl font-serif font-light mb-6 transition-colors duration-500 tracking-wider"
-              onMouseEnter={(e) => {
-                ;(e.target as HTMLElement).style.color = "#2C4F6B"
+              style={{
+                fontFamily: "var(--font-muli)",
+                fontWeight: 200,
+                fontSize: "clamp(40px, 6.5vw, 96px)",
+                lineHeight: 1,
+                letterSpacing: ".06em",
+                color: "#1a3a52",
+                margin: "0 0 24px",
+                transition: "color .5s",
               }}
-              onMouseLeave={(e) => {
-                ;(e.target as HTMLElement).style.color = "#1A3A52"
-              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#2c4f6b")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#1a3a52")}
             >
-              <span style={{ color: "#1A3A52" }}>The Salad Bar</span>
-              <span className="text-3xl align-super ml-2">®</span>
+              The Salad Bar<sup style={{ fontSize: ".35em", verticalAlign: "super", marginLeft: 6 }}>®</sup>
             </h3>
-            <p className="text-lg font-light tracking-widest mb-8 opacity-80">Fresh • Healthy • Delicious</p>
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#D4C5A9] to-transparent mx-auto"></div>
+            <p style={{ fontFamily: "var(--font-muli)", fontSize: 16, fontWeight: 300, letterSpacing: ".25em", textTransform: "lowercase", opacity: 0.8, margin: "0 0 32px" }}>
+              Fresh • Healthy • Delicious
+            </p>
+            <div style={{ width: 80, height: 1, background: "linear-gradient(90deg, transparent, #d4c5a9, transparent)", margin: "0 auto" }} />
           </div>
 
-          {/* Información de contacto y redes */}
-          <div className="grid md:grid-cols-3 gap-12 mb-16 text-center text-[#1A3A52]">
-  {/* UBICACIÓN */}
-  <div className="flex flex-col items-center justify-center space-y-2">
-    <h4 className="text-xl font-semibold mb-2">Ubicación</h4>
-    <p className="text-sm opacity-80 leading-relaxed">
-      Leguizamón 416<br />Salta, Argentina
-    </p>
-  </div>
-
-  {/* HORARIOS */}
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h4 className="text-xl font-semibold mb-2">Horarios</h4>
-              <p className="text-sm opacity-80 leading-relaxed">Lun - Vie: 11:00 - 22:30</p>
-              <p className="text-sm opacity-80 leading-relaxed">Sab: 11:00 - 17:00</p>
-
+          {/* 3 columns */}
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 48, marginBottom: 16, textAlign: "center" }}
+            className="foot-cols"
+          >
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+              <h4 style={{ fontFamily: "var(--font-muli)", fontWeight: 600, fontSize: 20, color: "#1a3a52", margin: "0 0 6px" }}>Ubicación</h4>
+              <p style={{ fontFamily: "var(--font-muli)", fontSize: 14, color: "#1a3a52", opacity: 0.8, margin: 0, lineHeight: 1.6 }}>
+                Leguizamón 416<br />Salta, Argentina
+              </p>
             </div>
-
-            {/* CONTACTO */}
-            <div className="flex flex-col items-center justify-center space-y-3">
-              <h4 className="text-xl font-semibold mb-2">Contacto</h4>
-              <div className="flex flex-col items-center space-y-2 text-sm opacity-80">
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  <p>thesaladbar.salta@gmail.com</p>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+              <h4 style={{ fontFamily: "var(--font-muli)", fontWeight: 600, fontSize: 20, color: "#1a3a52", margin: "0 0 6px" }}>Horarios</h4>
+              <p style={{ fontFamily: "var(--font-muli)", fontSize: 14, color: "#1a3a52", opacity: 0.8, margin: 0, lineHeight: 1.6 }}>
+                Lun - Vie: 11:00 - 22:30
+              </p>
+              <p style={{ fontFamily: "var(--font-muli)", fontSize: 14, color: "#1a3a52", opacity: 0.8, margin: 0, lineHeight: 1.6 }}>
+                Sab: 11:00 - 17:00
+              </p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+              <h4 style={{ fontFamily: "var(--font-muli)", fontWeight: 600, fontSize: 20, color: "#1a3a52", margin: "0 0 6px" }}>Contacto</h4>
+              {[
+                {
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="M3 7l9 6 9-6" />
+                    </svg>
+                  ),
+                  text: "thesaladbar.salta@gmail.com",
+                },
+                {
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.29a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  ),
+                  text: "387-2521137",
+                },
+                {
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" />
+                    </svg>
+                  ),
+                  text: "@thesaladbarsalta",
+                },
+              ].map(({ icon, text }) => (
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, opacity: 0.8 }}>
+                  {icon}
+                  <span>{text}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <p>387-2521137</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Instagram className="w-4 h-4" />
-                  <p>@thesaladbarsalta</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#D4C5A9] to-transparent mb-8"></div>
-
-          {/* Copyright */}
-          <div className="text-center">
-            <p className="text-sm opacity-60">® 2022 The Salad Bar. Todos los derechos reservados.</p>
-          </div>
+          {/* Bottom rule + copyright */}
+          <div style={{ width: "100%", height: 1, background: "linear-gradient(90deg, transparent, #d4c5a9, transparent)", margin: "70px 0 24px", opacity: 0.35 }} />
+          <p style={{ fontFamily: "var(--font-muli)", fontSize: 13, color: "#1a3a52", opacity: 0.6, textAlign: "center", margin: 0 }}>
+            ® 2022 The Salad Bar. Todos los derechos reservados.
+          </p>
         </div>
       </footer>
+
+      {/* ========== DIALOGS ========== */}
+      {dialogItem && (
+        <EditorialDialog
+          item={dialogItem}
+          idx={openCarousel!}
+          total={CAROUSEL_ITEMS.length}
+          onClose={() => setOpenCarousel(null)}
+          extraContent={dialogItem.withForm ? <JoinTeamForm /> : undefined}
+        />
+      )}
+      {openFranq && <FranqDialog onClose={() => setOpenFranq(false)} />}
     </div>
   )
 }
-

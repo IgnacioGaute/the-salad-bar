@@ -1,196 +1,296 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 
 export default function MainContactForm() {
-  const [formData, setFormData] = useState<Record<string, string>>({})
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    telefono: "",
+    comentario: "",
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
+  const upd =
+    (k: keyof typeof formData) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setFormData({ ...formData, [k]: e.target.value })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSuccess(null)
     setError(null)
-
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact-main", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-
       if (res.ok) {
         setSuccess("Tu mensaje fue enviado con éxito")
-        setFormData({})
+        setFormData({ nombre: "", email: "", telefono: "", comentario: "" })
       } else {
         setError("Hubo un error al enviar el mensaje. Intenta de nuevo.")
       }
-    } catch (err) {
+    } catch {
       setError("No se pudo conectar con el servidor.")
     } finally {
       setIsSubmitting(false)
     }
   }
 
+  const fieldStyle: React.CSSProperties = {
+    fontFamily: "var(--font-muli)",
+    fontSize: 17,
+    color: "#1a3a52",
+    background: "transparent",
+    border: "1px solid #1a3a52",
+    borderRadius: 0,
+    padding: "14px 16px",
+    outline: "none",
+    width: "100%",
+    transition: "box-shadow .25s",
+    boxSizing: "border-box",
+  }
+
+  const labelStyle: React.CSSProperties = {
+    fontFamily: "var(--font-muli)",
+    fontSize: 15,
+    color: "#1a3a52",
+    letterSpacing: ".02em",
+    display: "block",
+    marginBottom: 10,
+  }
+
   return (
     <section
-      className="relative overflow-hidden px-5 sm:px-10 md:px-20 pb-16 sm:pb-24"
-      style={{ backgroundColor: "#E8E4DD" }} // tono hueso cálido
+      id="contacto"
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "#e8e4dd",
+        padding: "140px 20px 100px",
+      }}
     >
-      {/* Líneas decorativas */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-[#1A3A52] to-transparent"></div>
+      {/* Decorative vertical lines */}
+      <div style={{ position: "absolute", inset: 0, opacity: 0.08, pointerEvents: "none" }}>
+        <span
+          style={{
+            position: "absolute",
+            top: 0,
+            left: "25%",
+            width: 1,
+            height: "100%",
+            background: "linear-gradient(180deg, transparent, #1a3a52, transparent)",
+            display: "block",
+          }}
+        />
+        <span
+          style={{
+            position: "absolute",
+            top: 0,
+            right: "33%",
+            width: 1,
+            height: "100%",
+            background: "linear-gradient(180deg, transparent, #1a3a52, transparent)",
+            display: "block",
+          }}
+        />
       </div>
 
-      {/* Encabezado */}
-      <div className="text-center mb-20 sm:mb-32 animate-in fade-in duration-1500">
-        <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent mx-auto mb-8 sm:mb-12"></div>
+      {/* Title */}
+      <div style={{ textAlign: "center", marginBottom: 96, position: "relative", zIndex: 1 }}>
+        <div
+          style={{
+            width: 96,
+            height: 1,
+            background: "linear-gradient(90deg, transparent, #1a3a52, transparent)",
+            margin: "0 auto 36px",
+          }}
+        />
         <h2
-          style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-          className="text-4xl sm:text-6xl md:text-8xl font-serif font-light mb-6 sm:mb-8 tracking-wider"
+          style={{
+            fontFamily: "var(--font-muli)",
+            fontWeight: 200,
+            fontSize: "clamp(40px, 7vw, 128px)",
+            lineHeight: 1,
+            letterSpacing: ".04em",
+            color: "#1a3a52",
+            margin: 0,
+          }}
         >
           Contactemos
         </h2>
       </div>
 
-      {/* Contenedor del formulario */}
-      <div className="max-w-4xl mx-auto relative">
-        <Card
-          className="border-0 shadow-3xl backdrop-blur-xl hover:shadow-4xl transition-all duration-1000 animate-in slide-in-from-bottom-12 duration-1500 hover:scale-[1.02] hover:-translate-y-2 rounded-3xl relative overflow-hidden"
-          style={{ backgroundColor: "#F0E9DE" }}
+      {/* Card */}
+      <div style={{ maxWidth: 960, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div
+          style={{
+            position: "relative",
+            background: "#F0E9DE",
+            borderRadius: 28,
+            padding: "clamp(28px, 4vw, 80px)",
+            boxShadow: "0 40px 90px -50px rgba(26,58,82,.35)",
+            transition: "transform .9s ease, box-shadow .9s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-4px)"
+            e.currentTarget.style.boxShadow = "0 60px 120px -50px rgba(26,58,82,.5)"
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)"
+            e.currentTarget.style.boxShadow = "0 40px 90px -50px rgba(26,58,82,.35)"
+          }}
         >
-          {/* Líneas decorativas */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#1A3A52] to-transparent"></div>
+          <span
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              height: 1,
+              background: "linear-gradient(90deg, transparent, #1a3a52, transparent)",
+              opacity: 0.5,
+              display: "block",
+            }}
+          />
+          <span
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: 1,
+              background: "linear-gradient(90deg, transparent, #1a3a52, transparent)",
+              opacity: 0.5,
+              display: "block",
+            }}
+          />
 
-          <CardContent className="p-6 sm:p-12 md:p-20">
-            <form className="space-y-12 sm:space-y-20" onSubmit={handleSubmit}>
-              {/* Sección 1 */}
-              <div>
-                <h3
-                  style={{ fontFamily: "var(--font-muli)", color: "#1A3A52" }}
-                  className="text-2xl sm:text-3xl font-serif font-light mb-10 sm:mb-14 text-center md:text-left"
-                >
-                  Información Personal
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16">
-                  <div className="field">
-                    <label>Nombre completo</label>
-                    <Input
-                      name="name"
-                      value={formData.name || ""}
-                      onChange={handleChange}
-                      className="customInput"
-                    />
-                  </div>
-                  <div className="field">
-                    <label>Correo electrónico</label>
-                    <Input
-                      type="email"
-                      name="email"
-                      value={formData.email || ""}
-                      onChange={handleChange}
-                      className="customInput"
-                    />
-                  </div>
-                  <div className="field md:col-span-2">
-                    <label>Número de teléfono</label>
-                    <Input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone || ""}
-                      onChange={handleChange}
-                      className="customInput"
-                    />
-                  </div>
-                  <div className="field md:col-span-2">
-                    <label>Comentario</label>
-                    <Textarea
-                      name="message"
-                      value={formData.message || ""}
-                      onChange={handleChange}
-                      className="customInput"
-                    />
-                  </div>
-                </div>
+          <form onSubmit={handleSubmit}>
+            <h3
+              style={{
+                fontFamily: "var(--font-muli)",
+                fontWeight: 300,
+                fontSize: "clamp(22px, 2.4vw, 30px)",
+                color: "#1a3a52",
+                margin: "0 0 48px",
+                letterSpacing: ".01em",
+              }}
+            >
+              Información Personal
+            </h3>
+
+            <div className="cform-grid">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <label style={labelStyle}>Nombre completo</label>
+                <input name="nombre" value={formData.nombre} onChange={upd("nombre")} style={fieldStyle} />
               </div>
-
-              {/* Botón */}
-              <div className="text-center pt-8 sm:pt-10">
-                <Button
-                  style={{
-                    fontFamily: "var(--font-muli)",
-                    borderColor: "#1A3A52",
-                    color: "#1A3A52",
-                  }}
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="bg-transparent border-2 hover:bg-[#1A3A52]
-                             hover:border-[#1A3A52] px-10 sm:px-16 py-4 sm:py-6 text-lg sm:text-xl font-light rounded-none transition-all duration-700 
-                             hover:scale-110 hover:shadow-2xl hover:-translate-y-2 shadow-xl 
-                             tracking-widest uppercase font-sans"
-                  onMouseEnter={(e) => {
-                    ;(e.target as HTMLElement).style.color = "#F5F3EF"
-                  }}
-                  onMouseLeave={(e) => {
-                    ;(e.target as HTMLElement).style.color = "#1A3A52"
-                  }}
-                >
-                  {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
-                </Button>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <label style={labelStyle}>Correo electrónico</label>
+                <input type="email" name="email" value={formData.email} onChange={upd("email")} style={fieldStyle} />
               </div>
+              <div className="cform-full" style={{ display: "flex", flexDirection: "column" }}>
+                <label style={labelStyle}>Número de teléfono</label>
+                <input type="tel" name="telefono" value={formData.telefono} onChange={upd("telefono")} style={fieldStyle} />
+              </div>
+              <div className="cform-full" style={{ display: "flex", flexDirection: "column" }}>
+                <label style={labelStyle}>Comentario</label>
+                <textarea
+                  name="comentario"
+                  value={formData.comentario}
+                  onChange={upd("comentario")}
+                  style={{ ...fieldStyle, minHeight: 108, resize: "vertical" }}
+                />
+              </div>
+            </div>
 
-              {success && (
-                <p className="text-center" style={{ color: "#1A3A52", fontFamily: "var(--font-glacial)" }}>
-                  {success}
-                </p>
-              )}
-              {error && (
-                <p className="text-center" style={{ color: "#1A3A52", fontFamily: "var(--font-glacial)" }}>
-                  {error}
-                </p>
-              )}
-            </form>
-          </CardContent>
-        </Card>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: 52 }}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                style={{
+                  fontFamily: "var(--font-muli)",
+                  fontSize: 16,
+                  fontWeight: 300,
+                  letterSpacing: ".25em",
+                  textTransform: "uppercase",
+                  padding: "18px 56px",
+                  background: "transparent",
+                  color: "#1a3a52",
+                  border: "2px solid #1a3a52",
+                  borderRadius: 0,
+                  cursor: "pointer",
+                  transition: "all .55s cubic-bezier(.2,.7,.2,1)",
+                  boxShadow: "0 18px 40px -22px rgba(26,58,82,.35)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1a3a52"
+                  e.currentTarget.style.color = "#f5f3ef"
+                  e.currentTarget.style.transform = "translateY(-3px) scale(1.03)"
+                  e.currentTarget.style.boxShadow = "0 28px 60px -22px rgba(26,58,82,.5)"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent"
+                  e.currentTarget.style.color = "#1a3a52"
+                  e.currentTarget.style.transform = "translateY(0) scale(1)"
+                  e.currentTarget.style.boxShadow = "0 18px 40px -22px rgba(26,58,82,.35)"
+                }}
+              >
+                {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
+              </button>
+            </div>
+
+            {success && (
+              <div style={{
+                marginTop: 24,
+                padding: "14px 20px",
+                borderRadius: 10,
+                background: "rgba(127,205,205,0.12)",
+                border: "1px solid rgba(127,205,205,0.45)",
+                display: "flex", alignItems: "center", gap: 12,
+                fontFamily: "var(--font-muli)", fontSize: 15, color: "#1a5c4a",
+              }}>
+                <span style={{ fontSize: 20 }}>✓</span>
+                {success}
+              </div>
+            )}
+            {error && (
+              <div style={{
+                marginTop: 24,
+                padding: "14px 20px",
+                borderRadius: 10,
+                background: "rgba(192,57,43,0.07)",
+                border: "1px solid rgba(192,57,43,0.25)",
+                display: "flex", alignItems: "center", gap: 12,
+                fontFamily: "var(--font-muli)", fontSize: 15, color: "#922b21",
+              }}>
+                <span style={{ fontSize: 20 }}>✕</span>
+                {error}
+              </div>
+            )}
+          </form>
+        </div>
       </div>
 
-      {/* Estilos adicionales */}
       <style jsx>{`
-        .field label {
-          display: block;
-          margin-bottom: 0.75rem;
-          color: #1A3A52;
-          font-size: 1rem;
-          font-family: var(--font-muli);
-          letter-spacing: 0.02em;
+        .cform-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 36px 56px;
         }
-
-        .customInput {
-          @apply w-full h-12 sm:h-14 md:h-16 bg-transparent 
-                 placeholder:text-gray-400 transition-all duration-500 
-                 text-base sm:text-lg md:text-xl font-sans text-[#1A3A52] 
-                 border border-black focus:border-[#1A3A52] rounded-none;
+        .cform-full {
+          grid-column: 1 / -1;
         }
-
-        .customInput:focus {
-          border-color: #1A3A52;
+        @media (max-width: 640px) {
+          .cform-grid {
+            grid-template-columns: 1fr;
+            gap: 28px;
+          }
         }
       `}</style>
     </section>

@@ -47,7 +47,7 @@ export default function JoinTeamForm() {
       })
 
       if (res.ok) {
-        setSuccess("Tu postulación fue enviada con éxito 🎉")
+        setSuccess("Tu postulación fue enviada con éxito")
         setFormData({
           name: "",
           email: "",
@@ -176,8 +176,32 @@ export default function JoinTeamForm() {
         </p>
       </div>
 
-      {success && <p className="text-sm text-green-600">{success}</p>}
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {success && (
+        <div style={{
+          padding: "12px 16px",
+          borderRadius: 8,
+          background: "rgba(127,205,205,0.12)",
+          border: "1px solid rgba(127,205,205,0.45)",
+          display: "flex", alignItems: "center", gap: 10,
+          fontFamily: "var(--font-muli)", fontSize: 14, color: "#1a5c4a",
+        }}>
+          <span style={{ fontSize: 18 }}>✓</span>
+          {success}
+        </div>
+      )}
+      {error && (
+        <div style={{
+          padding: "12px 16px",
+          borderRadius: 8,
+          background: "rgba(192,57,43,0.07)",
+          border: "1px solid rgba(192,57,43,0.25)",
+          display: "flex", alignItems: "center", gap: 10,
+          fontFamily: "var(--font-muli)", fontSize: 14, color: "#922b21",
+        }}>
+          <span style={{ fontSize: 18 }}>✕</span>
+          {error}
+        </div>
+      )}
 
       <button
         type="submit"
