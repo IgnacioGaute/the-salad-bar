@@ -404,7 +404,7 @@ export default function HomePage() {
             src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4"
             type="video/mp4"
           />
-          <img src="/fondo-med.png" alt="The Salad Bar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      
         </video>
         <div
           style={{
