@@ -391,14 +391,14 @@ export default function HomePage() {
       <Nav />
 
       {/* ========== HERO ========== */}
-      <section style={{ position: "relative", height: "100vh", minHeight: 640, overflow: "hidden" }}>
+      <section style={{ position: "relative", height: "100vh", minHeight: 640, overflow: "hidden", backgroundColor: "#000" }}>
         <video
           autoPlay
           muted
           loop
           playsInline
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-          poster="/fondo-med.png"
+          poster=""
         >
           <source
             src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4"
