@@ -1,0 +1,59 @@
+[     128ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[     271ms] [LOG] [Fast Refresh] done in 260ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[     432ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[     478ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[     693ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[     694ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[    4836ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[    4852ms] [LOG] [Fast Refresh] done in 124ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   18632ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   19909ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   20004ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   37863ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   37864ms] [LOG] [Fast Refresh] done in 105ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   47215ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[   47218ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  207692ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  209252ms] [LOG] [Fast Refresh] done in 74ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  209300ms] Error: Event handlers cannot be passed to Client Component props.
+  <a href=... rel=... style={{...}} onMouseEnter={function onMouseEnter} onMouseLeave=... children=...>
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>:1:18)
+    at resolveErrorDev (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:1919:150)
+    at processFullStringRow (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2434:29)
+    at processFullBinaryRow (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2393:9)
+    at processBinaryChunk (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2502:221)
+    at progress (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2689:13)
+[  251235ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  252872ms] [LOG] [Fast Refresh] done in 60ms @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  252933ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3001/:0
+[  253062ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  253099ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[  253164ms] Error: Event handlers cannot be passed to Client Component props.
+  <a href=... rel=... style={{...}} onMouseEnter=... onMouseLeave={function onMouseLeave} children=...>
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>:1:18)
+    at resolveErrorDev (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:1919:105)
+    at processFullStringRow (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2434:29)
+    at processFullBinaryRow (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2393:9)
+    at processBinaryChunk (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2502:221)
+    at progress (http://localhost:3001/_next/static/chunks/0zld_next_dist_compiled_react-server-dom-turbopack_0myf16w._.js:2689:13)
+[  256252ms] [WARNING] The resource http://localhost:3001/pg-08.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-02.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-12.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-09.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-01.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-11.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/filosofia.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-06.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-10.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-03.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-04.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-05.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[  256253ms] [WARNING] The resource http://localhost:3001/pg-07.jpeg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3001/:0
+[ 1509936ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[ 3182616ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[ 6824506ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431
+[52534089ms] [LOG] [HMR] connected @ http://localhost:3001/_next/static/chunks/0zld_next_dist_0jcy-5x._.js:2431

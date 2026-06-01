@@ -34,7 +34,7 @@ const CAROUSEL_ITEMS = [
     title: "SE PARTE DE NUESTRO EQUIPO",
     subtitle: "",
     description:
-      "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y de que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
+      "En nuestro equipo compartimos valores, el sentido de la responsabilidad y la pasión. Compartir estos valores no solo nos define, sino que también crea un ambiente de trabajo excepcional, un lugar que se disfruta mucho y del que te vas a sentir orgulloso  de pertenecer. Aquí, el crecimiento no tiene límites. Te ofrecemos la capacitación continua para que vayas más allá de lo que creías posible. Queremos tu espíritu joven y profesional,  para acompañar nuestra filosofía, un ambiente distendido que no compromete la excelencia. Al final de esta presentación, envía tu CV al mail de la sucursal donde quieras incorporarte.",
     gallery: ["/new-equipo.jpeg"],
     withForm: true,
   },
@@ -48,12 +48,12 @@ const CAROUSEL_ITEMS = [
     withForm: false,
   },
   {
-    src: "/new-momentos.jpeg",
+    src: "/momentos-01.jpeg",
     title: "MOMENTOS",
     subtitle: "Be Real",
     description:
       "Creamos y nos encontramos en esos momentos que nos hacen bien. Compartimos  con gente que siente igual el disfrute y la alegría de vivir. Si andás cerca súmate y vivámoslo juntos.",
-    gallery: ["/new-momentos.jpeg"],
+    gallery: ["/momentos-01.jpeg", "/momentos-02.jpeg"],
     withForm: false,
   },
 ]
@@ -119,11 +119,13 @@ function CycleCell({ images, radius = 22 }: { images: string[]; radius?: number 
         position: "relative",
         overflow: "hidden",
         borderRadius: radius,
-        aspectRatio: "1 / 1",
+        aspectRatio: "3 / 4",
         backgroundColor: "#ddd5ca",
         boxShadow: "0 22px 50px -28px rgba(26,58,82,.4)",
         transition: "transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s",
       }}
+      onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 30px 60px -28px rgba(26,58,82,.5)"; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 22px 50px -28px rgba(26,58,82,.4)"; }}
     >
       {images.map((src, i) => (
         <img
@@ -208,7 +210,7 @@ function Nav() {
 
       <div
         className="hidden md:flex"
-        style={{ gap: 30, fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" as const }}
+        style={{ display: "flex", gap: 30, fontSize: 11, letterSpacing: ".22em", textTransform: "uppercase" as const }}
       >
         {navLinks.map(({ href, label }) => (
           <a
@@ -260,14 +262,10 @@ function Nav() {
 /* =========== EDITORIAL DIALOG =========== */
 function EditorialDialog({
   item,
-  idx,
-  total,
   onClose,
   extraContent,
 }: {
   item: CarouselItem
-  idx: number
-  total: number
   onClose: () => void
   extraContent?: React.ReactNode
 }) {
@@ -297,12 +295,6 @@ function EditorialDialog({
           {gallery.map((src, i) => (
             <img key={src} src={src} alt={item.title} className="dlg-ed__photo-img" style={{ opacity: i === activeIdx ? 1 : 0 }} />
           ))}
-          <div className="dlg-ed__photo-meta">
-            <span>The Salad Bar</span>
-            <span>
-              {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-            </span>
-          </div>
           <h2 className="dlg-ed__photo-title">{item.title}</h2>
           {gallery.length > 1 && (
             <div className="dlg-ed__thumbs">
@@ -322,9 +314,6 @@ function EditorialDialog({
 
         {/* Text side */}
         <div className="dlg-ed__text">
-          <div className="dlg-ed__eyebrow">
-            The Salad Bar — capítulo {String(idx + 1).padStart(2, "0")}
-          </div>
           {item.subtitle ? <p className="dlg-ed__subtitle">{item.subtitle}</p> : null}
           <p className="dlg-ed__body">{item.description}</p>
           {extraContent}
@@ -348,8 +337,6 @@ function FranqDialog({ onClose }: { onClose: () => void }) {
   return (
     <EditorialDialog
       item={franqItem}
-      idx={0}
-      total={1}
       onClose={onClose}
       extraContent={<ContactForm />}
     />
@@ -375,6 +362,14 @@ export default function HomePage() {
   const [openCarousel, setOpenCarousel] = useState<number | null>(null)
   const [openFranq, setOpenFranq] = useState(false)
   const carTrackRef = useRef<HTMLDivElement>(null)
+  const heroVideoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const v = heroVideoRef.current
+    if (!v) return
+    v.muted = true
+    v.play().catch(() => {})
+  }, [])
 
   const scrollCarousel = (dir: number) => {
     const el = carTrackRef.current
@@ -393,12 +388,13 @@ export default function HomePage() {
       {/* ========== HERO ========== */}
       <section style={{ position: "relative", height: "100vh", minHeight: 640, overflow: "hidden", backgroundColor: "#000" }}>
         <video
+          ref={heroVideoRef}
           autoPlay
           muted
           loop
           playsInline
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-          poster=""
+          disablePictureInPicture
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}
         >
           <source
             src="https://zonohzcylydpimhxkqjm.supabase.co/storage/v1/object/public/adaptia-documents1/lv_7590901979958742289_20260415230706.mp4"
@@ -526,7 +522,8 @@ export default function HomePage() {
                 style={{
                   fontFamily: "var(--font-muli)",
                   fontWeight: 200,
-                  fontSize: "clamp(32px, 4.5vw, 68px)",
+                  fontSize: "clamp(40px, 5.1vw, 78px)",
+                  overflowWrap: "break-word",
                   lineHeight: 0.98,
                   letterSpacing: ".015em",
                   textTransform: "uppercase",
@@ -548,9 +545,9 @@ export default function HomePage() {
                   listStyle: "none",
                   padding: 0,
                   margin: "0 0 28px",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "4px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
                   borderTop: "1px solid #ddd5ca",
                   paddingTop: 22,
                 }}
@@ -601,7 +598,8 @@ export default function HomePage() {
                 style={{
                   fontFamily: "var(--font-muli)",
                   fontWeight: 200,
-                  fontSize: "clamp(32px, 4.5vw, 68px)",
+                  fontSize: "clamp(40px, 5.4vw, 78px)",
+                  overflowWrap: "break-word",
                   lineHeight: 0.98,
                   letterSpacing: ".015em",
                   textTransform: "uppercase",
@@ -1022,8 +1020,6 @@ export default function HomePage() {
       {dialogItem && (
         <EditorialDialog
           item={dialogItem}
-          idx={openCarousel!}
-          total={CAROUSEL_ITEMS.length}
           onClose={() => setOpenCarousel(null)}
           extraContent={dialogItem.withForm ? <JoinTeamForm /> : undefined}
         />

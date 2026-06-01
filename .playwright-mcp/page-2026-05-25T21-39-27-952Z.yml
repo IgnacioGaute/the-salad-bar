@@ -1,0 +1,243 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - text: THE SALAD BAR
+        - superscript [ref=e5]: ®
+      - generic [ref=e6]:
+        - link "Filosofía" [ref=e7] [cursor=pointer]:
+          - /url: "#filosofia"
+        - link "Carta" [ref=e8] [cursor=pointer]:
+          - /url: "#historia"
+        - link "Cafetería" [ref=e9] [cursor=pointer]:
+          - /url: "#cafeteria"
+        - link "Historia" [ref=e10] [cursor=pointer]:
+          - /url: "#experiencia-culinaria"
+        - link "Franquicias" [ref=e11] [cursor=pointer]:
+          - /url: "#franquicias"
+      - button "Contacto" [ref=e12] [cursor=pointer]
+    - generic [ref=e17]: Scroll
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - heading "FILOSOFIA" [level=2] [ref=e23]
+        - paragraph [ref=e24]:
+          - text: Nuestros valores destacan que
+          - generic [ref=e25]: COMER BIEN ES UNA FORMA DE AUTO RESPETO
+          - text: y comer bien es una combinación que reúne calidad, sabor, conciencia, servicio y experiencia. Somos muy exigentes con la calidad y frescura de nuestros insumos, queremos darte lo mejor y en un entorno que te haga sentir bien. Buscamos que cada visita se sienta para vos una experiencia ligera, fresca y con aire de vacaciones, que refleja un estilo de vida, por lo que en estos años creamos una propuesta que asegura un público fiel, que no solo conecta con el producto sino emocionalmente con la marca.
+      - img "Barra de ensaladas con ingredientes frescos" [ref=e28]
+    - generic [ref=e40]:
+      - heading "PROPUESTA GASTRONÓMICA" [level=2] [ref=e42]:
+        - text: PROPUESTA
+        - text: GASTRONÓMICA
+      - list [ref=e43]:
+        - listitem [ref=e44]: Desayunos, brunch y meriendas
+        - listitem [ref=e46]: Armá tu propia ensalada / The Salad Bar + de 55 ingredientes
+        - listitem [ref=e48]: Pre Set Bowls
+        - listitem [ref=e50]: Sopas
+        - listitem [ref=e52]: Platos elaborados
+        - listitem [ref=e54]: Wraps y Sandwiches
+        - listitem [ref=e56]: Jugos naturales y smoothies
+        - listitem [ref=e58]: "The Bar: aperitivos, vinos y cerveza"
+      - paragraph [ref=e60]: En The Salad Bar, creemos que lo rico y nutritivo pueden ir de la mano. Cocinamos con pasión y atención al detalle, cuidando la calidad de los ingredientes y los métodos de cocción para destacar sus sabores naturales.
+      - paragraph [ref=e61]: "Completa nuestra propuesta: desayunos, brunch, meriendas y el bar, siguiendo la misma línea. Veganos, vegetarianos y celíacos también encontrarán opciones, sin ser restrictivo."
+      - paragraph [ref=e62]: Siendo razonables con los precios, generosos con las porciones y exigentes con la calidad, logramos un producto que hace que la gente nos recomiende y quiera volver.
+    - generic [ref=e66]:
+      - heading "CAFETERIA EASY NIGHTS" [level=2] [ref=e68]:
+        - text: CAFETERIA
+        - text: EASY NIGHTS
+      - paragraph [ref=e69]: Siguiendo la misma linea y con un gran desafío nos comprometemos a brindarte en cada brunch, merienda, tentempié y a cualquier hora, propuestas de las que estamos enamorados, smoothies, panqueques, tostones llenos de nutrición, pastelería de nuestra cocina, jugos naturales para levantar cualquier estado y por supuesto café, para nosotros de la mejor calidad. Sentite libre, sentite liviano, sentite sano. Nosotros nos comprometemos a cuidarte.
+      - paragraph [ref=e70]: Y parte de llevar una vida saludable nos habla de esas charlas con amigos, de ese ratito de despeje al ir terminando el dia, un aperitivo , una picadita y buena musica. Easy nights crean el ambiente perfecto para esa pausa, para que te relajes, desconectes, las charlas fluyan y te pongas al dia.
+    - generic [ref=e77]:
+      - generic [ref=e79]:
+        - button "Anterior" [ref=e80] [cursor=pointer]:
+          - img [ref=e81]
+        - button "Siguiente" [ref=e83] [cursor=pointer]:
+          - img [ref=e84]
+      - generic [ref=e86]:
+        - article [ref=e87] [cursor=pointer]:
+          - img "THE SEASONS" [ref=e88]
+          - generic [ref=e90]:
+            - heading "THE SEASONS" [level=3] [ref=e91]
+            - generic [ref=e92]: Las estaciones no solo hablan del clima.
+            - generic [ref=e93]: Ver más →
+        - article [ref=e94] [cursor=pointer]:
+          - img "SE PARTE DE NUESTRO EQUIPO" [ref=e95]
+          - generic [ref=e97]:
+            - heading "SE PARTE DE NUESTRO EQUIPO" [level=3] [ref=e98]
+            - generic [ref=e99]: Ver más →
+        - article [ref=e100] [cursor=pointer]:
+          - img "NUESTRA HISTORIA" [ref=e101]
+          - generic [ref=e103]:
+            - heading "NUESTRA HISTORIA" [level=3] [ref=e104]
+            - generic [ref=e105]: Ver más →
+        - article [ref=e106] [cursor=pointer]:
+          - img "MOMENTOS" [ref=e107]
+          - generic [ref=e109]:
+            - heading "MOMENTOS" [level=3] [ref=e110]
+            - generic [ref=e111]: Be Real
+            - generic [ref=e112]: Ver más →
+        - article [ref=e113] [cursor=pointer]:
+          - img "THE SEASONS" [ref=e114]
+          - generic [ref=e116]:
+            - heading "THE SEASONS" [level=3] [ref=e117]
+            - generic [ref=e118]: Las estaciones no solo hablan del clima.
+            - generic [ref=e119]: Ver más →
+        - article [ref=e120] [cursor=pointer]:
+          - img "SE PARTE DE NUESTRO EQUIPO" [ref=e121]
+          - generic [ref=e123]:
+            - heading "SE PARTE DE NUESTRO EQUIPO" [level=3] [ref=e124]
+            - generic [ref=e125]: Ver más →
+        - article [ref=e126] [cursor=pointer]:
+          - img "NUESTRA HISTORIA" [ref=e127]
+          - generic [ref=e129]:
+            - heading "NUESTRA HISTORIA" [level=3] [ref=e130]
+            - generic [ref=e131]: Ver más →
+        - article [ref=e132] [cursor=pointer]:
+          - img "MOMENTOS" [ref=e133]
+          - generic [ref=e135]:
+            - heading "MOMENTOS" [level=3] [ref=e136]
+            - generic [ref=e137]: Be Real
+            - generic [ref=e138]: Ver más →
+    - generic [ref=e142]:
+      - heading "FRANQUICIAS" [level=2] [ref=e144]
+      - heading "DISPONIBLES" [level=2] [ref=e145]
+      - paragraph [ref=e146]: Llevá The Salad Bar a tu ciudad
+      - button "SOLICITAR INFORMACIÓN" [active] [ref=e147] [cursor=pointer]:
+        - text: SOLICITAR INFORMACIÓN
+        - img [ref=e148]
+    - generic [ref=e150]:
+      - heading "Contactemos" [level=2] [ref=e153]
+      - generic [ref=e158]:
+        - heading "Información Personal" [level=3] [ref=e159]
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]: Nombre completo
+            - textbox [ref=e163]
+          - generic [ref=e164]:
+            - generic [ref=e165]: Correo electrónico
+            - textbox [ref=e166]
+          - generic [ref=e167]:
+            - generic [ref=e168]: Número de teléfono
+            - textbox [ref=e169]
+          - generic [ref=e170]:
+            - generic [ref=e171]: Comentario
+            - textbox [ref=e172]
+        - button "Enviar Solicitud" [ref=e174] [cursor=pointer]
+    - contentinfo [ref=e175]:
+      - generic [ref=e176]:
+        - generic [ref=e177]:
+          - heading "The Salad Bar®" [level=3] [ref=e179]:
+            - text: The Salad Bar
+            - superscript [ref=e180]: ®
+          - paragraph [ref=e181]: Fresh • Healthy • Delicious
+        - generic [ref=e183]:
+          - generic [ref=e184]:
+            - heading "Ubicación" [level=4] [ref=e185]
+            - paragraph [ref=e186]:
+              - text: Leguizamón 416
+              - text: Salta, Argentina
+          - generic [ref=e187]:
+            - heading "Horarios" [level=4] [ref=e188]
+            - paragraph [ref=e189]: "Lun - Vie: 11:00 - 22:30"
+            - paragraph [ref=e190]: "Sab: 11:00 - 17:00"
+          - generic [ref=e191]:
+            - heading "Contacto" [level=4] [ref=e192]
+            - generic [ref=e193]:
+              - img [ref=e194]
+              - generic [ref=e197]: thesaladbar.salta@gmail.com
+            - generic [ref=e198]:
+              - img [ref=e199]
+              - generic [ref=e201]: 387-2521137
+            - generic [ref=e202]:
+              - img [ref=e203]
+              - generic [ref=e207]: "@thesaladbarsalta"
+        - paragraph [ref=e209]: ® 2022 The Salad Bar. Todos los derechos reservados.
+    - generic [ref=e224]:
+      - button "Cerrar" [ref=e225] [cursor=pointer]:
+        - img [ref=e226]
+      - generic [ref=e228]:
+        - img "FRANQUICIAS DISPONIBLES" [ref=e229]
+        - img "FRANQUICIAS DISPONIBLES" [ref=e230]
+        - img "FRANQUICIAS DISPONIBLES" [ref=e231]
+        - heading "FRANQUICIAS DISPONIBLES" [level=2] [ref=e232]
+        - generic [ref=e233]:
+          - button "Foto 1" [ref=e234] [cursor=pointer]
+          - button "Foto 2" [ref=e235] [cursor=pointer]
+          - button "Foto 3" [ref=e236] [cursor=pointer]
+      - generic [ref=e237]:
+        - paragraph [ref=e238]: Llevá The Salad Bar a tu ciudad
+        - paragraph [ref=e239]: Agradecemos tu interés. Este formulario nos permite conocerte mejor y asegurar una asociación exitosa y duradera. Toda la información es tratada con estricta confidencialidad.
+        - generic [ref=e240]:
+          - generic [ref=e241]:
+            - heading "Información Personal" [level=3] [ref=e242]
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - text: Nombre completo
+                - textbox [ref=e245]
+              - generic [ref=e246]:
+                - text: Correo electrónico
+                - textbox [ref=e247]
+              - generic [ref=e248]:
+                - text: Número de teléfono
+                - textbox [ref=e249]
+              - generic [ref=e250]:
+                - text: Ciudad y país de residencia
+                - textbox [ref=e251]
+              - generic [ref=e252]:
+                - text: Ocupación actual
+                - textbox [ref=e253]
+          - generic [ref=e254]:
+            - heading "Interés y Expectativas" [level=3] [ref=e255]
+            - generic [ref=e256]:
+              - text: ¿Por qué le interesa adquirir una franquicia de nuestro negocio?
+              - textbox [ref=e257]
+            - generic [ref=e258]:
+              - text: Ubicación geográfica de interés
+              - textbox [ref=e259]
+            - generic [ref=e260]:
+              - text: Experiencia en hostelería o negocios
+              - textbox [ref=e261]
+            - generic [ref=e262]:
+              - text: ¿Tiene experiencia previa como empresario?
+              - textbox [ref=e263]
+            - generic [ref=e264]:
+              - text: Motivación principal
+              - textbox [ref=e265]
+            - generic [ref=e266]:
+              - text: ¿Cómo se imagina su participación diaria?
+              - textbox [ref=e267]
+            - generic [ref=e268]:
+              - text: Expectativas de retorno de inversión y rentabilidad
+              - textbox [ref=e269]
+          - generic [ref=e270]:
+            - heading "Capacidad Financiera" [level=3] [ref=e271]
+            - generic [ref=e272]:
+              - text: Capacidad de inversión aproximada
+              - textbox [ref=e273]
+            - generic [ref=e274]:
+              - text: ¿Cómo planea financiar la inversión inicial?
+              - textbox [ref=e275]
+            - generic [ref=e276]:
+              - text: Horizonte de tiempo para comenzar el negocio
+              - textbox [ref=e277]
+          - generic [ref=e278]:
+            - heading "Conectando con la Marca" [level=3] [ref=e279]
+            - generic [ref=e280]:
+              - text: ¿Qué cree que es lo más importante en un restaurante exitoso?
+              - textbox [ref=e281]
+            - generic [ref=e282]:
+              - text: En una palabra, describa la experiencia que quiere ofrecer
+              - textbox [ref=e283]
+            - generic [ref=e284]:
+              - text: Describa su estilo de liderazgo
+              - textbox [ref=e285]
+            - generic [ref=e286]:
+              - text: ¿Qué tan importante es el bienestar de sus empleados?
+              - textbox [ref=e287]
+          - button "Enviar Solicitud" [ref=e289] [cursor=pointer]
+  - link [ref=e210] [cursor=pointer]:
+    - /url: https://wa.me/5493872521137
+    - img [ref=e211]
+  - button "Open Next.js Dev Tools" [ref=e218] [cursor=pointer]:
+    - img [ref=e219]
+  - alert [ref=e222]
