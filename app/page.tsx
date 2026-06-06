@@ -6,10 +6,10 @@ import MainContactForm from "@/components/main-contact"
 
 /* =========== DATA =========== */
 const PROPUESTA_CELLS = [
-  ["/pg-04.jpeg", "/pg-10.jpeg", "/pg-05.jpeg"],
-  ["/pg-02.jpeg", "/pg-08.jpeg", "/pg-11.jpeg"],
-  ["/pg-01.jpeg", "/pg-07.jpeg", "/pg-12.jpeg"],
-  ["/pg-03.jpeg", "/pg-09.jpeg", "/pg-06.jpeg"],
+  ["/pg-04.jpeg", "/pg-07.jpeg", "/pg-03.jpeg", "/pg-15.jpeg"],
+  ["/pg-06.jpeg", "/pg-08.jpeg", "/pg-02.jpeg", "/pg-13.jpeg"],
+  ["/pg-10.jpeg", "/pg-11.jpeg", "/pg-09.jpeg", "/pg-16.jpeg"],
+  ["/pg-05.jpeg", "/pg-01.jpeg", "/pg-12.jpeg", "/pg-14.jpeg", "/pg-17.jpeg"],
 ]
 
 const CAFETERIA_CELLS = [
