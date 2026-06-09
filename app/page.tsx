@@ -368,7 +368,14 @@ export default function HomePage() {
     const v = heroVideoRef.current
     if (!v) return
     v.muted = true
-    v.play().catch(() => {})
+    v.setAttribute("muted", "")
+    const tryPlay = () => { v.play().catch(() => {}) }
+    if (v.readyState >= 3) {
+      tryPlay()
+    } else {
+      v.addEventListener("canplay", tryPlay, { once: true })
+    }
+    return () => v.removeEventListener("canplay", tryPlay)
   }, [])
 
   const scrollCarousel = (dir: number) => {
@@ -394,6 +401,7 @@ export default function HomePage() {
           loop
           playsInline
           disablePictureInPicture
+          preload="auto"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}
         >
           <source
