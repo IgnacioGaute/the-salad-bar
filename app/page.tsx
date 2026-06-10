@@ -369,13 +369,30 @@ export default function HomePage() {
     if (!v) return
     v.muted = true
     v.setAttribute("muted", "")
-    const tryPlay = () => { v.play().catch(() => {}) }
+    v.setAttribute("playsinline", "")
+
+    const tryPlay = () => {
+      v.play().catch(() => {})
+    }
+
     if (v.readyState >= 3) {
       tryPlay()
     } else {
       v.addEventListener("canplay", tryPlay, { once: true })
     }
-    return () => v.removeEventListener("canplay", tryPlay)
+
+    // Safari fallback: play on first user interaction
+    const onInteraction = () => {
+      if (v.paused) v.play().catch(() => {})
+    }
+    window.addEventListener("scroll", onInteraction, { once: true, passive: true })
+    window.addEventListener("pointerdown", onInteraction, { once: true })
+
+    return () => {
+      v.removeEventListener("canplay", tryPlay)
+      window.removeEventListener("scroll", onInteraction)
+      window.removeEventListener("pointerdown", onInteraction)
+    }
   }, [])
 
   const scrollCarousel = (dir: number) => {
@@ -395,7 +412,15 @@ export default function HomePage() {
       {/* ========== HERO ========== */}
       <section style={{ position: "relative", height: "100vh", minHeight: 640, overflow: "hidden", backgroundColor: "#000" }}>
         <video
-          ref={heroVideoRef}
+          ref={(el) => {
+            if (el) {
+              el.muted = true
+              el.setAttribute("muted", "")
+              el.setAttribute("autoplay", "")
+              el.setAttribute("playsinline", "")
+              heroVideoRef.current = el
+            }
+          }}
           autoPlay
           muted
           loop
