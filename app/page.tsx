@@ -370,15 +370,19 @@ export default function HomePage() {
     v.muted = true
     v.setAttribute("muted", "")
     v.setAttribute("playsinline", "")
+    v.setAttribute("webkit-playsinline", "")
 
     const tryPlay = () => {
       v.play().catch(() => {})
     }
 
+    v.load()
+
     if (v.readyState >= 3) {
       tryPlay()
     } else {
       v.addEventListener("canplay", tryPlay, { once: true })
+      v.addEventListener("loadeddata", tryPlay, { once: true })
     }
 
     // Safari fallback: play on first user interaction
@@ -387,11 +391,14 @@ export default function HomePage() {
     }
     window.addEventListener("scroll", onInteraction, { once: true, passive: true })
     window.addEventListener("pointerdown", onInteraction, { once: true })
+    window.addEventListener("touchstart", onInteraction, { once: true, passive: true })
 
     return () => {
       v.removeEventListener("canplay", tryPlay)
+      v.removeEventListener("loadeddata", tryPlay)
       window.removeEventListener("scroll", onInteraction)
       window.removeEventListener("pointerdown", onInteraction)
+      window.removeEventListener("touchstart", onInteraction)
     }
   }, [])
 
@@ -418,6 +425,7 @@ export default function HomePage() {
               el.setAttribute("muted", "")
               el.setAttribute("autoplay", "")
               el.setAttribute("playsinline", "")
+              el.setAttribute("webkit-playsinline", "")
               heroVideoRef.current = el
             }
           }}
@@ -427,6 +435,8 @@ export default function HomePage() {
           playsInline
           disablePictureInPicture
           preload="auto"
+          // @ts-ignore
+          webkit-playsinline="true"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}
         >
           <source
